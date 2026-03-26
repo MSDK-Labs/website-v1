@@ -7,7 +7,7 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='15' height='15' viewBox='0 0 15 15' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0H5V5H0V0Z' fill='%23111'/%3E%3Cpath d='M5 5H10V10H5V5Z' fill='%23111'/%3E%3Cpath d='M10 0H15V5H10V0Z' fill='%23111'/%3E%3Cpath d='M10 10H15V15H10V10Z' fill='%23111'/%3E%3Cpath d='M0 10L5 5V10H6.85185L5 11.7593V15H0V10Z' fill='%23111'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -20,8 +20,8 @@
   --border: rgba(0, 0, 0, 0.08);
   --border-strong: rgba(0, 0, 0, 0.12);
   --card-bg: #FFFFFF;
-  --serif: 'Fraunces', Georgia, serif;
   --sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --display: 'Inter', system-ui, -apple-system, sans-serif;
   --container: 1100px;
 }
 
@@ -181,8 +181,9 @@ a { color: inherit; text-decoration: none; }
 .mobile-menu.active { display: flex; }
 
 .mobile-menu a {
-  font-family: var(--serif);
-  font-size: 32px;
+  font-family: var(--sans);
+  font-size: 24px;
+  font-weight: 500;
   color: var(--text);
   transition: color 0.2s;
 }
@@ -210,19 +211,15 @@ a { color: inherit; text-decoration: none; }
 }
 
 .hero h1 {
-  font-family: var(--serif);
-  font-size: 96px;
-  font-weight: 300;
-  line-height: 1.08;
-  letter-spacing: -0.02em;
-  max-width: 900px;
+  font-family: var(--display);
+  font-size: 72px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  max-width: 800px;
   margin-bottom: 32px;
   opacity: 0;
   animation: fadeIn 0.6s ease forwards 0.2s;
-}
-
-.hero h1 em {
-  font-style: italic;
 }
 
 .hero-sub {
@@ -318,9 +315,9 @@ a { color: inherit; text-decoration: none; }
 }
 
 .certificate-section h2 {
-  font-family: var(--serif);
-  font-size: 56px;
-  font-weight: 300;
+  font-family: var(--display);
+  font-size: 48px;
+  font-weight: 500;
   line-height: 1.08;
   letter-spacing: -0.022em;
   max-width: 580px;
@@ -428,9 +425,9 @@ a { color: inherit; text-decoration: none; }
 }
 
 .stat-value {
-  font-family: var(--serif);
-  font-size: 32px;
-  font-weight: 300;
+  font-family: var(--display);
+  font-size: 28px;
+  font-weight: 600;
   margin-bottom: 8px;
 }
 
@@ -450,9 +447,9 @@ a { color: inherit; text-decoration: none; }
 }
 
 .problem h2 {
-  font-family: var(--serif);
-  font-size: 56px;
-  font-weight: 300;
+  font-family: var(--display);
+  font-size: 48px;
+  font-weight: 500;
   line-height: 1.08;
   letter-spacing: -0.022em;
   max-width: 640px;
@@ -527,9 +524,9 @@ a { color: inherit; text-decoration: none; }
 }
 
 .how-it-works h2 {
-  font-family: var(--serif);
-  font-size: 56px;
-  font-weight: 300;
+  font-family: var(--display);
+  font-size: 48px;
+  font-weight: 500;
   line-height: 1.08;
   letter-spacing: -0.022em;
   max-width: 700px;
@@ -597,9 +594,9 @@ a { color: inherit; text-decoration: none; }
 }
 
 .regulatory h2 {
-  font-family: var(--serif);
-  font-size: 56px;
-  font-weight: 300;
+  font-family: var(--display);
+  font-size: 48px;
+  font-weight: 500;
   line-height: 1.08;
   letter-spacing: -0.022em;
   max-width: 700px;
@@ -670,9 +667,9 @@ a { color: inherit; text-decoration: none; }
 }
 
 .team h2 {
-  font-family: var(--serif);
-  font-size: 56px;
-  font-weight: 300;
+  font-family: var(--display);
+  font-size: 48px;
+  font-weight: 500;
   line-height: 1.08;
   letter-spacing: -0.022em;
   max-width: 600px;
@@ -745,9 +742,9 @@ a { color: inherit; text-decoration: none; }
 }
 
 .request-access h2 {
-  font-family: var(--serif);
-  font-size: 56px;
-  font-weight: 300;
+  font-family: var(--display);
+  font-size: 48px;
+  font-weight: 500;
   line-height: 1.08;
   letter-spacing: -0.022em;
   margin-bottom: 20px;
@@ -877,13 +874,13 @@ a { color: inherit; text-decoration: none; }
    RESPONSIVE
    ──────────────────────────────────── */
 @media (max-width: 1024px) {
-  .hero h1 { font-size: 72px; }
+  .hero h1 { font-size: 56px; }
   .problem h2,
   .certificate-section h2,
   .how-it-works h2,
   .regulatory h2,
   .team h2,
-  .request-access h2 { font-size: 44px; }
+  .request-access h2 { font-size: 40px; }
   .problem-grid, .team-grid { gap: 48px; }
   .steps-grid { grid-template-columns: repeat(2, 1fr); }
 }
@@ -902,7 +899,7 @@ a { color: inherit; text-decoration: none; }
   .mobile-menu { padding: 100px 24px 48px; }
 
   .hero { padding: 140px 24px 100px; }
-  .hero h1 { font-size: 52px; }
+  .hero h1 { font-size: 44px; }
   .hero-sub { font-size: 17px; }
 
   .trust-bar { padding: 32px 24px; }
@@ -923,7 +920,7 @@ a { color: inherit; text-decoration: none; }
   .how-it-works h2,
   .regulatory h2,
   .team h2,
-  .request-access h2 { font-size: 38px; margin-bottom: 56px; }
+  .request-access h2 { font-size: 34px; margin-bottom: 48px; }
   .problem-card-desc { padding-left: 0; margin-top: 4px; }
 
   .regulatory { padding: 80px 24px; }
@@ -938,7 +935,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 @media (max-width: 480px) {
-  .hero h1 { font-size: 40px; }
+  .hero h1 { font-size: 36px; }
   .stats-inner { grid-template-columns: 1fr; }
   .stat-item::after { display: none !important; }
   .stat-item { padding: 20px 0; border-bottom: 1px solid var(--border); }
@@ -989,11 +986,11 @@ a { color: inherit; text-decoration: none; }
 
 <!-- HERO -->
 <section class="hero">
-  <p class="hero-eyebrow">FCA &amp; EU AI Act Compliant</p>
-  <h1>Every AI decision, <em>provably</em> traced.</h1>
-  <p class="hero-sub">Tamper-proof, cryptographically signed audit trails for every AI decision your firm makes — before the regulator asks.</p>
+  <p class="hero-eyebrow">AI decision audit infrastructure</p>
+  <h1>Cryptographic audit trails for every AI decision in your regulated workflow.</h1>
+  <p class="hero-sub">Aegis Trace is an API-first compliance layer that sits between your AI systems and your audit function. It captures decision payloads, signs them cryptographically, and stores them on an immutable ledger — producing verifiable certificates that satisfy FCA and EU AI Act recordkeeping requirements.</p>
   <div class="hero-ctas">
-    <a href="#request-access" class="btn-primary">Request Early Access &rarr;</a>
+    <a href="#request-access" class="btn-primary">Request Access &rarr;</a>
     <a href="#how-it-works" class="btn-ghost">See How It Works</a>
   </div>
 </section>
@@ -1001,10 +998,10 @@ a { color: inherit; text-decoration: none; }
 <!-- TRUST BAR -->
 <div class="trust-bar">
   <div class="trust-items">
-    <span>FCA PS22/3</span>
-    <span>EU AI Act Art.12</span>
-    <span>GDPR-native</span>
-    <span>EU Data Residency</span>
+    <span>FCA PS22/3 recordkeeping</span>
+    <span>EU AI Act Art.12 logging</span>
+    <span>GDPR Art.30 compliant</span>
+    <span>EU data residency</span>
   </div>
 </div>
 
@@ -1012,28 +1009,28 @@ a { color: inherit; text-decoration: none; }
 <section class="stats-bar">
   <div class="stats-inner">
     <div class="stat-item reveal">
-      <div class="stat-value">&lt; 2s</div>
-      <div class="stat-label">p99 API latency</div>
+      <div class="stat-value">&lt; 2s p99</div>
+      <div class="stat-label">API response latency</div>
     </div>
     <div class="stat-item reveal reveal-d1">
       <div class="stat-value">HMAC-SHA256</div>
-      <div class="stat-label">Certificate signing</div>
+      <div class="stat-label">Certificate signing standard</div>
     </div>
     <div class="stat-item reveal reveal-d2">
       <div class="stat-value">7-year</div>
       <div class="stat-label">WORM-locked retention</div>
     </div>
     <div class="stat-item reveal reveal-d3">
-      <div class="stat-value">FCA + EU AI Act</div>
-      <div class="stat-label">Regulatory coverage</div>
+      <div class="stat-value">6 regulations</div>
+      <div class="stat-label">FCA and EU AI Act coverage</div>
     </div>
   </div>
 </section>
 
 <!-- CERTIFICATE -->
 <section class="certificate-section" id="certificate">
-  <p class="section-label reveal">What you get</p>
-  <h2 class="reveal">A signed certificate for every AI decision.</h2>
+  <p class="section-label reveal">Product output</p>
+  <h2 class="reveal">Each AI decision produces a signed, immutable certificate.</h2>
   <div class="cert-card reveal">
     <div class="cert-header">
       <span class="cert-title">Aegis Trace Certificate</span>
@@ -1075,39 +1072,39 @@ a { color: inherit; text-decoration: none; }
 <!-- PROBLEM -->
 <section class="problem" id="problem">
   <p class="section-label reveal">The Problem</p>
-  <h2 class="reveal">AI is making regulated decisions. Nobody can prove how.</h2>
+  <h2 class="reveal">Regulated firms cannot evidence how their AI systems reach decisions.</h2>
   <div class="problem-grid">
     <div class="problem-body reveal">
-      <p>FCA-regulated firms deploying AI in investment advice, portfolio management, and client communications face an uncomfortable truth: when the regulator asks why the AI made that recommendation, there is no answer. The model is a black box. The decision is gone. The liability is real.</p>
+      <p>When the FCA requests evidence of how an AI-assisted suitability recommendation was generated, most firms cannot produce it. The model inputs, intermediate reasoning, and output rationale are not recorded in a format that satisfies regulatory examination. Existing logging infrastructure was not designed for AI decision traceability, and manual recordkeeping introduces gaps that create material compliance risk.</p>
     </div>
     <div class="problem-cards">
       <div class="problem-card reveal">
         <div class="problem-card-top">
           <span class="problem-card-num">01</span>
-          <span class="problem-card-title">No audit trail</span>
+          <span class="problem-card-title">Decision reconstruction failure</span>
         </div>
-        <div class="problem-card-desc">AI decisions are made and lost with no cryptographic record of input-to-output reasoning.</div>
+        <div class="problem-card-desc">AI outputs are not captured with sufficient context to reconstruct the decision path during an FCA section 166 review or internal audit.</div>
       </div>
       <div class="problem-card reveal reveal-d1">
         <div class="problem-card-top">
           <span class="problem-card-num">02</span>
-          <span class="problem-card-title">Black-box liability</span>
+          <span class="problem-card-title">Suitability evidence gaps</span>
         </div>
-        <div class="problem-card-desc">Firms cannot demonstrate compliance with FCA PS22/3 or EU AI Act obligations.</div>
+        <div class="problem-card-desc">Firms using AI in advisory or portfolio management cannot demonstrate that individual recommendations were suitable under Consumer Duty requirements.</div>
       </div>
       <div class="problem-card reveal reveal-d2">
         <div class="problem-card-top">
           <span class="problem-card-num">03</span>
-          <span class="problem-card-title">Manual processes fail</span>
+          <span class="problem-card-title">Logging infrastructure mismatch</span>
         </div>
-        <div class="problem-card-desc">Logging AI decisions manually creates gaps, inconsistency, and regulatory exposure.</div>
+        <div class="problem-card-desc">Application logs and observability tooling capture operational telemetry, not the structured decision records that compliance teams require for regulatory reporting.</div>
       </div>
       <div class="problem-card reveal reveal-d3">
         <div class="problem-card-top">
           <span class="problem-card-num">04</span>
-          <span class="problem-card-title">August 2026 deadline</span>
+          <span class="problem-card-title">EU AI Act documentation mandate</span>
         </div>
-        <div class="problem-card-desc">EU AI Act enforcement for high-risk AI begins. Most regulated firms are not ready.</div>
+        <div class="problem-card-desc">Article 12 of the EU AI Act requires high-risk AI systems to maintain automatic logging of decisions. Enforcement for financial services begins August 2026.</div>
       </div>
     </div>
   </div>
@@ -1115,28 +1112,28 @@ a { color: inherit; text-decoration: none; }
 
 <!-- HOW IT WORKS -->
 <section class="how-it-works" id="how-it-works">
-  <p class="section-label reveal">How It Works</p>
-  <h2 class="reveal">From AI decision to signed certificate in under 2 seconds.</h2>
+  <p class="section-label reveal">Integration</p>
+  <h2 class="reveal">A single API call between your AI system and your audit function.</h2>
   <div class="steps-grid">
     <div class="step-card reveal">
       <div class="step-card-num">01</div>
-      <div class="step-card-title">Submit via API</div>
-      <div class="step-card-desc">Your AI system sends a decision payload to a single REST endpoint. No changes to your model, infrastructure, or workflow.</div>
+      <div class="step-card-title">Submit decision payload</div>
+      <div class="step-card-desc">Your AI system sends a structured JSON payload to the Aegis Trace REST API after each decision. Integration requires adding a single POST call to your existing workflow. SDKs are available for Python, Node.js, and Java.</div>
     </div>
     <div class="step-card reveal reveal-d1">
       <div class="step-card-num">02</div>
-      <div class="step-card-title">Redact PII</div>
-      <div class="step-card-desc">Our sidecar automatically strips personal data from every payload before storage. GDPR compliance is built in, not bolted on.</div>
+      <div class="step-card-title">PII redaction</div>
+      <div class="step-card-desc">A configurable redaction layer removes or pseudonymises personal data fields before the payload is persisted. Redaction rules are defined by your team and applied consistently across all submissions.</div>
     </div>
     <div class="step-card reveal reveal-d2">
       <div class="step-card-num">03</div>
-      <div class="step-card-title">Sign &amp; Seal</div>
-      <div class="step-card-desc">A cryptographic certificate is generated using HMAC-SHA256 and sealed with Cloud KMS. Tamper-proof and independently verifiable.</div>
+      <div class="step-card-title">Cryptographic signing</div>
+      <div class="step-card-desc">Each decision payload is hashed using HMAC-SHA256 and signed with a Cloud KMS-managed key. The resulting certificate includes a verifiable signature, timestamp, and regulatory reference mapping.</div>
     </div>
     <div class="step-card reveal reveal-d3">
       <div class="step-card-num">04</div>
-      <div class="step-card-title">Store on WORM Ledger</div>
-      <div class="step-card-desc">The certificate is written to an append-only, WORM-locked ledger with 7-year retention. Immutable. Court-ready. Auditable.</div>
+      <div class="step-card-title">Immutable storage</div>
+      <div class="step-card-desc">Signed certificates are written to an append-only, WORM-locked ledger with a configurable retention period (default: 7 years). Records are retrievable via API or exported for regulatory submission.</div>
     </div>
   </div>
 </section>
@@ -1144,60 +1141,60 @@ a { color: inherit; text-decoration: none; }
 <!-- REGULATORY -->
 <section class="regulatory" id="regulatory">
   <div class="regulatory-inner">
-    <p class="section-label reveal">Regulatory Coverage</p>
-    <h2 class="reveal">Built for the regulations that matter. Ready for the ones coming.</h2>
-    <p class="regulatory-body reveal">Aegis Trace was designed from day one around FCA recordkeeping requirements, Consumer Duty obligations, and the EU AI Act documentation mandate. We do not cover every regulation in existence — we cover the ones your compliance team will be examined on.</p>
+    <p class="section-label reveal">Regulatory mapping</p>
+    <h2 class="reveal">Certificate fields are mapped directly to regulatory requirements.</h2>
+    <p class="regulatory-body reveal">Aegis Trace certificates are structured to produce the specific evidence fields required by current FCA recordkeeping rules and EU AI Act documentation obligations. Each regulation below has a corresponding data requirement that the certificate schema addresses.</p>
     <div class="reg-grid">
       <div class="reg-card reveal">
         <div class="reg-card-title">FCA PS22/3</div>
-        <div class="reg-card-desc">Consumer investment and advice recordkeeping</div>
+        <div class="reg-card-desc">Decision rationale and suitability evidence for consumer investment advice</div>
       </div>
       <div class="reg-card reveal reveal-d1">
         <div class="reg-card-title">Consumer Duty</div>
-        <div class="reg-card-desc">Outcome monitoring and evidencing</div>
+        <div class="reg-card-desc">Outcome monitoring records demonstrating client-appropriate recommendations</div>
       </div>
       <div class="reg-card reveal reveal-d2">
         <div class="reg-card-title">EU AI Act Art.12</div>
-        <div class="reg-card-desc">High-risk AI logging and documentation</div>
+        <div class="reg-card-desc">Automatic logging of high-risk AI system decisions and operating conditions</div>
       </div>
       <div class="reg-card reveal">
         <div class="reg-card-title">MiFID II</div>
-        <div class="reg-card-desc">Investment decision audit requirements</div>
+        <div class="reg-card-desc">Audit trail for investment decision processes and order execution</div>
       </div>
       <div class="reg-card reveal reveal-d1">
         <div class="reg-card-title">GDPR Art.30</div>
-        <div class="reg-card-desc">Records of processing activities</div>
+        <div class="reg-card-desc">Structured records of automated processing activities involving personal data</div>
       </div>
       <div class="reg-card reveal reveal-d2">
         <div class="reg-card-title">FCA SYSC 9</div>
-        <div class="reg-card-desc">Systematic recordkeeping obligations</div>
+        <div class="reg-card-desc">Systematic retention of records sufficient to reconstruct regulated activities</div>
       </div>
     </div>
-    <div class="reg-callout reveal">The EU AI Act enforcement deadline for high-risk AI systems is August 2026. Firms without certified audit trails face regulatory censure and client liability. Aegis Trace makes compliance a default, not a project.</div>
+    <div class="reg-callout reveal">The EU AI Act high-risk AI provisions apply from August 2026. Firms deploying AI in financial advice, credit scoring, or risk assessment will be required to maintain structured decision logs. Aegis Trace provides this capability as a defined infrastructure component, rather than requiring a separate compliance programme.</div>
   </div>
 </section>
 
 <!-- TEAM -->
 <section class="team" id="team">
   <p class="section-label reveal">The Team</p>
-  <h2 class="reveal">Built by people who have sat in FCA audits.</h2>
+  <h2 class="reveal">Direct experience in regulated financial services delivery and FCA examination.</h2>
   <div class="team-grid">
     <div class="team-body reveal">
-      <p>MSDK Labs was founded by engineers and technologists with direct experience inside UK wealth management and regulated fintech — delivering enterprise programmes for some of the UK's largest financial services firms. We have been in the room when compliance teams cannot answer a regulator's question about an AI system. We built Aegis Trace because we know what evidence is needed and what happens when it does not exist.</p>
-      <p>Our team combines deep expertise in regulated financial services delivery, production AI engineering, and compliance architecture. We are not a team of generalist AI engineers who discovered financial regulation. We are financial technology specialists who built an AI compliance product.</p>
+      <p>MSDK Labs was founded by engineers and technologists who have delivered enterprise technology programmes at UK wealth managers and FCA-regulated fintechs. The team has direct exposure to regulatory examination processes and understands what evidence compliance teams are required to produce.</p>
+      <p>Aegis Trace was built from operational experience — the specific gap between production AI systems and the structured decision records that regulated firms need. The team combines financial services delivery, production AI engineering, and compliance architecture experience.</p>
     </div>
     <div class="team-cards">
       <div class="team-card reveal">
-        <div class="team-card-title">Regulated Financial Services</div>
-        <div class="team-card-desc">Direct delivery experience at UK wealth managers and FCA-regulated firms. We understand compliance requirements from the inside, not from documentation.</div>
+        <div class="team-card-title">Regulated financial services</div>
+        <div class="team-card-desc">Enterprise delivery at UK wealth managers and FCA-regulated firms. Direct experience with compliance requirements, audit preparation, and regulatory reporting.</div>
       </div>
       <div class="team-card reveal reveal-d1">
-        <div class="team-card-title">Production AI Engineering</div>
-        <div class="team-card-desc">Expertise in production AI systems, API architecture, and the specific challenge of making machine-learning decisions auditable at scale.</div>
+        <div class="team-card-title">Production AI systems</div>
+        <div class="team-card-desc">Design and operation of production AI services, API infrastructure, and the engineering required to make machine-learning outputs auditable and reproducible.</div>
       </div>
       <div class="team-card reveal reveal-d2">
-        <div class="team-card-title">Compliance Architecture</div>
-        <div class="team-card-desc">First-hand knowledge of FCA examination processes, what evidence is requested, and how compliance teams need to produce and present it.</div>
+        <div class="team-card-title">Compliance architecture</div>
+        <div class="team-card-desc">Practical knowledge of FCA examination processes, section 166 reviews, and the evidence formats that compliance teams are required to present.</div>
       </div>
     </div>
   </div>
@@ -1206,15 +1203,15 @@ a { color: inherit; text-decoration: none; }
 <!-- REQUEST ACCESS -->
 <section class="request-access" id="request-access">
   <div class="request-access-inner">
-    <p class="section-label reveal">Private Beta</p>
-    <h2 class="reveal">Request early access.</h2>
-    <p class="request-access-sub reveal">We are onboarding a small number of FCA-regulated wealth managers and fintechs. Integration takes less than a day. No commitment required.</p>
+    <p class="section-label reveal">Controlled access</p>
+    <h2 class="reveal">Request access.</h2>
+    <p class="request-access-sub reveal">We are onboarding a limited number of FCA-regulated firms for initial integration. Typical integration is completed within one working day with engineering support from our team.</p>
     <form class="request-form reveal" id="requestForm">
       <input type="email" placeholder="Work email address" required>
-      <button type="submit" class="btn-primary">Request Access</button>
+      <button type="submit" class="btn-primary">Submit</button>
     </form>
-    <p class="request-thank-you" id="requestThankYou">Thank you — we will be in touch.</p>
-    <p class="request-note reveal">NDA available on request. Technical documentation provided to qualified prospects.</p>
+    <p class="request-thank-you" id="requestThankYou">Thank you. We will be in touch within two working days.</p>
+    <p class="request-note reveal">NDA available on request. Technical documentation and API reference provided to qualified prospects.</p>
   </div>
 </section>
 
