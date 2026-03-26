@@ -1004,9 +1004,9 @@ a { color: inherit; text-decoration: none; }
 
 <!-- HERO -->
 <section class="hero">
-  <p class="hero-eyebrow">AI compliance infrastructure for regulated firms</p>
+  <p class="hero-eyebrow">AI decision audit layer for regulated environments</p>
   <h1>Every AI decision, provably traced.</h1>
-  <p class="hero-sub">Aegis Trace is an API service that captures AI decision payloads, signs them cryptographically, and stores them on an immutable ledger — producing verifiable audit certificates for regulatory examination.</p>
+  <p class="hero-sub">Aegis Trace is an API service that captures AI decision payloads, produces a cryptographically signed record, and stores it on an immutable ledger. Each decision is preserved as a verifiable audit artefact for regulatory examination.</p>
   <div class="hero-ctas">
     <a href="#request-access" class="btn-primary">Request Access &rarr;</a>
     <a href="#how-it-works" class="btn-ghost">See How It Works</a>
@@ -1017,8 +1017,8 @@ a { color: inherit; text-decoration: none; }
 <div class="trust-bar">
   <div class="trust-items">
     <span>FCA PS22/3 recordkeeping</span>
-    <span>EU AI Act Art.12 logging</span>
-    <span>GDPR Art.30 compliant</span>
+    <span>EU AI Act Article 12 logging</span>
+    <span>GDPR Article 30 alignment</span>
     <span>EU data residency</span>
   </div>
 </div>
@@ -1039,8 +1039,8 @@ a { color: inherit; text-decoration: none; }
       <div class="stat-label">WORM-locked retention</div>
     </div>
     <div class="stat-item reveal reveal-d3">
-      <div class="stat-value">6 regulations</div>
-      <div class="stat-label">FCA and EU AI Act coverage</div>
+      <div class="stat-value">FCA + EU AI Act</div>
+      <div class="stat-label">Regulatory alignment</div>
     </div>
   </div>
 </section>
@@ -1049,7 +1049,7 @@ a { color: inherit; text-decoration: none; }
 <section class="certificate-section" id="certificate">
   <p class="section-label reveal">Product output</p>
   <h2 class="reveal">Each AI decision produces a signed, immutable certificate.</h2>
-  <p class="cert-context reveal">Certificates are indexed by agent, time range, and regulatory reference. They are retrieved via API or bulk export during internal audit or regulatory examination.</p>
+  <p class="cert-context reveal">Certificates are indexed by agent, timestamp, and regulatory reference. They are retrieved via API or bulk export during internal audit or regulatory review.</p>
   <div class="cert-card reveal">
     <div class="cert-header">
       <span class="cert-title">Aegis Trace Certificate</span>
@@ -1091,39 +1091,39 @@ a { color: inherit; text-decoration: none; }
 <!-- PROBLEM -->
 <section class="problem" id="problem">
   <p class="section-label reveal">The Problem</p>
-  <h2 class="reveal">AI is making regulated decisions. Nobody can prove how.</h2>
+  <h2 class="reveal">AI is making regulated decisions. Most firms cannot evidence how.</h2>
   <div class="problem-grid">
     <div class="problem-body reveal">
-      <p>When the FCA requests evidence of how an AI-assisted recommendation was generated, most firms cannot produce it. The decision payload is gone, the reasoning is unrecorded, and the liability is real.</p>
+      <p>During FCA review or internal audit, firms are required to explain how a recommendation or decision was produced. In many cases, the underlying AI decision cannot be reconstructed. The input data is not preserved, the reasoning path is unavailable, and the firm cannot evidence suitability or control.</p>
     </div>
     <div class="problem-cards">
       <div class="problem-card reveal">
         <div class="problem-card-top">
           <span class="problem-card-num">01</span>
-          <span class="problem-card-title">No audit trail</span>
+          <span class="problem-card-title">No audit record</span>
         </div>
-        <div class="problem-card-desc">AI decisions are made and lost with no cryptographic record of what input produced what output.</div>
+        <div class="problem-card-desc">AI decisions are not stored in a form that allows reconstruction of input, output, and context.</div>
       </div>
       <div class="problem-card reveal reveal-d1">
         <div class="problem-card-top">
           <span class="problem-card-num">02</span>
-          <span class="problem-card-title">Black-box liability</span>
+          <span class="problem-card-title">Black-box exposure</span>
         </div>
-        <div class="problem-card-desc">Without decision records, firms cannot demonstrate compliance under FCA PS22/3 or Consumer Duty.</div>
+        <div class="problem-card-desc">Firms cannot demonstrate how decisions align with regulatory obligations such as Consumer Duty.</div>
       </div>
       <div class="problem-card reveal reveal-d2">
         <div class="problem-card-top">
           <span class="problem-card-num">03</span>
-          <span class="problem-card-title">Logging gaps</span>
+          <span class="problem-card-title">Logging is insufficient</span>
         </div>
-        <div class="problem-card-desc">Application logs capture operational telemetry. They do not produce the structured records compliance requires.</div>
+        <div class="problem-card-desc">Application logs capture events, not structured decision evidence suitable for audit.</div>
       </div>
       <div class="problem-card reveal reveal-d3">
         <div class="problem-card-top">
           <span class="problem-card-num">04</span>
-          <span class="problem-card-title">August 2026 deadline</span>
+          <span class="problem-card-title">Regulatory timeline</span>
         </div>
-        <div class="problem-card-desc">EU AI Act Article 12 enforcement begins. Firms without certified audit trails are not ready.</div>
+        <div class="problem-card-desc">EU AI Act requirements for high-risk systems introduce formal expectations for decision traceability.</div>
       </div>
     </div>
   </div>
@@ -1132,28 +1132,28 @@ a { color: inherit; text-decoration: none; }
 <!-- HOW IT WORKS -->
 <section class="how-it-works" id="how-it-works">
   <p class="section-label reveal">How It Works</p>
-  <h2 class="reveal">From AI decision to signed certificate in under 2 seconds.</h2>
-  <p class="how-anchor reveal">Aegis Trace operates as a decision capture and certification layer within your AI architecture. Designed to integrate via a single API endpoint within existing workflows.</p>
+  <h2 class="reveal">Decision capture and certification within your AI architecture.</h2>
+  <p class="how-anchor reveal">Aegis Trace operates as a decision capture and certification layer alongside your existing AI systems. It integrates via a single API endpoint within your inference workflow.</p>
   <div class="steps-grid">
     <div class="step-card reveal">
       <div class="step-card-num">01</div>
       <div class="step-card-title">Submit decision payload</div>
-      <div class="step-card-desc">Your AI system sends a structured decision payload to a single REST endpoint, integrated alongside your existing inference pipeline.</div>
+      <div class="step-card-desc">Your system sends a structured payload representing the AI decision, including inputs, outputs, and relevant metadata.</div>
     </div>
     <div class="step-card reveal reveal-d1">
       <div class="step-card-num">02</div>
-      <div class="step-card-title">PII redaction</div>
-      <div class="step-card-desc">Personal data fields are identified and redacted before the payload is persisted. GDPR-compliant processing by default.</div>
+      <div class="step-card-title">PII handling</div>
+      <div class="step-card-desc">Defined personal data fields are removed or tokenised prior to persistence, based on configurable schema rules.</div>
     </div>
     <div class="step-card reveal reveal-d2">
       <div class="step-card-num">03</div>
       <div class="step-card-title">Cryptographic signing</div>
-      <div class="step-card-desc">Each payload is hashed using HMAC-SHA256 and signed via Cloud KMS. The resulting certificate is independently verifiable.</div>
+      <div class="step-card-desc">Each payload is hashed and signed using HMAC-SHA256 with managed key infrastructure. The resulting certificate is independently verifiable.</div>
     </div>
     <div class="step-card reveal reveal-d3">
       <div class="step-card-num">04</div>
       <div class="step-card-title">Immutable storage</div>
-      <div class="step-card-desc">Certificates are written to an append-only, WORM-locked ledger with 7-year retention. Retrievable via API or bulk export.</div>
+      <div class="step-card-desc">Certificates are written to an append-only, WORM-locked store with defined retention and retrieval via API or export.</div>
     </div>
   </div>
 </section>
@@ -1162,7 +1162,7 @@ a { color: inherit; text-decoration: none; }
 <section class="regulatory" id="regulatory">
   <div class="regulatory-inner">
     <p class="section-label reveal">Regulatory Coverage</p>
-    <h2 class="reveal">Built for the regulations your compliance team will be examined on.</h2>
+    <h2 class="reveal">Aligned to the regulations governing AI-driven decisions.</h2>
     <div class="reg-grid">
       <div class="reg-card reveal">
         <div class="reg-card-title">FCA PS22/3</div>
@@ -1189,17 +1189,17 @@ a { color: inherit; text-decoration: none; }
         <div class="reg-card-desc">Systematic retention of records sufficient to reconstruct regulated activities</div>
       </div>
     </div>
-    <div class="reg-callout reveal">The EU AI Act high-risk AI provisions apply from August 2026. Firms deploying AI in regulated advice or portfolio management will need to evidence decision logging. Aegis Trace provides this as an integrated infrastructure component rather than a separate compliance programme.</div>
+    <div class="reg-callout reveal">The EU AI Act high-risk provisions apply from August 2026. Firms deploying AI in regulated decision-making contexts will need to evidence how those decisions are produced and recorded. Aegis Trace provides this capability as an integrated system component.</div>
   </div>
 </section>
 
 <!-- TEAM -->
 <section class="team" id="team">
   <p class="section-label reveal">The Team</p>
-  <h2 class="reveal">Built by people who have sat in FCA audits.</h2>
+  <h2 class="reveal">Built by practitioners from regulated financial environments.</h2>
   <div class="team-grid">
     <div class="team-body reveal">
-      <p>MSDK Labs was founded by engineers and technologists with direct delivery experience at UK wealth managers and FCA-regulated fintechs. We have been in the room when compliance teams cannot answer a regulator's question about an AI system. We built Aegis Trace because we know what evidence is needed and what happens when it does not exist.</p>
+      <p>MSDK Labs is formed by engineers and delivery specialists with experience implementing systems within FCA-regulated wealth managers and financial institutions. The product is informed by direct exposure to audit processes, regulatory expectations, and the operational challenges of evidencing decision-making systems.</p>
     </div>
     <div class="team-cards">
       <div class="team-card reveal">
@@ -1223,13 +1223,13 @@ a { color: inherit; text-decoration: none; }
   <div class="request-access-inner">
     <p class="section-label reveal">Controlled access</p>
     <h2 class="reveal">Request access.</h2>
-    <p class="request-access-sub reveal">Structured onboarding provided following initial technical review. Currently accepting FCA-regulated wealth managers and fintechs.</p>
+    <p class="request-access-sub reveal">Structured onboarding is provided following initial technical and compliance review. Access is currently limited to FCA-regulated firms and financial technology providers.</p>
     <form class="request-form reveal" id="requestForm">
       <input type="email" placeholder="Work email address" required>
       <button type="submit" class="btn-primary">Submit</button>
     </form>
-    <p class="request-thank-you" id="requestThankYou">Thank you. We will be in touch within two working days.</p>
-    <p class="request-note reveal">NDA available on request. Technical documentation and API reference provided to qualified prospects.</p>
+    <p class="request-thank-you" id="requestThankYou">Thank you. We will respond within two working days.</p>
+    <p class="request-note reveal">Technical documentation and API reference are provided to qualified organisations.</p>
   </div>
 </section>
 
