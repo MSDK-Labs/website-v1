@@ -25,11 +25,11 @@ export default function Nav() {
             <span className="nav-product">Aegis Trace</span>
           </div>
           <div className="nav-links">
-            <Link href="/#platform">Platform</Link>
-            <Link href="/#solutions">Use Cases</Link>
-            <Link href="/regulatory/">Compliance</Link>
-            <Link href="/#developers">Developers</Link>
-            <Link href="/request-access/" className="nav-cta">Get Started</Link>
+            <Link href="/#problem">Problem</Link>
+            <Link href="/how-it-works/">How It Works</Link>
+            <Link href="/regulatory/">Regulatory</Link>
+            <Link href="/team/">Team</Link>
+            <Link href="/request-access/" className="nav-cta">Request Access</Link>
           </div>
           <button
             className={`nav-hamburger ${menuOpen ? 'active' : ''}`}
@@ -44,11 +44,11 @@ export default function Nav() {
       </nav>
 
       <div className={`mobile-menu ${menuOpen ? 'active' : ''}`}>
-        <Link href="/#platform" onClick={closeMenu}>Platform</Link>
-        <Link href="/#solutions" onClick={closeMenu}>Use Cases</Link>
-        <Link href="/regulatory/" onClick={closeMenu}>Compliance</Link>
-        <Link href="/#developers" onClick={closeMenu}>Developers</Link>
-        <Link href="/request-access/" className="nav-cta" onClick={closeMenu}>Get Started</Link>
+        <Link href="/#problem" onClick={closeMenu}>Problem</Link>
+        <Link href="/how-it-works/" onClick={closeMenu}>How It Works</Link>
+        <Link href="/regulatory/" onClick={closeMenu}>Regulatory</Link>
+        <Link href="/team/" onClick={closeMenu}>Team</Link>
+        <Link href="/request-access/" className="nav-cta" onClick={closeMenu}>Request Access</Link>
       </div>
     </>
   )
