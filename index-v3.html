@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aegis Trace — MSDK Labs</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='15' height='15' viewBox='0 0 15 15' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0H5V5H0V0Z' fill='%23F2F0EB'/%3E%3Cpath d='M5 5H10V10H5V5Z' fill='%23F2F0EB'/%3E%3Cpath d='M10 0H15V5H10V0Z' fill='%23F2F0EB'/%3E%3Cpath d='M10 10H15V15H10V10Z' fill='%23F2F0EB'/%3E%3Cpath d='M0 10L5 5V10H6.85185L5 11.7593V15H0V10Z' fill='%23F2F0EB'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #0D0F1A;
+            --text: #F2F0EB;
+            --muted: rgba(242,240,235,0.55);
+            --accent: #B8956A;
+            --card-bg: rgba(255,255,255,0.04);
+            --card-border: rgba(255,255,255,0.08);
+            --green: #4ade80;
+            --sans: 'Inter', system-ui, -apple-system, sans-serif;
+            --mono: 'JetBrains Mono', 'Courier New', monospace;
+            --container: 1100px;
+            --flow-width: 640px;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        ::selection { background: var(--accent); color: var(--bg); }
+
+        .container {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        /* ────────────────────────────────────
+           NAV
+           ──────────────────────────────────── */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(13,15,26,0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--card-border);
+            height: 56px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-inner {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 32px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-logo {
+            width: 15px;
+            height: 15px;
+        }
+
+        .nav-brand {
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: var(--text);
+        }
+
+        .nav-divider {
+            width: 1px;
+            height: 16px;
+            background: var(--card-border);
+        }
+
+        .nav-product {
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--muted);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--muted);
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--text); }
+
+        .nav-cta {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--accent) !important;
+            border: 1px solid var(--accent);
+            border-radius: 100px;
+            padding: 7px 18px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .nav-cta:hover {
+            background: var(--accent);
+            color: var(--bg) !important;
+        }
+
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .nav-hamburger span {
+            width: 18px;
+            height: 1.5px;
+            background: var(--text);
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 56px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(13,15,26,0.97);
+            backdrop-filter: blur(16px);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--muted);
+            transition: color 0.2s;
+        }
+        .mobile-menu a:hover { color: var(--text); }
+
+        /* ────────────────────────────────────
+           HERO
+           ──────────────────────────────────── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 56px 32px 80px;
+        }
+
+        .hero-label {
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 600;
+            line-height: 1.12;
+            max-width: 800px;
+            margin-bottom: 24px;
+            color: var(--text);
+        }
+
+        .hero-sub {
+            font-size: 18px;
+            font-weight: 300;
+            color: var(--muted);
+            max-width: 600px;
+            line-height: 1.75;
+            margin-bottom: 40px;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: var(--text);
+            color: var(--bg);
+            font-size: 15px;
+            font-weight: 500;
+            padding: 14px 32px;
+            border-radius: 100px;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .hero-cta:hover { opacity: 0.88; }
+
+        .hero-trust {
+            margin-top: 32px;
+            font-size: 12px;
+            color: var(--muted);
+            opacity: 0.3;
+            letter-spacing: 0.02em;
+        }
+
+        /* ────────────────────────────────────
+           PROBLEM
+           ──────────────────────────────────── */
+        .problem {
+            background: rgba(255,255,255,0.02);
+            padding: 100px 0;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: start;
+        }
+
+        .problem-stat-number {
+            font-size: 96px;
+            font-weight: 600;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+
+        .problem-stat-text {
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--text);
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .problem-stat-source {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .problem-explanation {
+            font-size: 17px;
+            font-weight: 300;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .section-divider {
+            width: 48px;
+            height: 1px;
+            background: var(--accent);
+            margin: 64px auto 0;
+        }
+
+        /* ────────────────────────────────────
+           INDUSTRIES
+           ──────────────────────────────────── */
+        .industries {
+            padding: 100px 0;
+        }
+
+        .industries h2 {
+            font-size: 40px;
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 48px;
+            max-width: 560px;
+        }
+
+        .industry-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .industry-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 36px;
+        }
+
+        .industry-number {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 16px;
+            font-family: var(--sans);
+        }
+
+        .industry-card h3 {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+
+        .industry-card p {
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        /* ────────────────────────────────────
+           HOW IT WORKS — FLOW
+           ──────────────────────────────────── */
+        .flow {
+            padding: 100px 0;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .flow-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .flow-header h2 {
+            font-size: 40px;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        .flow-diagram {
+            max-width: var(--flow-width);
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .flow-step {
+            width: 100%;
+            max-width: var(--flow-width);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            padding: 20px 28px;
+        }
+
+        .flow-step h4 {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .flow-step p {
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .flow-connector {
+            width: 1px;
+            height: 32px;
+            background: var(--card-border);
+        }
+
+        .flow-arrow {
+            width: 1px;
+            height: 40px;
+            background: var(--card-border);
+            position: relative;
+        }
+        .flow-arrow::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 6px solid var(--card-border);
+        }
+
+        /* ────────────────────────────────────
+           CERTIFICATE OUTPUT
+           ──────────────────────────────────── */
+        .certificate-section {
+            padding: 64px 0 100px;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .certificate-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .certificate-wrapper {
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        .cert-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .cert-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .cert-title {
+            font-family: var(--mono);
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+        }
+
+        .cert-badge {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--green);
+            border: 1px solid rgba(74,222,128,0.3);
+            border-radius: 100px;
+            padding: 3px 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .cert-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--green);
+            border-radius: 50%;
+        }
+
+        .cert-body {
+            padding: 20px 24px;
+            font-family: var(--mono);
+            font-size: 12px;
+            line-height: 1.9;
+        }
+
+        .cert-body .key {
+            color: var(--muted);
+        }
+        .cert-body .val {
+            color: var(--text);
+        }
+        .cert-body .val-green {
+            color: var(--green);
+        }
+        .cert-body .val-gold {
+            color: var(--accent);
+        }
+        .cert-body .val-dim {
+            color: rgba(242,240,235,0.3);
+        }
+
+        .certificate-note {
+            text-align: center;
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--muted);
+            max-width: 480px;
+            margin: 24px auto 0;
+            line-height: 1.7;
+        }
+
+        /* ────────────────────────────────────
+           DEPLOYMENT
+           ──────────────────────────────────── */
+        .deployment {
+            padding: 100px 0;
+        }
+
+        .deployment h2 {
+            font-size: 40px;
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 48px;
+        }
+
+        .deploy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .deploy-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 32px;
+        }
+
+        .deploy-card h3 {
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        .deploy-card p {
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        /* ────────────────────────────────────
+           COMPLIANCE
+           ──────────────────────────────────── */
+        .compliance {
+            padding: 100px 0;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .compliance h2 {
+            font-size: 40px;
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 48px;
+        }
+
+        .compliance-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .compliance-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 28px;
+        }
+
+        .compliance-card h3 {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .compliance-card p {
+            font-size: 13px;
+            font-weight: 300;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        /* ────────────────────────────────────
+           CTA
+           ──────────────────────────────────── */
+        .cta-section {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 40px;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .cta-section .cta-sub {
+            font-size: 17px;
+            font-weight: 300;
+            color: var(--muted);
+            max-width: 480px;
+            margin: 0 auto 36px;
+            line-height: 1.7;
+        }
+
+        .cta-form {
+            display: flex;
+            gap: 12px;
+            max-width: 420px;
+            margin: 0 auto 16px;
+        }
+
+        .cta-form input[type="email"] {
+            flex: 1;
+            padding: 14px 18px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            color: var(--text);
+            font-family: var(--sans);
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .cta-form input[type="email"]::placeholder { color: var(--muted); }
+        .cta-form input[type="email"]:focus { border-color: rgba(255,255,255,0.2); }
+
+        .cta-form button {
+            padding: 14px 28px;
+            background: var(--text);
+            color: var(--bg);
+            border: none;
+            border-radius: 10px;
+            font-family: var(--sans);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            white-space: nowrap;
+        }
+        .cta-form button:hover { opacity: 0.88; }
+        .cta-form button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .cta-thankyou {
+            display: none;
+            font-size: 14px;
+            color: var(--green);
+            margin-bottom: 12px;
+        }
+        .cta-thankyou.show { display: block; }
+
+        .cta-error {
+            display: none;
+            font-size: 13px;
+            color: #f87171;
+            margin-bottom: 12px;
+        }
+        .cta-error.show { display: block; }
+
+        .cta-note {
+            font-size: 12px;
+            color: var(--muted);
+            opacity: 0.6;
+        }
+
+        /* ────────────────────────────────────
+           FOOTER
+           ──────────────────────────────────── */
+        .footer {
+            border-top: 1px solid var(--card-border);
+            padding: 40px 0;
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-logo {
+            width: 15px;
+            height: 15px;
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            font-size: 12px;
+            color: var(--muted);
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--text); }
+
+        /* ────────────────────────────────────
+           RESPONSIVE
+           ──────────────────────────────────── */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-hamburger { display: flex; }
+
+            .hero { padding: 56px 24px 64px; }
+            .hero h1 { font-size: 34px; }
+            .hero-sub { font-size: 16px; }
+            .hero-trust { font-size: 11px; }
+
+            .container { padding: 0 24px; }
+
+            .problem { padding: 64px 0; }
+            .problem-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+            .problem-stat-number { font-size: 64px; }
+            .problem-stat-text { font-size: 18px; }
+
+            .industries { padding: 64px 0; }
+            .industries h2 { font-size: 28px; }
+            .industry-grid { grid-template-columns: 1fr; }
+
+            .flow { padding: 64px 0; }
+            .flow-header h2 { font-size: 28px; }
+
+            .certificate-section { padding: 40px 0 64px; }
+
+            .deployment { padding: 64px 0; }
+            .deployment h2 { font-size: 28px; }
+            .deploy-grid { grid-template-columns: 1fr; }
+
+            .compliance { padding: 64px 0; }
+            .compliance h2 { font-size: 28px; }
+            .compliance-grid { grid-template-columns: 1fr; }
+
+            .cta-section { padding: 64px 0; }
+            .cta-section h2 { font-size: 28px; }
+            .cta-form { flex-direction: column; }
+
+            .footer-inner {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 28px; }
+            .hero-trust { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <div class="nav-left">
+                <svg class="nav-logo" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 0H5V5H0V0Z" fill="#F2F0EB"/>
+                    <path d="M5 5H10V10H5V5Z" fill="#F2F0EB"/>
+                    <path d="M10 0H15V5H10V0Z" fill="#F2F0EB"/>
+                    <path d="M10 10H15V15H10V10Z" fill="#F2F0EB"/>
+                    <path d="M0 10L5 5V10H6.85185L5 11.7593V15H0V10Z" fill="#F2F0EB"/>
+                </svg>
+                <span class="nav-brand">MSDK Labs</span>
+                <div class="nav-divider"></div>
+                <span class="nav-product">Aegis Trace</span>
+            </div>
+            <div class="nav-links">
+                <a href="#industries">Product</a>
+                <a href="#industries">Industries</a>
+                <a href="#compliance">Compliance</a>
+                <a href="#flow">Developers</a>
+                <a href="#cta" class="nav-cta">Request Access</a>
+            </div>
+            <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#industries" onclick="toggleMenu()">Product</a>
+        <a href="#industries" onclick="toggleMenu()">Industries</a>
+        <a href="#compliance" onclick="toggleMenu()">Compliance</a>
+        <a href="#flow" onclick="toggleMenu()">Developers</a>
+        <a href="#cta" onclick="toggleMenu()" style="color:var(--accent);">Request Access</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="reveal">
+            <div class="hero-label">AI Decision Audit Infrastructure</div>
+            <h1>Prove every AI decision your organisation makes.</h1>
+            <p class="hero-sub">Aegis Trace records each AI decision as a signed, immutable certificate. Verifiable evidence for regulatory review, internal audit, and governance — across every regulated industry.</p>
+            <a href="#cta" class="hero-cta">Request Access &rarr;</a>
+            <div class="hero-trust">FCA PS22/3 &middot; EU AI Act Art.12 &middot; GDPR Art.30 &middot; SOC 2 Type II</div>
+        </div>
+    </section>
+
+    <!-- THE PROBLEM -->
+    <section class="problem" id="problem">
+        <div class="container">
+            <div class="problem-grid reveal">
+                <div class="problem-left">
+                    <div class="problem-stat-number">78%</div>
+                    <div class="problem-stat-text">of enterprises cannot reconstruct an AI decision when asked.</div>
+                    <div class="problem-stat-source">KPMG AI Governance Report, 2025</div>
+                </div>
+                <div class="problem-right">
+                    <p class="problem-explanation">Regulated organisations deploy AI across critical decision-making — from investment advice to clinical assessment. When a regulator, auditor, or court requires evidence of how a specific decision was produced, most firms cannot provide it. The reasoning path is not recorded. The input data is not preserved. The decision cannot be reconstructed.</p>
+                </div>
+            </div>
+            <div class="section-divider reveal"></div>
+        </div>
+    </section>
+
+    <!-- INDUSTRIES -->
+    <section class="industries" id="industries">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">Industries</div>
+                <h2>Built for regulated decision-making across sectors.</h2>
+            </div>
+            <div class="industry-grid">
+                <div class="industry-card reveal">
+                    <div class="industry-number">01</div>
+                    <h3>Financial Services</h3>
+                    <p>Suitability assessments, portfolio recommendations, credit decisions. FCA PS22/3, MiFID II, Consumer Duty compliance.</p>
+                </div>
+                <div class="industry-card reveal">
+                    <div class="industry-number">02</div>
+                    <h3>Healthcare</h3>
+                    <p>Clinical decision support, diagnostic AI, treatment pathway recommendations. MHRA, MDR, patient safety obligations.</p>
+                </div>
+                <div class="industry-card reveal">
+                    <div class="industry-number">03</div>
+                    <h3>Insurance</h3>
+                    <p>Underwriting models, claims automation, risk assessment AI. Solvency II, FCA ICOBS, conduct requirements.</p>
+                </div>
+                <div class="industry-card reveal">
+                    <div class="industry-number">04</div>
+                    <h3>Government &amp; Defence</h3>
+                    <p>Algorithmic decision-making in public services, procurement, security clearance. Equality Act, public sector AI frameworks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS — FLOW -->
+    <section class="flow" id="flow">
+        <div class="container">
+            <div class="flow-header reveal">
+                <div class="section-label">How it works</div>
+                <h2>From decision to certificate.</h2>
+            </div>
+            <div class="flow-diagram">
+                <div class="flow-step reveal">
+                    <h4>AI System</h4>
+                    <p>Your model produces a decision with inputs, outputs, and metadata.</p>
+                </div>
+                <div class="flow-connector"></div>
+                <div class="flow-step reveal">
+                    <h4>Aegis Trace API</h4>
+                    <p>Decision payload submitted via single REST endpoint.</p>
+                </div>
+                <div class="flow-connector"></div>
+                <div class="flow-step reveal">
+                    <h4>PII Processing</h4>
+                    <p>Personal data fields tokenised per configurable schema rules.</p>
+                </div>
+                <div class="flow-connector"></div>
+                <div class="flow-step reveal">
+                    <h4>Cryptographic Signing</h4>
+                    <p>HMAC-SHA256 certificate generated with managed key infrastructure.</p>
+                </div>
+                <div class="flow-connector"></div>
+                <div class="flow-step reveal">
+                    <h4>Immutable Storage</h4>
+                    <p>Certificate written to WORM-locked append-only store.</p>
+                </div>
+                <div class="flow-arrow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CERTIFICATE OUTPUT -->
+    <section class="certificate-section">
+        <div class="container">
+            <div class="certificate-header reveal">
+                <div class="section-label">The output</div>
+            </div>
+            <div class="certificate-wrapper reveal">
+                <div class="cert-card">
+                    <div class="cert-header">
+                        <span class="cert-title">AEGIS TRACE CERTIFICATE</span>
+                        <span class="cert-badge">Verified</span>
+                    </div>
+                    <div class="cert-body">
+                        <div><span class="key">certificate_id   </span><span class="val">atc_9f84a1b2c3d4e5f6</span></div>
+                        <div><span class="key">agent_id          </span><span class="val">agt_underwriting_v3</span></div>
+                        <div><span class="key">verdict           </span><span class="val-green">PASS</span></div>
+                        <div><span class="key">confidence        </span><span class="val">0.94</span></div>
+                        <div><span class="key">hmac_signature    </span><span class="val-dim">e3b0c44298fc1c14...</span></div>
+                        <div><span class="key">regulatory_refs   </span><span class="val-gold">["FCA PS22/3", "GDPR Art.30"]</span></div>
+                        <div><span class="key">sealed_at         </span><span class="val">2026-03-27T10:42:18.003Z</span></div>
+                    </div>
+                </div>
+            </div>
+            <p class="certificate-note reveal">Certificates are indexed by agent, timestamp, and regulatory reference. Retrieved via API or bulk export during audit.</p>
+        </div>
+    </section>
+
+    <!-- DEPLOYMENT -->
+    <section class="deployment" id="deployment">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">Deployment</div>
+                <h2>Deploy within your existing architecture.</h2>
+            </div>
+            <div class="deploy-grid">
+                <div class="deploy-card reveal">
+                    <h3>Cloud API</h3>
+                    <p>Managed service. Sub-2s p99 latency. No infrastructure to operate.</p>
+                </div>
+                <div class="deploy-card reveal">
+                    <h3>On-Premises</h3>
+                    <p>Full deployment within your environment. Air-gapped support.</p>
+                </div>
+                <div class="deploy-card reveal">
+                    <h3>Private Cloud</h3>
+                    <p>Containerised. Your cloud tenant. Complete data sovereignty.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPLIANCE -->
+    <section class="compliance" id="compliance">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">Compliance</div>
+                <h2>Regulation-mapped certificate output.</h2>
+            </div>
+            <div class="compliance-grid">
+                <div class="compliance-card reveal">
+                    <h3>FCA PS22/3</h3>
+                    <p>Consumer Duty outcome monitoring. Certificates map to suitability and fair value assessment records.</p>
+                </div>
+                <div class="compliance-card reveal">
+                    <h3>EU AI Act Art.12</h3>
+                    <p>Automatic logging for high-risk AI. Full decision trace with timestamps and model versioning.</p>
+                </div>
+                <div class="compliance-card reveal">
+                    <h3>GDPR Art.22 / Art.30</h3>
+                    <p>Records of processing activities for automated decisions. PII tokenised with reversible mapping.</p>
+                </div>
+                <div class="compliance-card reveal">
+                    <h3>SOC 2 Type II</h3>
+                    <p>Immutable audit trail satisfying availability, processing integrity, and confidentiality trust principles.</p>
+                </div>
+                <div class="compliance-card reveal">
+                    <h3>MiFID II</h3>
+                    <p>Investment decision audit trail. Suitability assessment evidence with full input and output capture.</p>
+                </div>
+                <div class="compliance-card reveal">
+                    <h3>Solvency II</h3>
+                    <p>Risk model governance and actuarial decision documentation. ORSA-compatible certificate output.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="cta">
+        <div class="container">
+            <div class="reveal">
+                <h2>Request access.</h2>
+                <p class="cta-sub">Aegis Trace is available for early access to regulated organisations. Enter your work email and our team will reach out within 24 hours.</p>
+                <div class="cta-thankyou" id="ctaThankyou">Thank you. We will be in touch shortly.</div>
+                <div class="cta-error" id="ctaError">Something went wrong. Please try again.</div>
+                <form class="cta-form" id="ctaForm" action="https://formspree.io/f/{YOUR_FORM_ID}" method="POST">
+                    <input type="email" name="email" placeholder="Work email address" required>
+                    <button type="submit">Request Access</button>
+                </form>
+                <div class="cta-note">No credit card required. Available for enterprise and growth plans.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-left">
+                    <svg class="footer-logo" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0H5V5H0V0Z" fill="#F2F0EB"/>
+                        <path d="M5 5H10V10H5V5Z" fill="#F2F0EB"/>
+                        <path d="M10 0H15V5H10V0Z" fill="#F2F0EB"/>
+                        <path d="M10 10H15V15H10V10Z" fill="#F2F0EB"/>
+                        <path d="M0 10L5 5V10H6.85185L5 11.7593V15H0V10Z" fill="#F2F0EB"/>
+                    </svg>
+                    <span class="footer-copy">&copy; 2026 MSDK Labs Ltd. All rights reserved.</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Security</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ── Mobile menu ──
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const hamburger = document.querySelector('.nav-hamburger');
+            const isOpen = menu.classList.toggle('open');
+            const spans = hamburger.querySelectorAll('span');
+            if (isOpen) {
+                spans[0].style.transform = 'rotate(45deg) translate(3px, 3px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(3px, -3px)';
+                document.body.style.overflow = 'hidden';
+            } else {
+                spans[0].style.transform = '';
+                spans[1].style.opacity = '';
+                spans[2].style.transform = '';
+                document.body.style.overflow = '';
+            }
+        }
+
+        // ── Scroll reveal ──
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal').forEach((el) => {
+            revealObserver.observe(el);
+        });
+
+        // ── Form ──
+        const ctaForm = document.getElementById('ctaForm');
+        const ctaThankyou = document.getElementById('ctaThankyou');
+        const ctaError = document.getElementById('ctaError');
+
+        ctaForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = ctaForm.querySelector('button');
+            const originalText = btn.textContent;
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
+            ctaThankyou.classList.remove('show');
+            ctaError.classList.remove('show');
+
+            try {
+                const res = await fetch(ctaForm.action, {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json' },
+                    body: new FormData(ctaForm)
+                });
+                if (res.ok) {
+                    ctaThankyou.classList.add('show');
+                    ctaForm.style.display = 'none';
+                } else {
+                    throw new Error('Submit failed');
+                }
+            } catch (err) {
+                ctaError.classList.add('show');
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
