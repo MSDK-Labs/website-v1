@@ -64,7 +64,7 @@ export default function Home() {
       </section>
 
       {/* INDUSTRIES */}
-      <section id="solutions">
+      <section id="problem">
         <div className="container">
           <div className="section-label reveal"><span>Industries</span></div>
           <h2 className="section-title reveal">Wherever AI influences a regulated outcome, that decision must be evidenced.</h2>
