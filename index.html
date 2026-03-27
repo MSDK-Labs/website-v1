@@ -1241,8 +1241,8 @@
         <p class="section-label reveal">Controlled access</p>
         <h2 class="reveal">Request access.</h2>
         <p class="request-access-sub reveal">Structured onboarding is provided following initial technical and compliance review. Access is currently limited to FCA-regulated firms and financial technology providers.</p>
-        <form class="request-form reveal" id="requestForm">
-            <input type="email" placeholder="Work email address" required>
+        <form class="request-form reveal" id="requestForm" action="https://formspree.io/f/{YOUR_FORM_ID}" method="POST">
+            <input type="email" name="email" placeholder="Work email address" required>
             <button type="submit" class="btn-primary">Submit</button>
         </form>
         <p class="request-thank-you" id="requestThankYou">Thank you. We will respond within two working days.</p>
@@ -1302,13 +1302,32 @@
             });
         });
 
-        // Request form
+        // Request form (Formspree)
         var form = document.getElementById('requestForm');
         var thankYou = document.getElementById('requestThankYou');
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            form.style.display = 'none';
-            thankYou.classList.add('visible');
+            var btn = form.querySelector('button[type="submit"]');
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            }).then(function(response) {
+                if (response.ok) {
+                    form.style.display = 'none';
+                    thankYou.classList.add('visible');
+                } else {
+                    btn.textContent = 'Submit';
+                    btn.disabled = false;
+                    alert('Something went wrong. Please try again.');
+                }
+            }).catch(function() {
+                btn.textContent = 'Submit';
+                btn.disabled = false;
+                alert('Connection error. Please try again.');
+            });
         });
 
         // Scroll reveal
