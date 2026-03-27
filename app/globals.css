@@ -659,6 +659,134 @@ section {
 .nav-back { font-size: 14px; color: var(--muted); transition: color 0.2s; }
 .nav-back:hover { color: var(--text); }
 
+/* USE CASES PAGE */
+.uc-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.uc-grid {
+  display: grid;
+  grid-template-columns: 45% 55%;
+  gap: 48px;
+  align-items: start;
+}
+
+.uc-grid-reverse {
+  grid-template-columns: 55% 45%;
+}
+
+.uc-subheading {
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-bottom: 12px;
+  margin-top: 28px;
+}
+
+.uc-subheading:first-child {
+  margin-top: 0;
+}
+
+.uc-body {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.uc-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.uc-reg-pill {
+  display: inline-flex;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  padding: 3px 10px;
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  color: var(--muted);
+}
+
+.uc-pre {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--text);
+  white-space: pre;
+  margin: 0;
+  overflow-x: auto;
+}
+
+.uc-outcome {
+  background: var(--card-surface);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 20px 28px;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-top: 32px;
+}
+
+.uc-outcome strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.uc-divider {
+  border: none;
+  border-top: 1px solid var(--card-border);
+  margin: 0;
+}
+
+.uc-common-box {
+  background: var(--card-surface);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 48px;
+}
+
+.uc-common-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+@media (max-width: 900px) {
+  .uc-grid,
+  .uc-grid-reverse {
+    grid-template-columns: 1fr;
+  }
+
+  .uc-grid-reverse .uc-code {
+    order: 2;
+  }
+
+  .uc-grid-reverse .uc-scenario {
+    order: 1;
+  }
+
+  .uc-common-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .uc-common-box {
+    padding: 32px 24px;
+  }
+}
+
 /* SCROLL REVEAL */
 .reveal {
   opacity: 0;

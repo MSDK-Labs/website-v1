@@ -51,6 +51,7 @@ export default function Nav() {
           <div className="nav-links">
             <button type="button" onClick={() => scrollToSection('problem')}>Problem</button>
             <button type="button" onClick={() => scrollToSection('how-it-works')}>How It Works</button>
+            <Link href="/use-cases/" onClick={closeMenu}>Use Cases</Link>
             <button type="button" onClick={() => scrollToSection('regulatory')}>Regulatory</button>
             <button type="button" onClick={() => scrollToSection('team')}>Team</button>
             <button type="button" className="nav-cta" onClick={() => scrollToSection('request-access')}>Request Access</button>
@@ -70,6 +71,7 @@ export default function Nav() {
       <div className={`mobile-menu ${menuOpen ? 'active' : ''}`}>
         <button type="button" onClick={() => scrollToSection('problem')}>Problem</button>
         <button type="button" onClick={() => scrollToSection('how-it-works')}>How It Works</button>
+        <Link href="/use-cases/" onClick={closeMenu}>Use Cases</Link>
         <button type="button" onClick={() => scrollToSection('regulatory')}>Regulatory</button>
         <button type="button" onClick={() => scrollToSection('team')}>Team</button>
         <button type="button" className="nav-cta" onClick={() => scrollToSection('request-access')}>Request Access</button>
