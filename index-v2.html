@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aegis Trace — AI Decision Audit Infrastructure | MSDK Labs</title>
+<meta name="description" content="Cryptographic proof of every AI decision. A single API integration produces signed, immutable audit certificates for regulatory review, internal audit, or litigation.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='15' height='15' viewBox='0 0 15 15' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0H5V5H0V0Z' fill='%23F2F0EB'/%3E%3Cpath d='M5 5H10V10H5V5Z' fill='%23F2F0EB'/%3E%3Cpath d='M10 0H15V5H10V0Z' fill='%23F2F0EB'/%3E%3Cpath d='M10 10H15V15H10V10Z' fill='%23F2F0EB'/%3E%3Cpath d='M0 10L5 5V10H6.85185L5 11.7593V15H0V10Z' fill='%23F2F0EB'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0D0F1A;
+  --text: #F2F0EB;
+  --accent: #B8956A;
+  --muted: rgba(242,240,235,0.55);
+  --card-surface: rgba(255,255,255,0.04);
+  --card-border: rgba(255,255,255,0.08);
+  --green: #4ade80;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* NAV */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(13,15,26,0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--card-border);
+}
+
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-logo-svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.nav-brand {
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.nav-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--card-border);
+}
+
+.nav-product {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-links a {
+  font-size: 14px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--text);
+}
+
+.nav-cta {
+  background: var(--accent) !important;
+  color: var(--bg) !important;
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 14px;
+  transition: opacity 0.2s;
+}
+
+.nav-cta:hover {
+  opacity: 0.88;
+}
+
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 20px;
+  height: 1.5px;
+  background: var(--text);
+  margin: 5px 0;
+  transition: all 0.3s;
+}
+
+.nav-hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(4.5px, 4.5px);
+}
+
+.nav-hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(4.5px, -4.5px);
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(13,15,26,0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 999;
+  padding: 40px 24px;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.mobile-menu.active {
+  display: flex;
+}
+
+.mobile-menu a {
+  font-size: 18px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.mobile-menu a:hover {
+  color: var(--text);
+}
+
+.mobile-menu .nav-cta {
+  display: inline-block;
+  text-align: center;
+  width: fit-content;
+}
+
+/* HERO */
+.hero {
+  padding: 160px 0 100px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 55% 45%;
+  gap: 48px;
+  align-items: center;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--card-surface);
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+
+.hero-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.hero h1 {
+  font-size: 52px;
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+.hero-sub {
+  font-size: 17px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 480px;
+  margin-bottom: 36px;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  background: var(--text);
+  color: var(--bg);
+  padding: 12px 28px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+
+.btn-primary:hover {
+  opacity: 0.88;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  color: var(--text);
+  padding: 12px 28px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.15);
+  cursor: pointer;
+  transition: border-color 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+
+.btn-secondary:hover {
+  border-color: rgba(255,255,255,0.3);
+}
+
+.terminal-card {
+  background: var(--card-surface);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  overflow-x: auto;
+}
+
+.terminal-card .req-line {
+  color: var(--accent);
+}
+
+.terminal-card .header-line {
+  color: var(--muted);
+}
+
+.terminal-card .key {
+  color: var(--muted);
+}
+
+.terminal-card .value {
+  color: var(--text);
+}
+
+.terminal-card .sep {
+  border: none;
+  border-top: 1px solid var(--card-border);
+  margin: 12px 0;
+}
+
+.terminal-card .res-status {
+  color: var(--green);
+}
+
+/* STATS */
+.stats {
+  padding: 80px 0;
+  border-top: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 0 32px;
+  position: relative;
+}
+
+.stat-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 60%;
+  background: var(--card-border);
+}
+
+.stat-value {
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.stat-desc {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 8px;
+}
+
+.stat-source {
+  font-size: 11px;
+  color: rgba(242,240,235,0.35);
+}
+
+/* SECTION COMMON */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.section-label::before {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.section-label span {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+.section-title {
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 56px;
+  max-width: 720px;
+}
+
+section {
+  padding: 100px 0;
+}
+
+/* CARDS GRID */
+.cards-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: var(--card-surface);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 28px;
+  transition: border-color 0.25s;
+}
+
+.card:hover {
+  border-color: rgba(255,255,255,0.15);
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.card-desc {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+/* HOW IT WORKS */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 48px;
+}
+
+.step-card {
+  background: var(--card-surface);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 28px;
+  transition: border-color 0.25s;
+}
+
+.step-card:hover {
+  border-color: rgba(255,255,255,0.15);
+}
+
+.step-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+
+.step-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.step-desc {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.certificate-card {
+  background: var(--card-surface);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.certificate-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.certificate-header-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(74,222,128,0.1);
+  border: 1px solid rgba(74,222,128,0.2);
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--green);
+  letter-spacing: 0.04em;
+}
+
+.verified-badge::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  background: var(--green);
+  border-radius: 50%;
+}
+
+.certificate-body {
+  padding: 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  line-height: 2;
+}
+
+.certificate-body .key {
+  color: var(--muted);
+}
+
+.certificate-body .value {
+  color: var(--text);
+}
+
+.certificate-body .value-green {
+  color: var(--green);
+}
+
+/* COMPLIANCE GRID */
+.cards-grid-2x3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* CTA SECTION */
+.cta-section {
+  text-align: center;
+  padding: 100px 0;
+}
+
+.cta-section .section-label {
+  justify-content: center;
+}
+
+.cta-section .section-label::before {
+  display: none;
+}
+
+.cta-section .section-title {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 16px;
+}
+
+.cta-sub {
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.65;
+  max-width: 520px;
+  margin: 0 auto 36px;
+}
+
+.cta-form {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  max-width: 440px;
+  margin: 0 auto 20px;
+}
+
+.cta-form input[type="email"] {
+  flex: 1;
+  padding: 12px 20px;
+  border-radius: 999px;
+  border: 1px solid var(--card-border);
+  background: var(--card-surface);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.cta-form input[type="email"]::placeholder {
+  color: var(--muted);
+}
+
+.cta-form input[type="email"]:focus {
+  border-color: rgba(255,255,255,0.2);
+}
+
+.cta-form button {
+  padding: 12px 28px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+
+.cta-form button:hover {
+  opacity: 0.88;
+}
+
+.cta-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.cta-note {
+  font-size: 13px;
+  color: rgba(242,240,235,0.35);
+  max-width: 440px;
+  margin: 0 auto;
+  line-height: 1.55;
+}
+
+.form-message {
+  font-size: 14px;
+  margin-bottom: 16px;
+  min-height: 20px;
+}
+
+.form-message.success {
+  color: var(--green);
+}
+
+.form-message.error {
+  color: #f87171;
+}
+
+/* FOOTER */
+.footer {
+  border-top: 1px solid var(--card-border);
+  padding: 40px 0;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer-logo {
+  width: 16px;
+  height: 16px;
+  opacity: 0.5;
+}
+
+.footer-copy {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.footer-links {
+  display: flex;
+  gap: 28px;
+}
+
+.footer-links a {
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--text);
+}
+
+/* SCROLL REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero {
+    padding: 120px 0 64px;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .hero-sub {
+    font-size: 15px;
+  }
+
+  .section-title {
+    font-size: 30px;
+    margin-bottom: 40px;
+  }
+
+  section {
+    padding: 64px 0;
+  }
+
+  .stats {
+    padding: 48px 0;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .stat-item:not(:last-child)::after {
+    display: none;
+  }
+
+  .stat-item:not(:last-child) {
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--card-border);
+  }
+
+  .stat-item {
+    padding: 0;
+  }
+
+  .cards-grid-3,
+  .cards-grid-2x3 {
+    grid-template-columns: 1fr;
+  }
+
+  .steps-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-hamburger {
+    display: block;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .cta-form {
+    flex-direction: column;
+  }
+
+  .cta-section {
+    padding: 64px 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .steps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  .stat-value {
+    font-size: 28px;
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+  }
+
+  .btn-primary, .btn-secondary {
+    justify-content: center;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-left">
+      <svg class="nav-logo-svg" width="16" height="16" viewBox="0 0 15 15" fill="none">
+        <path d="M0 0H5V5H0V0Z" fill="#F2F0EB"/>
+        <path d="M5 5H10V10H5V5Z" fill="#F2F0EB"/>
+        <path d="M10 0H15V5H10V0Z" fill="#F2F0EB"/>
+        <path d="M10 10H15V15H10V10Z" fill="#F2F0EB"/>
+        <path d="M0 10L5 5V10H6.85185L5 11.7593V15H0V10Z" fill="#F2F0EB"/>
+      </svg>
+      <a href="#" class="nav-brand">MSDK Labs</a>
+      <div class="nav-divider"></div>
+      <span class="nav-product">Aegis Trace</span>
+    </div>
+    <div class="nav-links">
+      <a href="#platform">Platform</a>
+      <a href="#solutions">Solutions</a>
+      <a href="#compliance">Compliance</a>
+      <a href="#developers">Developers</a>
+      <a href="#get-started" class="nav-cta">Get Started</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Menu" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#platform">Platform</a>
+  <a href="#solutions">Solutions</a>
+  <a href="#compliance">Compliance</a>
+  <a href="#developers">Developers</a>
+  <a href="#get-started" class="nav-cta">Get Started</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="platform">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div class="hero-badge reveal">Trusted by regulated enterprises</div>
+        <h1 class="reveal">AI decisions leave no trace. Until now.</h1>
+        <p class="hero-sub reveal">Aegis Trace provides cryptographic proof of every AI decision across your organisation. A single API integration produces signed, immutable audit certificates &mdash; retrievable on demand for regulatory review, internal audit, or litigation.</p>
+        <div class="hero-ctas reveal">
+          <a href="#get-started" class="btn-primary">Start Integration &rarr;</a>
+          <a href="#developers" class="btn-secondary">View Documentation</a>
+        </div>
+      </div>
+      <div class="hero-right reveal">
+        <div class="terminal-card">
+          <div class="req-line">POST /v1/decisions</div>
+          <div class="header-line">Content-Type: application/json</div>
+          <br>
+          <div>{</div>
+          <div>&nbsp;&nbsp;<span class="key">"agent_id":</span> <span class="value">"underwriting-model-v3"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="key">"decision":</span> <span class="value">"approve"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="key">"confidence":</span> <span class="value">0.9412</span>,</div>
+          <div>&nbsp;&nbsp;<span class="key">"inputs_hash":</span> <span class="value">"sha256:8f14e..."</span></div>
+          <div>}</div>
+          <hr class="sep">
+          <div class="res-status">201 Created</div>
+          <div>{</div>
+          <div>&nbsp;&nbsp;<span class="key">"certificate_id":</span> <span class="value">"AT-2026-07-14-c3a9f1e"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="key">"status":</span> <span class="value">"sealed"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="key">"hmac":</span> <span class="value">"b7e2d4...f19a03"</span></div>
+          <div>}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-value">$40B+</div>
+        <div class="stat-desc">Annual losses from AI-related compliance failures</div>
+        <div class="stat-source">Deloitte, 2025</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-value">78%</div>
+        <div class="stat-desc">Of enterprises cannot reconstruct AI decisions for audit</div>
+        <div class="stat-source">KPMG, 2025</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-value">Aug 2026</div>
+        <div class="stat-desc">EU AI Act high-risk enforcement deadline</div>
+        <div class="stat-source">European Commission</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section id="solutions">
+  <div class="container">
+    <div class="section-label reveal"><span>Industries</span></div>
+    <h2 class="section-title reveal">Wherever AI influences a regulated outcome, that decision must be evidenced.</h2>
+    <div class="cards-grid-3">
+      <div class="card reveal">
+        <div class="card-title">Financial Services</div>
+        <div class="card-desc">Suitability assessments, portfolio recommendations, and credit decisions. FCA PS22/3, MiFID II, Consumer Duty.</div>
+      </div>
+      <div class="card reveal">
+        <div class="card-title">Healthcare</div>
+        <div class="card-desc">Clinical decision support, diagnostic AI, and treatment recommendations. MHRA compliance, MDR, patient safety.</div>
+      </div>
+      <div class="card reveal">
+        <div class="card-title">Insurance &amp; Legal</div>
+        <div class="card-desc">Underwriting models, claims automation, and legal AI assistants. Solvency II, FCA ICOBS, judicial review.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="developers">
+  <div class="container">
+    <div class="section-label reveal"><span>How it works</span></div>
+    <h2 class="section-title reveal">From AI decision to signed certificate.</h2>
+    <div class="steps-grid">
+      <div class="step-card reveal">
+        <div class="step-num">01</div>
+        <div class="step-title">Capture</div>
+        <div class="step-desc">Your system sends a structured decision payload to a single REST endpoint.</div>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">02</div>
+        <div class="step-title">Process</div>
+        <div class="step-desc">Personal data fields are tokenised based on configurable schema rules.</div>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">03</div>
+        <div class="step-title">Sign</div>
+        <div class="step-desc">Payload is hashed and signed using HMAC-SHA256 with managed key infrastructure.</div>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">04</div>
+        <div class="step-title">Store</div>
+        <div class="step-desc">Certificate written to append-only, WORM-locked store with defined retention.</div>
+      </div>
+    </div>
+    <div class="certificate-card reveal">
+      <div class="certificate-header">
+        <span class="certificate-header-title">AEGIS TRACE CERTIFICATE</span>
+        <span class="verified-badge">VERIFIED</span>
+      </div>
+      <div class="certificate-body">
+        <div><span class="key">certificate_id</span>&nbsp;&nbsp;<span class="value">AT-2026-07-14-c3a9f1e</span></div>
+        <div><span class="key">agent_id</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="value">underwriting-model-v3</span></div>
+        <div><span class="key">verdict</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="value-green">PASS</span></div>
+        <div><span class="key">confidence</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="value">0.9412</span></div>
+        <div><span class="key">hmac_signature</span>&nbsp;<span class="value">b7e2d4c8...f19a03e1</span></div>
+        <div><span class="key">regulatory_refs</span> <span class="value">FCA PS22/3, MiFID II</span></div>
+        <div><span class="key">sealed_at</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="value">2026-07-14T09:31:44Z</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPLOYMENT -->
+<section>
+  <div class="container">
+    <div class="section-label reveal"><span>Deployment</span></div>
+    <h2 class="section-title reveal">Deploy where your architecture requires.</h2>
+    <div class="cards-grid-3">
+      <div class="card reveal">
+        <div class="card-title">Cloud API</div>
+        <div class="card-desc">Managed service. Single REST endpoint. Sub-2s p99 latency. No infrastructure to operate.</div>
+      </div>
+      <div class="card reveal">
+        <div class="card-title">On-Premises</div>
+        <div class="card-desc">Full deployment within your infrastructure. Air-gapped and restricted environments supported.</div>
+      </div>
+      <div class="card reveal">
+        <div class="card-title">Private Cloud</div>
+        <div class="card-desc">Containerised deployment in your cloud tenant. Complete data sovereignty and access control.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPLIANCE -->
+<section id="compliance">
+  <div class="container">
+    <div class="section-label reveal"><span>Compliance</span></div>
+    <h2 class="section-title reveal">Mapped to the regulations governing AI-driven decisions.</h2>
+    <div class="cards-grid-2x3">
+      <div class="card reveal">
+        <div class="card-title">FCA PS22/3</div>
+        <div class="card-desc">Decision rationale and suitability evidence for consumer investment advice</div>
+      </div>
+      <div class="card reveal">
+        <div class="card-title">Consumer Duty</div>
+        <div class="card-desc">Outcome monitoring records demonstrating client-appropriate recommendations</div>
+      </div>
+      <div class="card reveal">
+        <div class="card-title">EU AI Act Art.12</div>
+        <div class="card-desc">Automatic logging of high-risk AI system decisions and operating conditions</div>
+      </div>
+      <div class="card reveal">
+        <div class="card-title">MiFID II</div>
+        <div class="card-desc">Audit trail for investment decision processes and order execution</div>
+      </div>
+      <div class="card reveal">
+        <div class="card-title">GDPR Art.30</div>
+        <div class="card-desc">Structured records of automated processing activities involving personal data</div>
+      </div>
+      <div class="card reveal">
+        <div class="card-title">FCA SYSC 9</div>
+        <div class="card-desc">Systematic retention of records sufficient to reconstruct regulated activities</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="get-started">
+  <div class="container">
+    <div class="section-label reveal"><span>Get started</span></div>
+    <h2 class="section-title reveal">Request access.</h2>
+    <p class="cta-sub reveal">Structured onboarding is provided following initial technical and compliance review.</p>
+    <div class="form-message" id="formMessage"></div>
+    <form class="cta-form reveal" id="ctaForm" action="https://formspree.io/f/{YOUR_FORM_ID}" method="POST">
+      <input type="email" name="email" placeholder="Work email address" required>
+      <button type="submit" id="submitBtn">Request Access</button>
+    </form>
+    <p class="cta-note reveal">Technical documentation and API reference are provided to qualified organisations.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <svg class="footer-logo" width="16" height="16" viewBox="0 0 15 15" fill="none">
+          <path d="M0 0H5V5H0V0Z" fill="#F2F0EB"/>
+          <path d="M5 5H10V10H5V5Z" fill="#F2F0EB"/>
+          <path d="M10 0H15V5H10V0Z" fill="#F2F0EB"/>
+          <path d="M10 10H15V15H10V10Z" fill="#F2F0EB"/>
+          <path d="M0 10L5 5V10H6.85185L5 11.7593V15H0V10Z" fill="#F2F0EB"/>
+        </svg>
+        <span class="footer-copy">&copy; 2026 MSDK Labs</span>
+      </div>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Security</a>
+        <a href="#">Documentation</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Mobile menu toggle
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  mobileMenu.classList.toggle('active');
+});
+
+// Close mobile menu on link click
+mobileMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('active');
+  });
+});
+
+// Scroll reveal
+const revealElements = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.1,
+  rootMargin: '0px 0px -40px 0px'
+});
+
+revealElements.forEach(el => observer.observe(el));
+
+// Form submission
+const form = document.getElementById('ctaForm');
+const submitBtn = document.getElementById('submitBtn');
+const formMessage = document.getElementById('formMessage');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const originalText = submitBtn.textContent;
+  submitBtn.textContent = 'Submitting...';
+  submitBtn.disabled = true;
+  formMessage.textContent = '';
+  formMessage.className = 'form-message';
+
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      formMessage.textContent = 'Thank you. We will be in touch shortly.';
+      formMessage.className = 'form-message success';
+      form.reset();
+    } else {
+      throw new Error('Submission failed');
+    }
+  } catch (err) {
+    formMessage.textContent = 'Something went wrong. Please try again.';
+    formMessage.className = 'form-message error';
+  } finally {
+    submitBtn.textContent = originalText;
+    submitBtn.disabled = false;
+  }
+});
+</script>
+
+</body>
+</html>
