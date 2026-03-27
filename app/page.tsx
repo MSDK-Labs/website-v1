@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import RequestForm from '@/components/RequestForm'
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
               <h1 className="reveal">Every AI decision, cryptographically auditable.</h1>
               <p className="hero-sub reveal">One API call generates signed, immutable audit records for every model decision, retrievable on demand for regulatory review, internal audit, or litigation.</p>
               <div className="hero-ctas reveal">
-                <Link href="/request-access/" className="btn-primary">Start Integration &rarr;</Link>
+                <a href="#request-access" className="btn-primary" data-scroll>Start Integration &rarr;</a>
                 <a href="#how-it-works" className="btn-secondary" data-scroll>View Documentation</a>
               </div>
             </div>
@@ -194,6 +194,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* REQUEST ACCESS */}
+      <RequestForm />
     </main>
   )
 }

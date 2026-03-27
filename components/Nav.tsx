@@ -53,7 +53,7 @@ export default function Nav() {
             <button type="button" onClick={() => scrollToSection('how-it-works')}>How It Works</button>
             <button type="button" onClick={() => scrollToSection('regulatory')}>Regulatory</button>
             <button type="button" onClick={() => scrollToSection('team')}>Team</button>
-            <Link href="/request-access/" className="nav-cta">Request Access</Link>
+            <button type="button" className="nav-cta" onClick={() => scrollToSection('request-access')}>Request Access</button>
           </div>
           <button
             className={`nav-hamburger ${menuOpen ? 'active' : ''}`}
@@ -72,7 +72,7 @@ export default function Nav() {
         <button type="button" onClick={() => scrollToSection('how-it-works')}>How It Works</button>
         <button type="button" onClick={() => scrollToSection('regulatory')}>Regulatory</button>
         <button type="button" onClick={() => scrollToSection('team')}>Team</button>
-        <Link href="/request-access/" className="nav-cta" onClick={closeMenu}>Request Access</Link>
+        <button type="button" className="nav-cta" onClick={() => scrollToSection('request-access')}>Request Access</button>
       </div>
     </>
   )
