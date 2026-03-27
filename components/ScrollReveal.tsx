@@ -1,10 +1,13 @@
 'use client'
 
 import { useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 
 export default function ScrollReveal() {
+  const pathname = usePathname()
+
   useEffect(() => {
-    const revealElements = document.querySelectorAll('.reveal')
+    const revealElements = document.querySelectorAll('.reveal:not(.visible)')
     if (!revealElements.length) return
 
     const observer = new IntersectionObserver(
@@ -22,7 +25,7 @@ export default function ScrollReveal() {
     revealElements.forEach((el) => observer.observe(el))
 
     return () => observer.disconnect()
-  }, [])
+  }, [pathname])
 
   return null
 }
