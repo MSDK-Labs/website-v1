@@ -1,0 +1,172 @@
+import Link from 'next/link'
+
+export default function Home() {
+  return (
+    <main>
+      {/* HERO */}
+      <section className="hero" id="platform">
+        <div className="container">
+          <div className="hero-grid">
+            <div className="hero-left">
+              <div className="hero-badge reveal">Trusted by regulated enterprises</div>
+              <h1 className="reveal">Every AI decision, cryptographically auditable.</h1>
+              <p className="hero-sub reveal">One API call generates signed, immutable audit records for every model decision, retrievable on demand for regulatory review, internal audit, or litigation.</p>
+              <div className="hero-ctas reveal">
+                <Link href="/request-access/" className="btn-primary">Start Integration &rarr;</Link>
+                <Link href="/how-it-works/" className="btn-secondary">View Documentation</Link>
+              </div>
+            </div>
+            <div className="hero-right reveal">
+              <div className="terminal-card">
+                <div className="req-line">POST /v1/decisions</div>
+                <div className="header-line">Content-Type: application/json</div>
+                <br />
+                <div>{'{'}</div>
+                <div>&nbsp;&nbsp;<span className="key">&quot;agent_id&quot;:</span> <span className="value">&quot;underwriting-model-v3&quot;</span>,</div>
+                <div>&nbsp;&nbsp;<span className="key">&quot;decision&quot;:</span> <span className="value">&quot;approve&quot;</span>,</div>
+                <div>&nbsp;&nbsp;<span className="key">&quot;confidence&quot;:</span> <span className="value">0.9412</span>,</div>
+                <div>&nbsp;&nbsp;<span className="key">&quot;inputs_hash&quot;:</span> <span className="value">&quot;sha256:8f14e...&quot;</span></div>
+                <div>{'}'}</div>
+                <hr className="sep" />
+                <div className="res-status">201 Created</div>
+                <div>{'{'}</div>
+                <div>&nbsp;&nbsp;<span className="key">&quot;audit_record_id&quot;:</span> <span className="value">&quot;AT-2026-07-14-c3a9f1e&quot;</span>,</div>
+                <div>&nbsp;&nbsp;<span className="key">&quot;status&quot;:</span> <span className="value">&quot;sealed&quot;</span>,</div>
+                <div>&nbsp;&nbsp;<span className="key">&quot;hmac&quot;:</span> <span className="value">&quot;b7e2d4...f19a03&quot;</span></div>
+                <div>{'}'}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* STATS */}
+      <section className="stats">
+        <div className="container">
+          <div className="stats-grid">
+            <div className="stat-item reveal">
+              <div className="stat-value">$40B+</div>
+              <div className="stat-desc">Annual losses from AI-related compliance failures</div>
+              <div className="stat-source">Deloitte, 2025</div>
+            </div>
+            <div className="stat-item reveal">
+              <div className="stat-value">78%</div>
+              <div className="stat-desc">Of enterprises cannot reconstruct AI decisions for audit</div>
+              <div className="stat-source">KPMG, 2025</div>
+            </div>
+            <div className="stat-item reveal">
+              <div className="stat-value">Aug 2026</div>
+              <div className="stat-desc">EU AI Act high-risk enforcement deadline</div>
+              <div className="stat-source">European Commission</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* INDUSTRIES */}
+      <section id="solutions">
+        <div className="container">
+          <div className="section-label reveal"><span>Industries</span></div>
+          <h2 className="section-title reveal">Wherever AI influences a regulated outcome, that decision must be evidenced.</h2>
+          <div className="cards-grid-3">
+            <div className="card reveal">
+              <div className="card-title">Financial Services</div>
+              <div className="card-desc">Suitability assessments, portfolio recommendations, and credit decisions. FCA PS22/3, MiFID II, Consumer Duty.</div>
+            </div>
+            <div className="card reveal">
+              <div className="card-title">Healthcare</div>
+              <div className="card-desc">Clinical decision support, diagnostic AI, and treatment recommendations. MHRA compliance, MDR, patient safety.</div>
+            </div>
+            <div className="card reveal">
+              <div className="card-title">Insurance &amp; Legal</div>
+              <div className="card-desc">Underwriting models, claims automation, and legal AI assistants. Solvency II, FCA ICOBS, judicial review.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* HOW IT WORKS (preview) */}
+      <section id="developers">
+        <div className="container">
+          <div className="section-label reveal"><span>How it works</span></div>
+          <h2 className="section-title reveal">From model inference to signed audit record.</h2>
+          <div className="steps-grid">
+            <div className="step-card reveal">
+              <div className="step-num">01</div>
+              <div className="step-title">Capture</div>
+              <div className="step-desc">Your system sends a structured decision payload to a single REST endpoint.</div>
+            </div>
+            <div className="step-card reveal">
+              <div className="step-num">02</div>
+              <div className="step-title">Process</div>
+              <div className="step-desc">Personal data fields are tokenised based on configurable schema rules.</div>
+            </div>
+            <div className="step-card reveal">
+              <div className="step-num">03</div>
+              <div className="step-title">Sign</div>
+              <div className="step-desc">Payload is hashed and signed using HMAC-SHA256 with managed key infrastructure.</div>
+            </div>
+            <div className="step-card reveal">
+              <div className="step-num">04</div>
+              <div className="step-title">Store</div>
+              <div className="step-desc">Audit record written to append-only, WORM-locked store with defined retention.</div>
+            </div>
+          </div>
+          <div className="certificate-card reveal">
+            <div className="certificate-header">
+              <span className="certificate-header-title">AEGIS TRACE AUDIT RECORD</span>
+              <span className="verified-badge">VERIFIED</span>
+            </div>
+            <div className="certificate-body">
+              <div><span className="key">audit_record_id</span>&nbsp;&nbsp;<span className="value">AT-2026-07-14-c3a9f1e</span></div>
+              <div><span className="key">agent_id</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="value">underwriting-model-v3</span></div>
+              <div><span className="key">verdict</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="value-green">PASS</span></div>
+              <div><span className="key">confidence</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="value">0.9412</span></div>
+              <div><span className="key">hmac_signature</span>&nbsp;<span className="value">b7e2d4c8...f19a03e1</span></div>
+              <div><span className="key">regulatory_refs</span> <span className="value">FCA PS22/3, MiFID II</span></div>
+              <div><span className="key">sealed_at</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="value">2026-07-14T09:31:44Z</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* DEPLOYMENT */}
+      <section>
+        <div className="container">
+          <div className="section-label reveal"><span>Deployment</span></div>
+          <h2 className="section-title reveal">Deploy where your architecture requires.</h2>
+          <div className="cards-grid-3">
+            <div className="card reveal">
+              <div className="card-title">Cloud API</div>
+              <div className="card-desc">Managed service. Single REST endpoint. Sub-2s p99 latency. No infrastructure to operate.</div>
+            </div>
+            <div className="card reveal">
+              <div className="card-title">On-Premises</div>
+              <div className="card-desc">Full deployment within your infrastructure. Air-gapped and restricted environments supported.</div>
+            </div>
+            <div className="card reveal">
+              <div className="card-title">Private Cloud</div>
+              <div className="card-desc">Containerised deployment in your cloud tenant. Complete data sovereignty and access control.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* COMPLIANCE */}
+      <section id="compliance">
+        <div className="container">
+          <div className="section-label reveal"><span>Compliance</span></div>
+          <h2 className="section-title reveal">Mapped to the regulations governing AI-driven decisions.</h2>
+          <div className="cards-grid-2x3">
+            <div className="card reveal"><div className="card-title">FCA PS22/3</div><div className="card-desc">Decision rationale and suitability evidence for consumer investment advice</div></div>
+            <div className="card reveal"><div className="card-title">Consumer Duty</div><div className="card-desc">Outcome monitoring records demonstrating client-appropriate recommendations</div></div>
+            <div className="card reveal"><div className="card-title">EU AI Act Art.12</div><div className="card-desc">Automatic logging of high-risk AI system decisions and operating conditions</div></div>
+            <div className="card reveal"><div className="card-title">MiFID II</div><div className="card-desc">Audit trail for investment decision processes and order execution</div></div>
+            <div className="card reveal"><div className="card-title">GDPR Art.30</div><div className="card-desc">Structured records of automated processing activities involving personal data</div></div>
+            <div className="card reveal"><div className="card-title">FCA SYSC 9</div><div className="card-desc">Systematic retention of records sufficient to reconstruct regulated activities</div></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  )
+}
