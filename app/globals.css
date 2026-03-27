@@ -104,14 +104,21 @@ a {
   gap: 32px;
 }
 
-.nav-links a {
+.nav-links a,
+.nav-links button {
   font-size: 14px;
   color: var(--muted);
   text-decoration: none;
   transition: color 0.2s;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links button:hover {
   color: var(--text);
 }
 
@@ -178,14 +185,22 @@ a {
   display: flex;
 }
 
-.mobile-menu a {
+.mobile-menu a,
+.mobile-menu button {
   font-size: 18px;
   color: var(--muted);
   text-decoration: none;
   transition: color 0.2s;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+  text-align: left;
 }
 
-.mobile-menu a:hover {
+.mobile-menu a:hover,
+.mobile-menu button:hover {
   color: var(--text);
 }
 
@@ -484,6 +499,27 @@ section {
 .certificate-body .value { color: var(--text); }
 .certificate-body .value-green { color: var(--green); }
 
+/* TEAM */
+.team-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.team-body {
+  font-size: 17px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.85;
+}
+
+.team-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 /* COMPLIANCE GRID */
 .cards-grid-2x3 {
   display: grid;
@@ -638,6 +674,7 @@ section {
   .stat-item:not(:last-child) { padding-bottom: 40px; border-bottom: 1px solid var(--card-border); }
   .stat-item { padding: 0; }
   .cards-grid-3, .cards-grid-2x3 { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: 1fr; gap: 40px; }
   .steps-grid { grid-template-columns: 1fr 1fr; }
   .nav-links { display: none; }
   .nav-hamburger { display: block; }
