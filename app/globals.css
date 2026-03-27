@@ -123,13 +123,22 @@ a {
 }
 
 .nav-cta {
-  background: var(--accent) !important;
-  color: var(--bg) !important;
-  padding: 8px 20px;
-  border-radius: 999px;
-  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 36px;              /* force proper height */
+  padding: 0 16px;           /* horizontal only */
+
+  background: #E8D2A6;
+  color: #111;
+
+  border-radius: 999px;      /* proper pill */
   font-size: 14px;
-  transition: opacity 0.2s;
+  font-weight: 500;
+  line-height: 1;            /* CRITICAL FIX */
+
+  white-space: nowrap;       /* prevents wrapping/cropping */
 }
 
 .nav-cta:hover {
