@@ -121,19 +121,29 @@ a {
 .nav-links button:hover {
   color: var(--text);
 }
-
 .nav-cta {
-  background: var(--accent) !important;
-  color: var(--bg) !important;
-  padding: 8px 20px !important;
-  border-radius: 999px !important;
-  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 8px 16px;        /* FIX: better vertical balance */
+
+  background: #E8D2A6;
+  color: #111;
+
+  border-radius: 999px;
   font-size: 14px;
-  transition: opacity 0.2s;
+  font-weight: 500;
+
+  line-height: 1;
+  white-space: nowrap;
+
+  border: none;
+  transition: background 0.2s ease;  /* smoother interaction */
 }
 
 .nav-cta:hover {
-  opacity: 0.88;
+  background: #dcc393;  /* FIX: proper hover instead of opacity */
 }
 
 .nav-hamburger {
