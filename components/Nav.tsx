@@ -1,12 +1,36 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const pathname = usePathname()
+  const router = useRouter()
 
   const closeMenu = () => setMenuOpen(false)
+
+  const scrollToSection = useCallback((id: string) => {
+    closeMenu()
+
+    const doScroll = () => {
+      const el = document.getElementById(id)
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        // Clean URL without hash
+        window.history.replaceState(null, '', '/')
+      }
+    }
+
+    if (pathname !== '/') {
+      router.push('/')
+      // Wait for navigation then scroll
+      setTimeout(doScroll, 100)
+    } else {
+      doScroll()
+    }
+  }, [pathname, router])
 
   return (
     <>
@@ -25,10 +49,10 @@ export default function Nav() {
             <span className="nav-product">Aegis Trace</span>
           </div>
           <div className="nav-links">
-            <Link href="/#problem">Problem</Link>
-            <Link href="/how-it-works/">How It Works</Link>
-            <Link href="/regulatory/">Regulatory</Link>
-            <Link href="/team/">Team</Link>
+            <button type="button" onClick={() => scrollToSection('problem')}>Problem</button>
+            <button type="button" onClick={() => scrollToSection('how-it-works')}>How It Works</button>
+            <button type="button" onClick={() => scrollToSection('regulatory')}>Regulatory</button>
+            <button type="button" onClick={() => scrollToSection('team')}>Team</button>
             <Link href="/request-access/" className="nav-cta">Request Access</Link>
           </div>
           <button
@@ -44,10 +68,10 @@ export default function Nav() {
       </nav>
 
       <div className={`mobile-menu ${menuOpen ? 'active' : ''}`}>
-        <Link href="/#problem" onClick={closeMenu}>Problem</Link>
-        <Link href="/how-it-works/" onClick={closeMenu}>How It Works</Link>
-        <Link href="/regulatory/" onClick={closeMenu}>Regulatory</Link>
-        <Link href="/team/" onClick={closeMenu}>Team</Link>
+        <button type="button" onClick={() => scrollToSection('problem')}>Problem</button>
+        <button type="button" onClick={() => scrollToSection('how-it-works')}>How It Works</button>
+        <button type="button" onClick={() => scrollToSection('regulatory')}>Regulatory</button>
+        <button type="button" onClick={() => scrollToSection('team')}>Team</button>
         <Link href="/request-access/" className="nav-cta" onClick={closeMenu}>Request Access</Link>
       </div>
     </>

@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <main>
       {/* HERO */}
-      <section className="hero" id="platform">
+      <section className="hero">
         <div className="container">
           <div className="hero-grid">
             <div className="hero-left">
@@ -13,7 +13,7 @@ export default function Home() {
               <p className="hero-sub reveal">One API call generates signed, immutable audit records for every model decision, retrievable on demand for regulatory review, internal audit, or litigation.</p>
               <div className="hero-ctas reveal">
                 <Link href="/request-access/" className="btn-primary">Start Integration &rarr;</Link>
-                <Link href="/how-it-works/" className="btn-secondary">View Documentation</Link>
+                <a href="#how-it-works" className="btn-secondary" data-scroll>View Documentation</a>
               </div>
             </div>
             <div className="hero-right reveal">
@@ -63,7 +63,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* INDUSTRIES */}
+      {/* INDUSTRIES / PROBLEM */}
       <section id="problem">
         <div className="container">
           <div className="section-label reveal"><span>Industries</span></div>
@@ -85,8 +85,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* HOW IT WORKS (preview) */}
-      <section id="developers">
+      {/* HOW IT WORKS */}
+      <section id="how-it-works">
         <div className="container">
           <div className="section-label reveal"><span>How it works</span></div>
           <h2 className="section-title reveal">From model inference to signed audit record.</h2>
@@ -152,8 +152,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* COMPLIANCE */}
-      <section id="compliance">
+      {/* COMPLIANCE / REGULATORY */}
+      <section id="regulatory">
         <div className="container">
           <div className="section-label reveal"><span>Compliance</span></div>
           <h2 className="section-title reveal">Mapped to the regulations governing AI-driven decisions.</h2>
@@ -164,6 +164,33 @@ export default function Home() {
             <div className="card reveal"><div className="card-title">MiFID II</div><div className="card-desc">Audit trail for investment decision processes and order execution</div></div>
             <div className="card reveal"><div className="card-title">GDPR Art.30</div><div className="card-desc">Structured records of automated processing activities involving personal data</div></div>
             <div className="card reveal"><div className="card-title">FCA SYSC 9</div><div className="card-desc">Systematic retention of records sufficient to reconstruct regulated activities</div></div>
+          </div>
+        </div>
+      </section>
+
+      {/* TEAM */}
+      <section id="team">
+        <div className="container">
+          <div className="section-label reveal"><span>The team</span></div>
+          <h2 className="section-title reveal">Built by practitioners from regulated financial environments.</h2>
+          <div className="team-grid">
+            <div className="team-body reveal">
+              <p>MSDK Labs is formed by engineers and delivery specialists with direct experience of FCA-regulated environments, audit processes, and section 166 reviews. The product is designed to meet the practical requirements of evidencing AI-driven decisions under regulatory scrutiny.</p>
+            </div>
+            <div className="team-cards">
+              <div className="card reveal">
+                <div className="card-title">Regulated financial services</div>
+                <div className="card-desc">Enterprise delivery at UK wealth managers and FCA-regulated firms. We understand compliance requirements from the inside.</div>
+              </div>
+              <div className="card reveal">
+                <div className="card-title">Production AI systems</div>
+                <div className="card-desc">Production AI systems, API architecture, and the engineering required to make machine-learning decisions auditable at scale.</div>
+              </div>
+              <div className="card reveal">
+                <div className="card-title">Compliance architecture</div>
+                <div className="card-desc">FCA examination processes, section 166 reviews, and the evidence formats compliance teams are required to present.</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
