@@ -125,8 +125,8 @@ a {
 .nav-cta {
   background: var(--accent) !important;
   color: var(--bg) !important;
-  padding: 8px 20px;
-  border-radius: 999px;
+  padding: 8px 20px !important;
+  border-radius: 999px !important;
   font-weight: 500;
   font-size: 14px;
   transition: opacity 0.2s;
@@ -208,6 +208,7 @@ a {
   display: inline-block;
   text-align: center;
   width: fit-content;
+  padding: 8px 20px !important;
 }
 
 /* BUTTONS */
