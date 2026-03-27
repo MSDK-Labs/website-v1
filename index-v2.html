@@ -851,7 +851,7 @@ section {
     </div>
     <div class="nav-links">
       <a href="#platform">Platform</a>
-      <a href="#solutions">Solutions</a>
+      <a href="#solutions">Use Cases</a>
       <a href="#compliance">Compliance</a>
       <a href="#developers">Developers</a>
       <a href="#get-started" class="nav-cta">Get Started</a>
@@ -867,7 +867,7 @@ section {
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#platform">Platform</a>
-  <a href="#solutions">Solutions</a>
+  <a href="#solutions">Use Cases</a>
   <a href="#compliance">Compliance</a>
   <a href="#developers">Developers</a>
   <a href="#get-started" class="nav-cta">Get Started</a>
@@ -879,8 +879,8 @@ section {
     <div class="hero-grid">
       <div class="hero-left">
         <div class="hero-badge reveal">Trusted by regulated enterprises</div>
-        <h1 class="reveal">AI decisions leave no trace. Until now.</h1>
-        <p class="hero-sub reveal">Aegis Trace provides cryptographic proof of every AI decision across your organisation. A single API integration produces signed, immutable audit certificates &mdash; retrievable on demand for regulatory review, internal audit, or litigation.</p>
+        <h1 class="reveal">Every AI decision, cryptographically auditable.</h1>
+        <p class="hero-sub reveal">One API call generates signed, immutable audit records for every model decision &mdash; retrievable on demand for regulatory review, internal audit, or litigation.</p>
         <div class="hero-ctas reveal">
           <a href="#get-started" class="btn-primary">Start Integration &rarr;</a>
           <a href="#developers" class="btn-secondary">View Documentation</a>
@@ -900,7 +900,7 @@ section {
           <hr class="sep">
           <div class="res-status">201 Created</div>
           <div>{</div>
-          <div>&nbsp;&nbsp;<span class="key">"certificate_id":</span> <span class="value">"AT-2026-07-14-c3a9f1e"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="key">"audit_record_id":</span> <span class="value">"AT-2026-07-14-c3a9f1e"</span>,</div>
           <div>&nbsp;&nbsp;<span class="key">"status":</span> <span class="value">"sealed"</span>,</div>
           <div>&nbsp;&nbsp;<span class="key">"hmac":</span> <span class="value">"b7e2d4...f19a03"</span></div>
           <div>}</div>
@@ -959,7 +959,7 @@ section {
 <section id="developers">
   <div class="container">
     <div class="section-label reveal"><span>How it works</span></div>
-    <h2 class="section-title reveal">From AI decision to signed certificate.</h2>
+    <h2 class="section-title reveal">From model inference to signed audit record.</h2>
     <div class="steps-grid">
       <div class="step-card reveal">
         <div class="step-num">01</div>
@@ -979,16 +979,16 @@ section {
       <div class="step-card reveal">
         <div class="step-num">04</div>
         <div class="step-title">Store</div>
-        <div class="step-desc">Certificate written to append-only, WORM-locked store with defined retention.</div>
+        <div class="step-desc">Audit record written to append-only, WORM-locked store with defined retention.</div>
       </div>
     </div>
     <div class="certificate-card reveal">
       <div class="certificate-header">
-        <span class="certificate-header-title">AEGIS TRACE CERTIFICATE</span>
+        <span class="certificate-header-title">AEGIS TRACE AUDIT RECORD</span>
         <span class="verified-badge">VERIFIED</span>
       </div>
       <div class="certificate-body">
-        <div><span class="key">certificate_id</span>&nbsp;&nbsp;<span class="value">AT-2026-07-14-c3a9f1e</span></div>
+        <div><span class="key">audit_record_id</span>&nbsp;&nbsp;<span class="value">AT-2026-07-14-c3a9f1e</span></div>
         <div><span class="key">agent_id</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="value">underwriting-model-v3</span></div>
         <div><span class="key">verdict</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="value-green">PASS</span></div>
         <div><span class="key">confidence</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="value">0.9412</span></div>
