@@ -104,8 +104,8 @@ a {
   gap: 32px;
 }
 
-.nav-links a,
-.nav-links button {
+.nav-links a,.nav-links a,
+.nav-links button:not(.nav-cta) {
   font-size: 14px;
   color: var(--muted);
   text-decoration: none;
@@ -118,9 +118,10 @@ a {
 }
 
 .nav-links a:hover,
-.nav-links button:hover {
+.nav-links button:not(.nav-cta):hover {
   color: var(--text);
 }
+
 .nav-cta {
   display: inline-flex;
   align-items: center;
@@ -218,7 +219,6 @@ a {
   display: inline-block;
   text-align: center;
   width: fit-content;
-  padding: 8px 20px !important;
 }
 
 /* BUTTONS */
