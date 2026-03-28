@@ -562,11 +562,31 @@ section {
 
 .guarantee-card {
   background: var(--card-surface);
-  border: 1px solid var(--accent);
+  border: 1px solid var(--card-border);
+  border-left: 3px solid var(--accent);
   border-radius: 10px;
-  padding: 28px;
-  margin-top: 20px;
-  max-width: 540px;
+  padding: 20px 28px;
+  margin-top: 24px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.guarantee-card .card-badge {
+  margin-bottom: 0;
+}
+
+.guarantee-card .card-title {
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+.guarantee-card .card-desc {
+  flex: 1;
+  margin-bottom: 0;
+  min-width: 200px;
 }
 
 /* CTA SECTION */
