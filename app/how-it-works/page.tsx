@@ -21,7 +21,7 @@ export default function HowItWorks() {
             <div className="step-card reveal">
               <div className="step-num">02</div>
               <div className="step-title">Process</div>
-              <div className="step-desc">Personal data fields are tokenised based on configurable schema rules.</div>
+              <div className="step-desc">The redaction sidecar runs inside your network and automatically detects the language of your payload. 34 specialist recognisers cover 13 EU countries across 9 languages, handling names, national IDs, financial identifiers, and more. No personal data ever leaves your network.</div>
             </div>
             <div className="step-card reveal">
               <div className="step-num">03</div>

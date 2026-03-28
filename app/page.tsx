@@ -81,6 +81,14 @@ export default function Home() {
               <div className="card-title">Insurance &amp; Legal</div>
               <div className="card-desc">Underwriting models, claims automation, and legal AI assistants. Solvency II, FCA ICOBS, judicial review.</div>
             </div>
+            <div className="card reveal">
+              <div className="card-title">HR &amp; Workforce</div>
+              <div className="card-desc">AI agents making hiring, performance, or compensation decisions. Classified as high-risk under EU AI Act Annex III. Full audit trail with PII redaction for employee identifiers, salary data, and performance ratings.</div>
+            </div>
+            <div className="card reveal">
+              <div className="card-title">Any Industry</div>
+              <div className="card-desc">Custom redaction profile for verticals not covered by a standard profile. Telecom, legal, retail, government: specify exactly which identifier types your AI agents handle.</div>
+            </div>
           </div>
         </div>
       </section>
@@ -99,7 +107,7 @@ export default function Home() {
             <div className="step-card reveal">
               <div className="step-num">02</div>
               <div className="step-title">Process</div>
-              <div className="step-desc">Personal data fields are tokenised based on configurable schema rules.</div>
+              <div className="step-desc">The redaction sidecar runs inside your network and automatically detects the language of your payload. 34 specialist recognisers cover 13 EU countries across 9 languages, handling names, national IDs, financial identifiers, and more. No personal data ever leaves your network.</div>
             </div>
             <div className="step-card reveal">
               <div className="step-num">03</div>
@@ -164,6 +172,7 @@ export default function Home() {
             <div className="card reveal"><div className="card-title">MiFID II</div><div className="card-desc">Audit trail for investment decision processes and order execution</div></div>
             <div className="card reveal"><div className="card-title">GDPR Art.30</div><div className="card-desc">Structured records of automated processing activities involving personal data</div></div>
             <div className="card reveal"><div className="card-title">FCA SYSC 9</div><div className="card-desc">Systematic retention of records sufficient to reconstruct regulated activities</div></div>
+            <div className="card reveal"><div className="card-badge">Architecture Guarantee</div><div className="card-title">GDPR Art.25</div><div className="card-desc">PII redaction runs entirely inside the client network. Aegis Trace never receives raw personal data. Verified by automated network isolation tests on every build.</div></div>
           </div>
         </div>
       </section>
@@ -180,7 +189,7 @@ export default function Home() {
             <div className="team-cards">
               <div className="card reveal">
                 <div className="card-title">Regulated financial services</div>
-                <div className="card-desc">Enterprise delivery at UK wealth managers and FCA-regulated firms. We understand compliance requirements from the inside.</div>
+                <div className="card-desc">Enterprise delivery at wealth managers across the UK and EU and FCA and EU-regulated firms. We understand compliance requirements from the inside.</div>
               </div>
               <div className="card reveal">
                 <div className="card-title">Production AI systems</div>

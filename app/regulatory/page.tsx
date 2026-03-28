@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Regulatory Compliance — Aegis Trace | MSDK Labs',
-  description: 'Aegis Trace audit records are mapped to FCA PS22/3, Consumer Duty, EU AI Act Art.12, MiFID II, GDPR Art.30, and FCA SYSC 9.',
+  description: 'Aegis Trace audit records are mapped to FCA PS22/3, Consumer Duty, EU AI Act Art.12, MiFID II, GDPR Art.25, GDPR Art.30, and FCA SYSC 9.',
 }
 
 export default function Regulatory() {
@@ -19,6 +19,7 @@ export default function Regulatory() {
             <div className="card reveal"><div className="card-title">MiFID II</div><div className="card-desc">Audit trail for investment decision processes and order execution</div></div>
             <div className="card reveal"><div className="card-title">GDPR Art.30</div><div className="card-desc">Structured records of automated processing activities involving personal data</div></div>
             <div className="card reveal"><div className="card-title">FCA SYSC 9</div><div className="card-desc">Systematic retention of records sufficient to reconstruct regulated activities</div></div>
+            <div className="card reveal"><div className="card-badge">Architecture Guarantee</div><div className="card-title">GDPR Art.25</div><div className="card-desc">PII redaction runs entirely inside the client network. Aegis Trace never receives raw personal data. Verified by automated network isolation tests on every build.</div></div>
           </div>
         </div>
       </section>

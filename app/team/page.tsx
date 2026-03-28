@@ -19,7 +19,7 @@ export default function Team() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <div className="card reveal">
                 <div className="card-title">Regulated financial services</div>
-                <div className="card-desc">Enterprise delivery at UK wealth managers and FCA-regulated firms. We understand compliance requirements from the inside.</div>
+                <div className="card-desc">Enterprise delivery at wealth managers across the UK and EU and FCA and EU-regulated firms. We understand compliance requirements from the inside.</div>
               </div>
               <div className="card reveal">
                 <div className="card-title">Production AI systems</div>
