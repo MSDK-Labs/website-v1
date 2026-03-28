@@ -540,8 +540,20 @@ section {
 /* COMPLIANCE GRID */
 .cards-grid-2x3 {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 20px;
+}
+
+.cards-grid-2x3 > .card {
+  grid-column: span 2;
+}
+
+.cards-grid-2x3 > .card:nth-last-child(2):nth-child(4) {
+  grid-column: 1 / span 3;
+}
+
+.cards-grid-2x3 > .card:nth-last-child(1):nth-child(5) {
+  grid-column: 4 / span 3;
 }
 
 .card-badge {
@@ -560,34 +572,6 @@ section {
   font-weight: 500;
 }
 
-.guarantee-card {
-  background: var(--card-surface);
-  border: 1px solid var(--card-border);
-  border-left: 3px solid var(--accent);
-  border-radius: 10px;
-  padding: 20px 28px;
-  margin-top: 24px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.guarantee-card .card-badge {
-  margin-bottom: 0;
-}
-
-.guarantee-card .card-title {
-  margin-bottom: 0;
-  font-size: 14px;
-}
-
-.guarantee-card .card-desc {
-  flex: 1;
-  margin-bottom: 0;
-  min-width: 200px;
-}
 
 /* CTA SECTION */
 .cta-section {
@@ -864,6 +848,7 @@ section {
   .stat-item:not(:last-child) { padding-bottom: 40px; border-bottom: 1px solid var(--card-border); }
   .stat-item { padding: 0; }
   .cards-grid-3, .cards-grid-2x3, .cards-grid-industries { grid-template-columns: 1fr; }
+  .cards-grid-2x3 > .card { grid-column: span 1; }
   .team-grid { grid-template-columns: 1fr; gap: 40px; }
   .steps-grid { grid-template-columns: 1fr 1fr; }
   .nav-links { display: none; }
