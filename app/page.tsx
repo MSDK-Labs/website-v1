@@ -68,26 +68,26 @@ export default function Home() {
         <div className="container">
           <div className="section-label reveal"><span>Industries</span></div>
           <h2 className="section-title reveal">Wherever AI influences a regulated outcome, that decision must be evidenced.</h2>
-          <div className="cards-grid-3">
+          <div className="cards-grid-industries">
             <div className="card reveal">
               <div className="card-title">Financial Services</div>
-              <div className="card-desc">Suitability assessments, portfolio recommendations, and credit decisions. FCA PS22/3, MiFID II, Consumer Duty.</div>
+              <div className="card-desc">Suitability, credit, and portfolio decisions. FCA PS22/3, MiFID II, Consumer Duty.</div>
             </div>
             <div className="card reveal">
               <div className="card-title">Healthcare</div>
-              <div className="card-desc">Clinical decision support, diagnostic AI, and treatment recommendations. MHRA compliance, MDR, patient safety.</div>
+              <div className="card-desc">Clinical decision support and diagnostic AI. MHRA, MDR, patient safety.</div>
             </div>
             <div className="card reveal">
               <div className="card-title">Insurance &amp; Legal</div>
-              <div className="card-desc">Underwriting models, claims automation, and legal AI assistants. Solvency II, FCA ICOBS, judicial review.</div>
+              <div className="card-desc">Underwriting, claims, and legal AI. Solvency II, FCA ICOBS, judicial review.</div>
             </div>
             <div className="card reveal">
               <div className="card-title">HR &amp; Workforce</div>
-              <div className="card-desc">AI agents making hiring, performance, or compensation decisions. Classified as high-risk under EU AI Act Annex III. Full audit trail with PII redaction for employee identifiers, salary data, and performance ratings.</div>
+              <div className="card-desc">Hiring, performance, and compensation AI. High-risk under EU AI Act Annex III.</div>
             </div>
             <div className="card reveal">
               <div className="card-title">Any Industry</div>
-              <div className="card-desc">Custom redaction profile for verticals not covered by a standard profile. Telecom, legal, retail, government: specify exactly which identifier types your AI agents handle.</div>
+              <div className="card-desc">Custom redaction profiles. Telecom, retail, government: you define the identifier types.</div>
             </div>
           </div>
         </div>
@@ -107,17 +107,17 @@ export default function Home() {
             <div className="step-card reveal">
               <div className="step-num">02</div>
               <div className="step-title">Process</div>
-              <div className="step-desc">The redaction sidecar runs inside your network and automatically detects the language of your payload. 34 specialist recognisers cover 13 EU countries across 9 languages, handling names, national IDs, financial identifiers, and more. No personal data ever leaves your network.</div>
+              <div className="step-desc">Redaction sidecar runs inside your network. 34 recognisers, 13 EU countries, 9 languages. PII never leaves.</div>
             </div>
             <div className="step-card reveal">
               <div className="step-num">03</div>
               <div className="step-title">Sign</div>
-              <div className="step-desc">Payload is hashed and signed using HMAC-SHA256 with managed key infrastructure.</div>
+              <div className="step-desc">Payload hashed and signed with HMAC-SHA256. Managed key infrastructure.</div>
             </div>
             <div className="step-card reveal">
               <div className="step-num">04</div>
               <div className="step-title">Store</div>
-              <div className="step-desc">Audit record written to append-only, WORM-locked store with defined retention.</div>
+              <div className="step-desc">Written to append-only, WORM-locked store with defined retention policy.</div>
             </div>
           </div>
           <div className="certificate-card reveal">
@@ -166,13 +166,17 @@ export default function Home() {
           <div className="section-label reveal"><span>Compliance</span></div>
           <h2 className="section-title reveal">Mapped to the regulations governing AI-driven decisions.</h2>
           <div className="cards-grid-2x3">
-            <div className="card reveal"><div className="card-title">FCA PS22/3</div><div className="card-desc">Decision rationale and suitability evidence for consumer investment advice</div></div>
-            <div className="card reveal"><div className="card-title">Consumer Duty</div><div className="card-desc">Outcome monitoring records demonstrating client-appropriate recommendations</div></div>
-            <div className="card reveal"><div className="card-title">EU AI Act Art.12</div><div className="card-desc">Automatic logging of high-risk AI system decisions and operating conditions</div></div>
-            <div className="card reveal"><div className="card-title">MiFID II</div><div className="card-desc">Audit trail for investment decision processes and order execution</div></div>
-            <div className="card reveal"><div className="card-title">GDPR Art.30</div><div className="card-desc">Structured records of automated processing activities involving personal data</div></div>
-            <div className="card reveal"><div className="card-title">FCA SYSC 9</div><div className="card-desc">Systematic retention of records sufficient to reconstruct regulated activities</div></div>
-            <div className="card reveal"><div className="card-badge">Architecture Guarantee</div><div className="card-title">GDPR Art.25</div><div className="card-desc">PII redaction runs entirely inside the client network. Aegis Trace never receives raw personal data. Verified by automated network isolation tests on every build.</div></div>
+            <div className="card reveal"><div className="card-title">FCA PS22/3</div><div className="card-desc">Suitability evidence for consumer investment advice</div></div>
+            <div className="card reveal"><div className="card-title">Consumer Duty</div><div className="card-desc">Outcome monitoring for client-appropriate recommendations</div></div>
+            <div className="card reveal"><div className="card-title">EU AI Act Art.12</div><div className="card-desc">Automatic logging of high-risk AI system decisions</div></div>
+            <div className="card reveal"><div className="card-title">MiFID II</div><div className="card-desc">Audit trail for investment decisions and order execution</div></div>
+            <div className="card reveal"><div className="card-title">GDPR Art.30</div><div className="card-desc">Records of automated processing involving personal data</div></div>
+            <div className="card reveal"><div className="card-title">FCA SYSC 9</div><div className="card-desc">Record retention to reconstruct regulated activities</div></div>
+          </div>
+          <div className="guarantee-card reveal">
+            <div className="card-badge">Architecture Guarantee</div>
+            <div className="card-title">GDPR Art.25</div>
+            <div className="card-desc">PII redaction runs entirely inside the client network. Aegis Trace never receives raw personal data. Verified by automated network isolation tests on every build.</div>
           </div>
         </div>
       </section>
