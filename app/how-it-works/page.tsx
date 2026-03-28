@@ -21,17 +21,17 @@ export default function HowItWorks() {
             <div className="step-card reveal">
               <div className="step-num">02</div>
               <div className="step-title">Process</div>
-              <div className="step-desc">The redaction sidecar runs inside your network and automatically detects the language of your payload. 34 specialist recognisers cover 13 EU countries across 9 languages, handling names, national IDs, financial identifiers, and more. No personal data ever leaves your network.</div>
+              <div className="step-desc">Redaction sidecar runs inside your network. 34 recognisers, 13 EU countries, 9 languages. PII never leaves.</div>
             </div>
             <div className="step-card reveal">
               <div className="step-num">03</div>
               <div className="step-title">Sign</div>
-              <div className="step-desc">Payload is hashed and signed using HMAC-SHA256 with managed key infrastructure.</div>
+              <div className="step-desc">Payload hashed and signed with HMAC-SHA256. Managed key infrastructure.</div>
             </div>
             <div className="step-card reveal">
               <div className="step-num">04</div>
               <div className="step-title">Store</div>
-              <div className="step-desc">Audit record written to append-only, WORM-locked store with defined retention.</div>
+              <div className="step-desc">Written to append-only, WORM-locked store with defined retention policy.</div>
             </div>
           </div>
           <div className="certificate-card reveal">
