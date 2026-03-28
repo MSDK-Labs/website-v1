@@ -176,7 +176,7 @@ export default function Home() {
           <div className="guarantee-card reveal">
             <div className="card-badge">Architecture Guarantee</div>
             <div className="card-title">GDPR Art.25</div>
-            <div className="card-desc">PII redaction runs entirely inside the client network. Aegis Trace never receives raw personal data. Verified by automated network isolation tests on every build.</div>
+            <div className="card-desc">PII never leaves your network. Privacy enforced by design.</div>
           </div>
         </div>
       </section>
