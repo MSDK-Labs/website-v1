@@ -55,7 +55,7 @@ export default function Home() {
               <div className="stat-source">KPMG, 2025</div>
             </div>
             <div className="stat-item reveal">
-              <div className="stat-value">Aug 2026</div>
+              <div className="stat-value">Dec 2027</div>
               <div className="stat-desc">EU AI Act high-risk enforcement deadline</div>
               <div className="stat-source">European Commission</div>
             </div>
