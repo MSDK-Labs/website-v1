@@ -18,14 +18,12 @@ export default function Nav() {
       const el = document.getElementById(id)
       if (el) {
         el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        // Clean URL without hash
         window.history.replaceState(null, '', '/')
       }
     }
 
     if (pathname !== '/') {
       router.push('/')
-      // Wait for navigation then scroll
       setTimeout(doScroll, 100)
     } else {
       doScroll()
@@ -49,12 +47,12 @@ export default function Nav() {
             <span className="nav-product">Aegis Trace</span>
           </div>
           <div className="nav-links">
-            <button type="button" onClick={() => scrollToSection('problem')}>Problem</button>
-            <button type="button" onClick={() => scrollToSection('how-it-works')}>How It Works</button>
+            <Link href="/" onClick={closeMenu}>Product</Link>
             <Link href="/use-cases/" onClick={closeMenu}>Use Cases</Link>
-            <button type="button" onClick={() => scrollToSection('regulatory')}>Regulatory</button>
-            <button type="button" onClick={() => scrollToSection('team')}>Team</button>
-            <button type="button" className="nav-cta" onClick={() => scrollToSection('request-access')}>Request Access</button>
+            <Link href="/developers/" onClick={closeMenu}>Developers</Link>
+            <Link href="/company/" onClick={closeMenu}>Company</Link>
+            <Link href="/blog/" onClick={closeMenu}>Blog</Link>
+            <Link href="/request-access/" className="nav-cta" onClick={closeMenu}>Request Access</Link>
           </div>
           <button
             className={`nav-hamburger ${menuOpen ? 'active' : ''}`}
@@ -69,12 +67,12 @@ export default function Nav() {
       </nav>
 
       <div className={`mobile-menu ${menuOpen ? 'active' : ''}`}>
-        <button type="button" onClick={() => scrollToSection('problem')}>Problem</button>
-        <button type="button" onClick={() => scrollToSection('how-it-works')}>How It Works</button>
+        <Link href="/" onClick={closeMenu}>Product</Link>
         <Link href="/use-cases/" onClick={closeMenu}>Use Cases</Link>
-        <button type="button" onClick={() => scrollToSection('regulatory')}>Regulatory</button>
-        <button type="button" onClick={() => scrollToSection('team')}>Team</button>
-        <button type="button" className="nav-cta" onClick={() => scrollToSection('request-access')}>Request Access</button>
+        <Link href="/developers/" onClick={closeMenu}>Developers</Link>
+        <Link href="/company/" onClick={closeMenu}>Company</Link>
+        <Link href="/blog/" onClick={closeMenu}>Blog</Link>
+        <Link href="/request-access/" className="nav-cta" onClick={closeMenu}>Request Access</Link>
       </div>
     </>
   )
