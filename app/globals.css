@@ -659,22 +659,81 @@ section {
 /* FOOTER */
 .footer {
   border-top: 1px solid var(--card-border);
-  padding: 40px 0;
+  padding: 60px 0 40px;
 }
 
-.footer-inner {
+.footer-columns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  margin-bottom: 48px;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-col-title {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.footer-col a {
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-col a:hover { color: var(--text); }
+
+.footer-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.footer-badge {
+  font-size: 10px;
+  padding: 3px 10px;
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.footer-badge-roadmap {
+  border-style: dashed;
+  opacity: 0.7;
+}
+
+.footer-bottom {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-top: 24px;
+  border-top: 1px solid var(--card-border);
 }
 
-.footer-left { display: flex; align-items: center; gap: 16px; }
-.footer-logo { width: 16px; height: 16px; opacity: 0.5; }
-.footer-copy { font-size: 13px; color: var(--muted); }
+.footer-bottom-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
-.footer-links { display: flex; gap: 28px; }
-.footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-.footer-links a:hover { color: var(--text); }
+.footer-logo { width: 16px; height: 16px; opacity: 0.5; }
+.footer-copy { font-size: 12px; color: var(--muted); }
+
+.footer-bottom-right {
+  font-size: 11px;
+  color: rgba(242,240,235,0.35);
+}
 
 /* PRIVACY PAGE */
 .privacy-content {
@@ -1569,7 +1628,8 @@ section {
   .steps-grid { grid-template-columns: 1fr 1fr; }
   .nav-links { display: none; }
   .nav-hamburger { display: block; }
-  .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
+  .footer-columns { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
   .cta-form { flex-direction: column; }
   .cta-section { padding: 64px 0; }
   .privacy-content { padding: 100px 24px 64px; }
