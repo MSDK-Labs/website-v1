@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Developers — Aegis Trace | API Reference, SDKs, Technical Architecture',
+  title: 'Developers , Aegis Trace | API Reference, SDKs, Technical Architecture',
   description: 'Log your first AI decision in 5 minutes. REST API, Python, Node.js, and Java SDKs. Technical architecture and deployment options for Aegis Trace.',
 }
 

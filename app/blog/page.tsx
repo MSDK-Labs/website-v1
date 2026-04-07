@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { posts } from '@/lib/blog'
 
 export const metadata: Metadata = {
-  title: 'Insights — Aegis Trace | AI Governance, Compliance, Decision Traceability',
+  title: 'Insights , Aegis Trace | AI Governance, Compliance, Decision Traceability',
   description: 'AI governance, compliance, and decision traceability insights from MSDK Labs.',
 }
 

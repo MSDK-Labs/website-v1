@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy — MSDK Labs',
+  title: 'Privacy Policy | MSDK Labs',
   description: 'Privacy Policy for MSDK Labs and Aegis Trace. How we collect, use, and protect your personal data.',
 }
 
@@ -34,14 +34,14 @@ export default function Privacy() {
         <h2>4. Legal basis</h2>
         <p>We process your personal data under the following legal bases as defined by the UK General Data Protection Regulation (UK GDPR):</p>
         <ul>
-          <li><strong>Legitimate interest</strong> — responding to inbound product enquiries from prospective clients</li>
-          <li><strong>Consent</strong> — where you have explicitly submitted your email address via the request access form</li>
+          <li><strong>Legitimate interest</strong>, responding to inbound product enquiries from prospective clients</li>
+          <li><strong>Consent</strong>, where you have explicitly submitted your email address via the request access form</li>
         </ul>
       </div>
 
       <div className="privacy-section">
         <h2>5. How long we keep it</h2>
-        <p>Email enquiry data is retained for up to 24 months from the date of submission, or until you request its deletion — whichever comes first. Server logs are retained by GitHub Pages in accordance with their own privacy policy and data retention practices.</p>
+        <p>Email enquiry data is retained for up to 24 months from the date of submission, or until you request its deletion, whichever comes first. Server logs are retained by GitHub Pages in accordance with their own privacy policy and data retention practices.</p>
       </div>
 
       <div className="privacy-section">

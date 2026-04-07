@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'The FCA Mills Review and What It Means for AI Decision Governance — Aegis Trace',
+  title: 'The FCA Mills Review and What It Means for AI Decision Governance , Aegis Trace',
   description: 'The Mills Review launched January 2026 examines how AI will reshape retail financial services. What firms need to know about decision traceability.',
 }
 

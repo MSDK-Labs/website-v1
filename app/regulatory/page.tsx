@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Regulatory Compliance — Aegis Trace | MSDK Labs',
+  title: 'Regulatory Compliance , Aegis Trace | MSDK Labs',
   description: 'Aegis Trace audit records are mapped to FCA PS22/3, Consumer Duty, EU AI Act Art.12, MiFID II, GDPR Art.25, GDPR Art.30, and FCA SYSC 9.',
 }
 

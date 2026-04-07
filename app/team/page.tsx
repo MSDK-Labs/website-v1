@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Team — Aegis Trace | MSDK Labs',
+  title: 'Team , Aegis Trace | MSDK Labs',
   description: 'MSDK Labs is formed by engineers and delivery specialists with direct experience of FCA-regulated environments, audit processes, and section 166 reviews.',
 }
 

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Use Cases — Aegis Trace | AI Audit Trails for Financial Services, Healthcare, Insurance',
+  title: 'Use Cases , Aegis Trace | AI Audit Trails for Financial Services, Healthcare, Insurance',
   description: 'Real-world examples of Aegis Trace providing decision provenance in regulated financial services, healthcare, insurance, credit, and algorithmic trading.',
 }
 
@@ -43,10 +43,10 @@ export default function UseCases() {
         </div>
       </section>
 
-      {/* USE CASE 01 — FINANCIAL SERVICES */}
+      {/* USE CASE 01 , FINANCIAL SERVICES */}
       <section>
         <div className="container">
-          <div className="uc-label reveal">Use Case 01 — Financial Services</div>
+          <div className="uc-label reveal">Use Case 01 , Financial Services</div>
           <h2 className="section-title reveal" style={{ maxWidth: '800px' }}>
             A wealth manager&apos;s AI recommends selling a position. The FCA asks why.
           </h2>
@@ -107,10 +107,10 @@ export default function UseCases() {
 
       <div className="container"><hr className="uc-divider" /></div>
 
-      {/* USE CASE 02 — HEALTHCARE */}
+      {/* USE CASE 02 , HEALTHCARE */}
       <section>
         <div className="container">
-          <div className="uc-label reveal">Use Case 02 — Healthcare &amp; Life Sciences</div>
+          <div className="uc-label reveal">Use Case 02 , Healthcare &amp; Life Sciences</div>
           <h2 className="section-title reveal" style={{ maxWidth: '800px' }}>
             A clinical decision support system flags a drug interaction. The MHRA needs the audit trail.
           </h2>
@@ -171,10 +171,10 @@ export default function UseCases() {
 
       <div className="container"><hr className="uc-divider" /></div>
 
-      {/* USE CASE 03 — INSURANCE */}
+      {/* USE CASE 03 , INSURANCE */}
       <section>
         <div className="container">
-          <div className="uc-label reveal">Use Case 03 — Insurance &amp; Underwriting</div>
+          <div className="uc-label reveal">Use Case 03 , Insurance &amp; Underwriting</div>
           <h2 className="section-title reveal" style={{ maxWidth: '800px' }}>
             An underwriting model declines a policy. The applicant requests an explanation under GDPR Art.22.
           </h2>
@@ -235,10 +235,10 @@ export default function UseCases() {
 
       <div className="container"><hr className="uc-divider" /></div>
 
-      {/* USE CASE 04 — CREDIT */}
+      {/* USE CASE 04 , CREDIT */}
       <section>
         <div className="container">
-          <div className="uc-label reveal">Use Case 04 — AI Credit Decisioning</div>
+          <div className="uc-label reveal">Use Case 04 , AI Credit Decisioning</div>
           <h2 className="section-title reveal" style={{ maxWidth: '800px' }}>
             Your AI credit model declined a mortgage application. The borrower appeals.
           </h2>
@@ -302,10 +302,10 @@ export default function UseCases() {
 
       <div className="container"><hr className="uc-divider" /></div>
 
-      {/* USE CASE 05 — ALGORITHMIC TRADING */}
+      {/* USE CASE 05 , ALGORITHMIC TRADING */}
       <section>
         <div className="container">
-          <div className="uc-label reveal">Use Case 05 — Algorithmic Trading</div>
+          <div className="uc-label reveal">Use Case 05 , Algorithmic Trading</div>
           <h2 className="section-title reveal" style={{ maxWidth: '800px' }}>
             Your trading algorithm executed a series of orders during market volatility. The FCA requests a reconstruction.
           </h2>

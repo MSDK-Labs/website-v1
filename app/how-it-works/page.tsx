@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'How It Works — Aegis Trace | MSDK Labs',
+  title: 'How It Works | Aegis Trace | MSDK Labs',
   description: 'From model inference to signed audit record. Learn how Aegis Trace captures, processes, signs, and stores AI decision payloads.',
 }
 
@@ -31,7 +31,7 @@ export default function HowItWorks() {
             <div className="step-card reveal">
               <div className="step-num">04</div>
               <div className="step-title">Store</div>
-              <div className="step-desc">Written to append-only, WORM-locked store with defined retention policy.</div>
+              <div className="step-desc">Written to append-only, tamper-proof ledger with defined retention policy.</div>
             </div>
           </div>
           <div className="certificate-card reveal">
