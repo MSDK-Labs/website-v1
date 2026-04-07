@@ -29,9 +29,9 @@ export default function RequestForm() {
   return (
     <section className="cta-section" id="request-access">
       <div className="container">
-        <div className="section-label reveal"><span>Get started</span></div>
-        <h2 className="section-title reveal">Request access.</h2>
-        <p className="cta-sub reveal">Structured onboarding is provided following initial technical and compliance review.</p>
+        <div className="section-label reveal"><span>Get Started</span></div>
+        <h2 className="section-title reveal">Tell us your regulatory context.</h2>
+        <p className="cta-sub reveal">We are onboarding a select number of FCA-regulated wealth managers and fintechs. Integration takes less than a day. No commitment required.</p>
 
         {status === 'success' ? (
           <div className="form-message success">Thank you. We will be in touch shortly.</div>
@@ -49,7 +49,7 @@ export default function RequestForm() {
           </>
         )}
 
-        <p className="cta-note reveal">Technical documentation and API reference are provided to qualified organisations.</p>
+        <p className="cta-note reveal">NDA available on request. Technical documentation provided to qualified organisations.</p>
       </div>
     </section>
   )
