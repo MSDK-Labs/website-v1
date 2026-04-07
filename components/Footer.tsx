@@ -26,8 +26,7 @@ export default function Footer() {
           <div className="footer-col">
             <div className="footer-col-title">Compliance</div>
             <div className="footer-badges">
-              <span className="footer-badge footer-badge-roadmap">SOC 2 In Progress</span>
-              <span className="footer-badge footer-badge-roadmap">ISO 27001 Pursuing</span>
+              <span className="footer-badge">Certified Cloud Infrastructure</span>
               <span className="footer-badge">GDPR Compliant</span>
               <span className="footer-badge">EU AI Act Ready</span>
             </div>

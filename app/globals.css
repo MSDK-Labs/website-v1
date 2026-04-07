@@ -101,10 +101,10 @@ a {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 24px;
 }
 
-.nav-links a,.nav-links a,
+.nav-links a,
 .nav-links button:not(.nav-cta) {
   font-size: 14px;
   color: var(--muted);
@@ -122,29 +122,32 @@ a {
   color: var(--text);
 }
 
-.nav-cta {
+.nav-links a.nav-cta,
+a.nav-cta,
+button.nav-cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
-  padding: 8px 16px;        /* FIX: better vertical balance */
-
-  background: #E8D2A6;
-  color: #111;
-
+  padding: 8px 16px;
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
   border-radius: 999px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
-
   line-height: 1;
   white-space: nowrap;
-
-  border: none;
-  transition: background 0.2s ease;  /* smoother interaction */
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+  font-family: inherit;
+  cursor: pointer;
 }
 
-.nav-cta:hover {
-  background: #dcc393;  /* FIX: proper hover instead of opacity */
+.nav-links a.nav-cta:hover,
+a.nav-cta:hover,
+button.nav-cta:hover {
+  background: var(--accent);
+  color: var(--bg);
 }
 
 .nav-hamburger {
@@ -906,13 +909,7 @@ section {
   }
 }
 
-/* HERO UPDATED */
-.hero-content {
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto 64px;
-}
-
+/* HERO LAYOUT */
 .trust-bar {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
@@ -920,19 +917,7 @@ section {
   letter-spacing: 0.04em;
   margin-top: 32px;
   opacity: 0.7;
-}
-
-.hero-dashboard {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.dashboard-caption {
-  text-align: center;
-  font-size: 13px;
-  color: var(--muted);
-  margin-top: 20px;
-  font-style: italic;
+  line-height: 1.8;
 }
 
 /* DASHBOARD MOCKUP */
@@ -947,24 +932,31 @@ section {
 .dashboard-chrome {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
+  justify-content: space-between;
+  padding: 10px 16px;
   background: rgba(255,255,255,0.03);
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
-.dashboard-dots { display: flex; gap: 6px; }
-.dot { width: 10px; height: 10px; border-radius: 50%; }
-.dot-red { background: #EF4444; opacity: 0.7; }
-.dot-yellow { background: #F59E0B; opacity: 0.7; }
-.dot-green { background: #22C55E; opacity: 0.7; }
+.dashboard-app-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
 
-.dashboard-url {
-  font-family: 'JetBrains Mono', monospace;
+.dashboard-nav-items {
+  display: flex;
+  gap: 16px;
   font-size: 11px;
   color: var(--muted);
-  opacity: 0.5;
 }
+
+.dashboard-nav-items span { opacity: 0.5; }
+.dashboard-nav-active { opacity: 1 !important; color: var(--text); }
 
 .dashboard-body { padding: 20px; }
 
@@ -1232,31 +1224,11 @@ section {
 
 .trust-card:hover { border-color: rgba(255,255,255,0.15); }
 
-.trust-card-roadmap {
-  border-style: dashed;
-  opacity: 0.8;
-}
-
 .trust-card-title {
   font-size: 15px;
   font-weight: 500;
   color: var(--text);
   margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.roadmap-badge {
-  font-size: 10px;
-  padding: 2px 8px;
-  border: 1px dashed var(--accent);
-  border-radius: 999px;
-  color: var(--accent);
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
 }
 
 .trust-card-desc {
