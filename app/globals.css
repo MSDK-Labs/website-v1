@@ -1207,6 +1207,30 @@ section {
   line-height: 1.65;
 }
 
+/* COMPANY PAGE */
+.company-about {
+  max-width: 720px;
+  font-size: 17px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.85;
+}
+
+.company-about p { margin-bottom: 20px; }
+.company-about p:last-child { margin-bottom: 0; }
+
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.recognition-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
 /* SCROLL REVEAL */
 .reveal {
   opacity: 0;
@@ -1259,6 +1283,8 @@ section {
   .kpi-stats-grid .stat-item:not(:last-child)::after { display: none; }
   .kpi-stats-grid .stat-item { padding: 0; }
   .mills-callout, .spotlight-callout { padding: 24px; }
+  .expertise-grid { grid-template-columns: 1fr; }
+  .recognition-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 560px) {
