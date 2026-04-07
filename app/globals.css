@@ -1207,6 +1207,37 @@ section {
   line-height: 1.65;
 }
 
+/* USE CASE FLOW DIAGRAM */
+.uc-flow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 40px;
+  padding: 20px 24px;
+  background: var(--card-surface);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+}
+
+.uc-flow-step {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.uc-flow-box {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 6px 14px;
+  border: 1px solid var(--card-border);
+  border-radius: 6px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.uc-flow-arrow { flex-shrink: 0; }
+
 /* COMPANY PAGE */
 .company-about {
   max-width: 720px;
