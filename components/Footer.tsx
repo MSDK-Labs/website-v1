@@ -26,7 +26,8 @@ export default function Footer() {
           <div className="footer-col">
             <div className="footer-col-title">Compliance</div>
             <div className="footer-badges">
-              <span className="footer-badge">Certified Cloud Infrastructure</span>
+              <span className="footer-badge">SOC 2 In Progress</span>
+              <span className="footer-badge">ISO 27001 Pursuing</span>
               <span className="footer-badge">GDPR Compliant</span>
               <span className="footer-badge">EU AI Act Ready</span>
             </div>
@@ -42,9 +43,6 @@ export default function Footer() {
               <path d="M0 10L5 5V10H6.85185L5 11.7593V15H0V10Z" fill="#F2F0EB"/>
             </svg>
             <span className="footer-copy">&copy; 2026 MSDK Labs. Aegis Trace is a product of MSDK Labs. All rights reserved.</span>
-          </div>
-          <div className="footer-bottom-right">
-            Hosted on Google Cloud Platform &middot; EU Data Residency &middot; London, UK
           </div>
         </div>
       </div>

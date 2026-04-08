@@ -36,24 +36,40 @@ export default function HowItWorksSection() {
             </div>
           ))}
         </div>
-        <div className="certificate-card reveal">
-          <div className="certificate-header">
-            <span className="certificate-header-title">AEGIS TRACE AUDIT RECORD</span>
-            <span className="verified-badge">VERIFIED</span>
+        <div className="outcome-card reveal">
+          <div className="outcome-header">
+            <span className="outcome-verified">
+              <span className="outcome-verified-dot" />
+              VERIFIED
+            </span>
+            <span className="outcome-verdict outcome-verdict-pass">PASS</span>
           </div>
-          <div className="certificate-body">
-            <div><span className="key">audit_record_id</span>&nbsp;&nbsp;<span className="value">AT-2026-07-14-c3a9f1e</span></div>
-            <div><span className="key">agent_id</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="value">underwriting-model-v3</span></div>
-            <div><span className="key">verdict</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="value-green">PASS</span></div>
-            <div><span className="key">confidence</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="value">0.9412</span></div>
-            <div><span className="key">hmac_signature</span>&nbsp;<span className="value">b7e2d4c8...f19a03e1</span></div>
-            <div><span className="key">regulatory_refs</span> <span className="value">FCA PS22/3, MiFID II</span></div>
-            <div><span className="key">sealed_at</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="value">2026-07-14T09:31:44Z</span></div>
+          <div className="outcome-body">
+            <div className="outcome-row">
+              <span className="outcome-key">Certificate</span>
+              <span className="outcome-val outcome-val-mono">AT-2026-07-14-c3a9f1e</span>
+            </div>
+            <div className="outcome-row">
+              <span className="outcome-key">Agent</span>
+              <span className="outcome-val">suitability-engine-v3</span>
+            </div>
+            <div className="outcome-row">
+              <span className="outcome-key">Sealed</span>
+              <span className="outcome-val">14 Jul 2026, 09:31 UTC</span>
+            </div>
+            <div className="outcome-row">
+              <span className="outcome-key">Regulatory</span>
+              <span className="outcome-val">FCA Consumer Duty &middot; MiFID II</span>
+            </div>
+            <div className="outcome-row">
+              <span className="outcome-key">Retention</span>
+              <span className="outcome-val">7 years (until Jul 2033)</span>
+            </div>
+          </div>
+          <div className="outcome-footer">
+            Integrity verified. Tamper-proof. Retrievable.
           </div>
         </div>
-        <p className="certificate-caption reveal">
-          Example: a sealed audit record for an AI-driven portfolio recommendation. Certificate ID, verdict, regulatory mapping, and cryptographic seal, all retrievable on demand.
-        </p>
       </div>
     </section>
   )
