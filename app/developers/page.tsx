@@ -2,43 +2,43 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Developers , Aegis Trace | API Reference, SDKs, Technical Architecture',
-  description: 'Log your first AI decision in 5 minutes. REST API, Python, Node.js, and Java SDKs. Technical architecture and deployment options for Aegis Trace.',
+  title: 'Developers , Aegis Trace | API Reference, Integration, Technical Architecture',
+  description: 'Submit your first decision trace via REST API. Technical architecture and deployment options for Aegis Trace.',
 }
 
 function CodeTabs() {
   return (
     <div className="dev-code-card reveal">
       <div className="dev-code-header">
-        <span className="dev-tab active">Python</span>
+        <span className="dev-tab active">curl</span>
+        <span className="dev-tab">Python</span>
         <span className="dev-tab">Node.js</span>
-        <span className="dev-tab">Java</span>
       </div>
       <div className="dev-code-body">
-        <pre className="uc-pre">{`# Install the SDK
-pip install aegis-trace
-
-# Log a decision
-from aegis_trace import AegisClient
-
-client = AegisClient(api_key="at_live_...")
-record = client.log_decision(
-    agent_id="suitability-engine-v3",
-    decision_type="portfolio_recommendation",
-    inputs={
-        "client_risk_profile": "moderate",
-        "market_conditions": "volatile"
+        <pre className="uc-pre">{`# Submit a decision trace to the ingestion API
+curl -X POST https://api.aegistrace.ai/v1/audit \\
+  -H "Content-Type: application/json" \\
+  -H "Authorization: Bearer YOUR_JWT_TOKEN" \\
+  --cert client.crt --key client.key --cacert ca.crt \\
+  -d '{
+    "tenant_id": "your-tenant-id",
+    "agent_id": "suitability-engine-v3",
+    "decision_type": "portfolio_recommendation",
+    "input_hash": "sha256:a3f8c1d...",
+    "output": {
+      "action": "REDUCE_EXPOSURE",
+      "rationale": "Risk profile mismatch",
+      "confidence": 0.94,
+      "metadata": {}
     },
-    output={
-        "action": "REDUCE_EXPOSURE",
-        "fund": "GB00B3X7QG63"
-    },
-    regulatory_context=["FCA_CONSUMER_DUTY", "MIFID_II"]
-)
+    "regulatory_context": ["FCA_PS22_3", "CONSUMER_DUTY"]
+  }'
 
-print(record.certificate_id)  # AT-2026-07-14-c3a9f1e
-print(record.verdict)          # PASS
-print(record.hmac_signature)   # b7e2d4c8...f19a03e1`}</pre>
+# Response: HTTP 202
+# {
+#   "certificate_id": "AT-2026-07-14-c3a9f1e",
+#   "status": "QUEUED"
+# }`}</pre>
       </div>
     </div>
   )
@@ -46,20 +46,22 @@ print(record.hmac_signature)   # b7e2d4c8...f19a03e1`}</pre>
 
 export default function Developers() {
   const endpoints = [
-    { method: 'POST', path: '/v1/decisions', desc: 'Log a decision' },
-    { method: 'GET', path: '/v1/decisions/{id}', desc: 'Retrieve a decision record' },
-    { method: 'GET', path: '/v1/decisions', desc: 'List decisions (paginated, filterable)' },
-    { method: 'GET', path: '/v1/export/fca', desc: 'Export FCA Consumer Duty format' },
-    { method: 'GET', path: '/v1/export/euai', desc: 'Export EU AI Act Article 12 format' },
-    { method: 'POST', path: '/v1/verify/{id}', desc: 'Verify certificate integrity' },
+    { method: 'POST', path: '/v1/audit', desc: 'Submit a decision trace (returns HTTP 202 + certificate_id)', group: 'Submit' },
+    { method: 'GET', path: '/v1/certificates/{certificate_id}', desc: 'Retrieve a certificate', group: 'Retrieve' },
+    { method: 'GET', path: '/v1/certificates', desc: 'List certificates (paginated, filterable by verdict, agent, framework, date)', group: 'Retrieve' },
+    { method: 'GET', path: '/v1/certificates/{certificate_id}/verify', desc: 'Verify certificate integrity', group: 'Verify' },
+    { method: 'GET', path: '/v1/stats', desc: 'Aggregate verdict statistics (by period, agent, framework)', group: 'Retrieve' },
+    { method: 'GET', path: '/v1/export/fca', desc: 'Export FCA Consumer Duty format', group: 'Export' },
+    { method: 'GET', path: '/v1/export/euai', desc: 'Export EU AI Act Article 12 format', group: 'Export' },
+    { method: 'GET', path: '/v1/reconciliation', desc: 'Completeness check (surfaces gaps between submitted traces and completed certificates)', group: 'Verify' },
   ]
 
   const pipeline = [
-    { num: '01', title: 'Decision payload sent via REST API or SDK' },
-    { num: '02', title: 'PII redaction via Presidio sidecar (34 recognisers, 13 EU countries, 9 languages), runs inside client network' },
-    { num: '03', title: 'HMAC-SHA256 signing with managed KMS key infrastructure' },
-    { num: '04', title: 'Tamper-proof storage with configurable retention policy (7-year default)' },
-    { num: '05', title: 'Certificate retrieval via API, sub-200ms p99 latency' },
+    { num: '01', title: 'Decision trace submitted via POST /v1/audit. Authenticated with mTLS and JWT. HTTP 202 returned immediately with certificate_id. The client system is never blocked.' },
+    { num: '02', title: 'PII redaction via Presidio sidecar. Runs inside the client\'s network. The client deploys and manages it. MSDK Labs has no access to raw personal data. Only redacted traces are transmitted to the ingestion API.' },
+    { num: '03', title: 'Regulatory assessment against FCA Consumer Duty and EU AI Act Article 12. Verdict produced: PASS, FAIL, or FLAG, with regulatory citations.' },
+    { num: '04', title: 'RFC 3161 trusted timestamp obtained from an independent timestamping authority. Then the certificate is signed with Google Cloud KMS. The timestamp is independent of MSDK Labs infrastructure, providing auditor-verifiable proof of issuance time.' },
+    { num: '05', title: 'Signed certificate stored in two locations: GCS (the immutable, tamper-evident object) and AlloyDB (the queryable record). Retrievable via API. Sub-200ms p99 latency.' },
   ]
 
   return (
@@ -69,10 +71,10 @@ export default function Developers() {
         <div className="container">
           <div className="section-label reveal"><span>For Developers</span></div>
           <h1 className="section-title reveal" style={{ fontSize: '42px', lineHeight: 1.15 }}>
-            Log your first AI decision in 5 minutes.
+            Submit your first decision trace in minutes.
           </h1>
           <p className="reveal" style={{ fontSize: '17px', fontWeight: 300, color: 'var(--muted)', lineHeight: 1.75, maxWidth: '640px' }}>
-            A single REST API endpoint. SDKs for Python, Node.js, and Java. Comprehensive documentation. Built for engineering teams integrating AI traceability into production systems.
+            A single REST API endpoint for submitting decision traces. Language-agnostic. OpenAPI 3.0 specification provided on access. Built for engineering teams integrating AI traceability into production systems.
           </p>
         </div>
       </section>
@@ -112,7 +114,7 @@ export default function Developers() {
               </div>
               <div className="dev-infra-item">
                 <div className="card-title">Key Management</div>
-                <div className="card-desc">Google Cloud KMS, hardware security modules, automatic key rotation</div>
+                <div className="card-desc">Google Cloud KMS, managed key infrastructure, automatic key rotation</div>
               </div>
               <div className="dev-infra-item">
                 <div className="card-title">Data Residency</div>
@@ -120,7 +122,7 @@ export default function Developers() {
               </div>
               <div className="dev-infra-item">
                 <div className="card-title">Security</div>
-                <div className="card-desc">mTLS for internal service communication, RFC 3161 timestamping</div>
+                <div className="card-desc">mTLS for service authentication. RFC 3161 trusted timestamping via independent timestamping authority, providing auditor-verifiable proof of certificate issuance time independent of MSDK Labs infrastructure.</div>
               </div>
               <div className="dev-infra-item">
                 <div className="card-title">Latency</div>
@@ -145,6 +147,9 @@ export default function Developers() {
               </div>
             ))}
           </div>
+          <p className="dev-auth-note reveal">
+            The ingestion endpoint (<code>POST /v1/audit</code>) authenticates via mTLS and JWT. All retrieval and export endpoints authenticate via API key. Credentials are provisioned during onboarding.
+          </p>
         </div>
       </section>
 
@@ -157,7 +162,7 @@ export default function Developers() {
             <div className="card reveal">
               <div className="card-subtitle">Cloud API</div>
               <div className="card-title">Managed Service</div>
-              <div className="card-desc">REST endpoint with OpenAPI 3.0 spec. Rate limits: 1,000 req/min (standard), custom limits available. 99.9% SLA. Auto-scaling. No infrastructure to manage.</div>
+              <div className="card-desc">REST endpoint with OpenAPI 3.0 specification. Auto-scaling. No infrastructure to manage.</div>
             </div>
             <div className="card reveal">
               <div className="card-subtitle">Private Cloud</div>
@@ -167,42 +172,39 @@ export default function Developers() {
             <div className="card reveal">
               <div className="card-subtitle">On-Premises</div>
               <div className="card-title">Air-Gapped</div>
-              <div className="card-desc">Full deployment package. Offline installation supported. Network requirements: outbound HTTPS for updates (optional). Minimum: 4 vCPU, 16GB RAM, 500GB storage.</div>
+              <div className="card-desc">Full deployment package. Offline installation supported. Deployment specifications provided during planning.</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SDKs */}
+      {/* INTEGRATION */}
       <section>
         <div className="container">
-          <div className="section-label reveal"><span>SDKs &amp; Integration</span></div>
-          <h2 className="section-title reveal">Client libraries and integration.</h2>
+          <div className="section-label reveal"><span>Integration</span></div>
+          <h2 className="section-title reveal">Connect your AI systems to Aegis Trace.</h2>
           <div className="cards-grid-3">
             <div className="card reveal">
-              <div className="card-title">Python SDK</div>
-              <div className="card-desc">Available via PyPI. Python 3.8+. Async support. Type hints throughout.</div>
-              <div className="dev-code-inline">pip install aegis-trace</div>
+              <div className="card-title">REST API</div>
+              <div className="card-desc">A single REST endpoint for submitting decision traces. OpenAPI 3.0 specification provided on access. Language-agnostic. Any system that can make an HTTPS POST request can integrate. Typical integration takes less than a day.</div>
             </div>
             <div className="card reveal">
-              <div className="card-title">Node.js SDK</div>
-              <div className="card-desc">Available via npm. Node 18+. TypeScript definitions included. ESM and CJS.</div>
-              <div className="dev-code-inline">npm install @aegis-trace/sdk</div>
+              <div className="card-title">Authentication</div>
+              <div className="card-desc">The ingestion endpoint authenticates via mTLS and JWT. Your engineering team receives a CA certificate, client certificate, and client key during onboarding. All retrieval and export endpoints authenticate via API key (X-API-Key header). Credentials are provisioned and managed through the compliance dashboard.</div>
             </div>
             <div className="card reveal">
-              <div className="card-title">Java SDK</div>
-              <div className="card-desc">Available via Maven Central. Java 17+. Spring Boot integration module available.</div>
-              <div className="dev-code-inline">com.aegistrace:aegis-sdk</div>
+              <div className="card-title">Webhook Support</div>
+              <div className="card-desc">Configure webhooks for FLAG and FAIL verdicts. Receive real-time notifications in your compliance or incident management systems when a decision fails assessment.</div>
             </div>
           </div>
           <div className="dev-extras reveal">
             <div className="card">
-              <div className="card-title">REST API</div>
-              <div className="card-desc">OpenAPI 3.0 specification. Language-agnostic. Full API reference provided on access.</div>
+              <div className="card-title">Reconciliation</div>
+              <div className="card-desc">The reconciliation endpoint confirms that every submitted decision trace has a corresponding completed certificate. Use it to detect pipeline gaps and demonstrate to auditors that no decisions were missed.</div>
             </div>
             <div className="card">
-              <div className="card-title">Webhook Support</div>
-              <div className="card-desc">Configure webhooks for FLAG and FAIL verdicts. Real-time notifications to your compliance or incident management systems.</div>
+              <div className="card-title">Documentation</div>
+              <div className="card-desc">Comprehensive API reference, authentication guides, quickstart tutorials, and FCA compliance mapping guides provided to onboarded organisations. Request access for full technical documentation.</div>
             </div>
           </div>
         </div>

@@ -10,23 +10,6 @@ function RegPill({ children }: { children: string }) {
   return <span className="uc-reg-pill">{children}</span>
 }
 
-function FlowDiagram({ steps }: { steps: string[] }) {
-  return (
-    <div className="uc-flow" role="img" aria-label={`Decision flow: ${steps.join(' then ')}`}>
-      {steps.map((step, i) => (
-        <div key={i} className="uc-flow-step">
-          <div className="uc-flow-box">{step}</div>
-          {i < steps.length - 1 && (
-            <svg className="uc-flow-arrow" width="24" height="16" viewBox="0 0 24 16" fill="none" aria-hidden="true">
-              <path d="M0 8h20M16 3l5 5-5 5" stroke="#B8956A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          )}
-        </div>
-      ))}
-    </div>
-  )
-}
-
 export default function UseCases() {
   return (
     <main>
@@ -50,7 +33,6 @@ export default function UseCases() {
           <h2 className="section-title reveal" style={{ maxWidth: '800px' }}>
             A wealth manager&apos;s AI recommends selling a position. The FCA asks why.
           </h2>
-          <FlowDiagram steps={['Portfolio Review', 'AI Suitability Engine', 'Recommendation', 'Aegis Trace Certificate', 'FCA Evidence']} />
           <div className="uc-grid">
             <div className="uc-scenario reveal">
               <h3 className="uc-subheading">The situation</h3>
@@ -67,15 +49,18 @@ export default function UseCases() {
             </div>
             <div className="uc-code reveal">
               <div className="terminal-card">
-                <div className="req-line">POST /v1/decisions</div>
+                <div className="req-line">POST /v1/audit</div>
                 <pre className="uc-pre">{`{
+  "tenant_id": "wealthco-prod-001",
   "agent_id": "suitability-engine-v3",
   "decision_type": "portfolio_recommendation",
   "input_hash": "sha256:a3f8c1d...",
   "output": {
     "action": "REDUCE_EXPOSURE",
     "fund": "GB00B3X7QG63",
-    "rationale": "Risk profile mismatch, client objective: capital preservation"
+    "rationale": "Risk profile mismatch, client objective: capital preservation",
+    "confidence": 0.94,
+    "metadata": {}
   },
   "regulatory_context": ["FCA_PS22_3", "CONSUMER_DUTY"],
   "client_ref": "[REDACTED-BY-PRESIDIO]"
@@ -83,18 +68,12 @@ export default function UseCases() {
               </div>
               <div className="terminal-card" style={{ marginTop: '16px' }}>
                 <div className="certificate-header" style={{ marginBottom: '12px', paddingBottom: '12px', padding: '0 0 12px 0' }}>
-                  <span className="res-status" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px' }}>HTTP 201 Created</span>
-                  <span className="verified-badge">VERIFIED</span>
+                  <span className="res-status" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px' }}>HTTP 202 Accepted</span>
+                  <span className="verified-badge">QUEUED</span>
                 </div>
                 <pre className="uc-pre">{`{
   "certificate_id": "AT-2026-03-22-f8a3c1d",
-  "verdict": "PASS",
-  "confidence": 0.9847,
-  "hmac_signature": "a3f8c1d9e2b4f...",
-  "pii_redacted": true,
-  "regulatory_refs": ["FCA PS22/3", "Consumer Duty"],
-  "sealed_at": "2026-03-22T11:53:52Z",
-  "retention_until": "2033-03-22T00:00:00Z"
+  "status": "QUEUED"
 }`}</pre>
               </div>
             </div>
@@ -114,12 +93,12 @@ export default function UseCases() {
           <h2 className="section-title reveal" style={{ maxWidth: '800px' }}>
             A clinical decision support system flags a drug interaction. The MHRA needs the audit trail.
           </h2>
-          <FlowDiagram steps={['Prescription', 'Clinical DSS', 'Interaction Flag', 'Aegis Trace Record', 'MHRA Audit']} />
           <div className="uc-grid uc-grid-reverse">
             <div className="uc-code reveal">
               <div className="terminal-card">
-                <div className="req-line">POST /v1/decisions</div>
+                <div className="req-line">POST /v1/audit</div>
                 <pre className="uc-pre">{`{
+  "tenant_id": "nhs-trust-alpha-001",
   "agent_id": "clinical-dss-v2",
   "decision_type": "drug_interaction_flag",
   "input_hash": "sha256:b7e2a9f...",
@@ -127,7 +106,9 @@ export default function UseCases() {
     "flag": "INTERACTION_WARNING",
     "severity": "HIGH",
     "drug_pair": "[REDACTED]",
-    "recommendation": "REVIEW_BEFORE_PRESCRIBING"
+    "recommendation": "REVIEW_BEFORE_PRESCRIBING",
+    "confidence": 0.91,
+    "metadata": {}
   },
   "regulatory_context": ["MHRA_AI", "EU_MDR"],
   "patient_ref": "[REDACTED-BY-PRESIDIO]"
@@ -135,17 +116,12 @@ export default function UseCases() {
               </div>
               <div className="terminal-card" style={{ marginTop: '16px' }}>
                 <div className="certificate-header" style={{ marginBottom: '12px', paddingBottom: '12px', padding: '0 0 12px 0' }}>
-                  <span className="res-status" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px' }}>HTTP 201 Created</span>
-                  <span className="verified-badge">VERIFIED</span>
+                  <span className="res-status" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px' }}>HTTP 202 Accepted</span>
+                  <span className="verified-badge">QUEUED</span>
                 </div>
                 <pre className="uc-pre">{`{
   "certificate_id": "AT-2026-03-14-c9d2e8f",
-  "verdict": "PASS",
-  "oversight_required": true,
-  "pii_redacted": true,
-  "regulatory_refs": ["MHRA AI Guidance", "EU MDR Art.61"],
-  "sealed_at": "2026-03-14T09:22:11Z",
-  "retention_until": "2036-03-14T00:00:00Z"
+  "status": "QUEUED"
 }`}</pre>
               </div>
             </div>
@@ -178,7 +154,6 @@ export default function UseCases() {
           <h2 className="section-title reveal" style={{ maxWidth: '800px' }}>
             An underwriting model declines a policy. The applicant requests an explanation under GDPR Art.22.
           </h2>
-          <FlowDiagram steps={['Application', 'Underwriting Model', 'Decline Decision', 'Aegis Trace Record', 'Explanation']} />
           <div className="uc-grid">
             <div className="uc-scenario reveal">
               <h3 className="uc-subheading">The situation</h3>
@@ -195,8 +170,9 @@ export default function UseCases() {
             </div>
             <div className="uc-code reveal">
               <div className="terminal-card">
-                <div className="req-line">POST /v1/decisions</div>
+                <div className="req-line">POST /v1/audit</div>
                 <pre className="uc-pre">{`{
+  "tenant_id": "insureco-prod-001",
   "agent_id": "underwriting-model-v4",
   "decision_type": "policy_assessment",
   "input_hash": "sha256:d4c1b8e...",
@@ -204,7 +180,9 @@ export default function UseCases() {
     "decision": "DECLINE",
     "risk_score": 0.847,
     "primary_factors": ["claims_history", "sector_risk"],
-    "explanation_ref": "EXP-2026-03-11-449"
+    "explanation_ref": "EXP-2026-03-11-449",
+    "confidence": 0.85,
+    "metadata": {}
   },
   "regulatory_context": ["GDPR_ART22", "FCA_ICOBS"],
   "applicant_ref": "[REDACTED-BY-PRESIDIO]"
@@ -212,17 +190,12 @@ export default function UseCases() {
               </div>
               <div className="terminal-card" style={{ marginTop: '16px' }}>
                 <div className="certificate-header" style={{ marginBottom: '12px', paddingBottom: '12px', padding: '0 0 12px 0' }}>
-                  <span className="res-status" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px' }}>HTTP 201 Created</span>
-                  <span className="verified-badge">VERIFIED</span>
+                  <span className="res-status" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px' }}>HTTP 202 Accepted</span>
+                  <span className="verified-badge">QUEUED</span>
                 </div>
                 <pre className="uc-pre">{`{
   "certificate_id": "AT-2026-03-11-d4c1b8e",
-  "verdict": "PASS",
-  "explanation_available": true,
-  "pii_redacted": true,
-  "regulatory_refs": ["GDPR Art.22", "FCA ICOBS", "Solvency II"],
-  "sealed_at": "2026-03-11T14:07:33Z",
-  "retention_until": "2033-03-11T00:00:00Z"
+  "status": "QUEUED"
 }`}</pre>
               </div>
             </div>
@@ -242,12 +215,12 @@ export default function UseCases() {
           <h2 className="section-title reveal" style={{ maxWidth: '800px' }}>
             Your AI credit model declined a mortgage application. The borrower appeals.
           </h2>
-          <FlowDiagram steps={['Mortgage Application', 'Credit Model', 'Decline', 'Aegis Trace Record', 'Appeal Evidence']} />
           <div className="uc-grid uc-grid-reverse">
             <div className="uc-code reveal">
               <div className="terminal-card">
-                <div className="req-line">POST /v1/decisions</div>
+                <div className="req-line">POST /v1/audit</div>
                 <pre className="uc-pre">{`{
+  "tenant_id": "lendco-prod-001",
   "agent_id": "credit-scoring-v2",
   "decision_type": "mortgage_assessment",
   "input_hash": "sha256:e7f3b2a...",
@@ -258,7 +231,9 @@ export default function UseCases() {
       "debt_to_income_ratio",
       "employment_tenure"
     ],
-    "explanation_ref": "EXP-2026-04-02-891"
+    "explanation_ref": "EXP-2026-04-02-891",
+    "confidence": 0.88,
+    "metadata": {}
   },
   "regulatory_context": ["FCA_CONC", "GDPR_ART22"],
   "applicant_ref": "[REDACTED-BY-PRESIDIO]"
@@ -266,17 +241,12 @@ export default function UseCases() {
               </div>
               <div className="terminal-card" style={{ marginTop: '16px' }}>
                 <div className="certificate-header" style={{ marginBottom: '12px', paddingBottom: '12px', padding: '0 0 12px 0' }}>
-                  <span className="res-status" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px' }}>HTTP 201 Created</span>
-                  <span className="verified-badge">VERIFIED</span>
+                  <span className="res-status" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px' }}>HTTP 202 Accepted</span>
+                  <span className="verified-badge">QUEUED</span>
                 </div>
                 <pre className="uc-pre">{`{
   "certificate_id": "AT-2026-04-02-e7f3b2a",
-  "verdict": "PASS",
-  "explanation_available": true,
-  "pii_redacted": true,
-  "regulatory_refs": ["FCA CONC", "GDPR Art.22"],
-  "sealed_at": "2026-04-02T10:18:44Z",
-  "retention_until": "2033-04-02T00:00:00Z"
+  "status": "QUEUED"
 }`}</pre>
               </div>
             </div>
@@ -309,7 +279,6 @@ export default function UseCases() {
           <h2 className="section-title reveal" style={{ maxWidth: '800px' }}>
             Your trading algorithm executed a series of orders during market volatility. The FCA requests a reconstruction.
           </h2>
-          <FlowDiagram steps={['Market Data', 'Trading Algorithm', 'Execution Orders', 'Aegis Trace Records', 'FCA Reconstruction']} />
           <div className="uc-grid">
             <div className="uc-scenario reveal">
               <h3 className="uc-subheading">The situation</h3>
@@ -325,8 +294,9 @@ export default function UseCases() {
             </div>
             <div className="uc-code reveal">
               <div className="terminal-card">
-                <div className="req-line">POST /v1/decisions</div>
+                <div className="req-line">POST /v1/audit</div>
                 <pre className="uc-pre">{`{
+  "tenant_id": "tradeco-prod-001",
   "agent_id": "algo-trading-v7",
   "decision_type": "execution_order",
   "input_hash": "sha256:f9a2c7d...",
@@ -335,7 +305,9 @@ export default function UseCases() {
     "instrument": "GBPUSD",
     "quantity": 500000,
     "signal_strength": 0.91,
-    "market_condition": "HIGH_VOLATILITY"
+    "market_condition": "HIGH_VOLATILITY",
+    "confidence": 0.93,
+    "metadata": {}
   },
   "regulatory_context": ["MIFID_II", "FCA_SYSC_9"],
   "execution_ref": "ORD-2026-04-07-1142"
@@ -343,16 +315,12 @@ export default function UseCases() {
               </div>
               <div className="terminal-card" style={{ marginTop: '16px' }}>
                 <div className="certificate-header" style={{ marginBottom: '12px', paddingBottom: '12px', padding: '0 0 12px 0' }}>
-                  <span className="res-status" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px' }}>HTTP 201 Created</span>
-                  <span className="verified-badge">VERIFIED</span>
+                  <span className="res-status" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px' }}>HTTP 202 Accepted</span>
+                  <span className="verified-badge">QUEUED</span>
                 </div>
                 <pre className="uc-pre">{`{
   "certificate_id": "AT-2026-04-07-f9a2c7d",
-  "verdict": "PASS",
-  "pii_redacted": false,
-  "regulatory_refs": ["MiFID II", "FCA SYSC 9", "MAR"],
-  "sealed_at": "2026-04-07T11:42:08Z",
-  "retention_until": "2033-04-07T00:00:00Z"
+  "status": "QUEUED"
 }`}</pre>
               </div>
             </div>

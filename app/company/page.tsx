@@ -13,7 +13,7 @@ export default function Company() {
     },
     {
       title: 'Security and Infrastructure Engineering',
-      desc: 'Production experience in security architecture, cryptographic systems, cloud infrastructure, and API platform engineering. The Aegis Trace platform runs on Google Cloud with enterprise-grade Kubernetes orchestration, managed database services, and hardware security module integration. Built to the standards that enterprise security teams expect.',
+      desc: 'Production experience in security architecture, cryptographic systems, cloud infrastructure, and API platform engineering. The Aegis Trace platform runs on Google Cloud with enterprise-grade Kubernetes orchestration, managed database services, and managed key infrastructure. Built to the standards that enterprise security teams expect.',
     },
     {
       title: 'Compliance and Regulatory Architecture',
@@ -71,10 +71,6 @@ export default function Company() {
             <div className="card reveal">
               <div className="card-title">Google Cloud Platform</div>
               <div className="card-desc">Aegis Trace is built on Google Cloud infrastructure with EU data residency.</div>
-            </div>
-            <div className="card reveal">
-              <div className="card-title">FCA Mills Review Engagement</div>
-              <div className="card-desc">MSDK Labs is actively contributing to the regulatory discourse around AI governance in financial services, including the evidence base being developed through the Mills Review and the Treasury Committee&#39;s examination of AI in financial services.</div>
             </div>
           </div>
         </div>

@@ -15,9 +15,7 @@ export default function MillsReviewPost() {
           <div className="blog-post-category">Regulatory</div>
           <h1 className="blog-post-title">The FCA Mills Review and What It Means for AI Decision Governance</h1>
           <div className="blog-post-meta">
-            <span>Murilo</span>
-            <span className="blog-post-meta-sep">&middot;</span>
-            <span>Founder &amp; CEO, MSDK Labs</span>
+            <span>MSDK Labs</span>
             <span className="blog-post-meta-sep">&middot;</span>
             <span>6 April 2026</span>
           </div>
