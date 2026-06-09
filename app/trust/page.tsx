@@ -114,6 +114,7 @@ export default function Trust() {
         <div className="container">
           <div className="grid12">
             <div className="cta-text reveal">
+              <Eyebrow onBand>Get started</Eyebrow>
               <h2 className="statement">Bring your security and <span className="tone2">compliance teams.</span></h2>
               <p className="body body--on-band-muted cta-onboard">We are happy to walk through architecture, data residency, and our compliance roadmap in detail.</p>
               <div style={{ marginTop: '40px' }}>

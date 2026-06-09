@@ -360,6 +360,7 @@ export default function Developers() {
         <div className="container">
           <div className="grid12">
             <div className="cta-text reveal">
+              <Eyebrow onBand>Get access</Eyebrow>
               <h2 className="statement">Request API access and <span className="tone2">technical documentation.</span></h2>
               <div style={{ marginTop: '40px' }}>
                 <Link href="/#request-access" className="btn btn--on-band">Request access</Link>

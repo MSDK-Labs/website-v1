@@ -30,7 +30,12 @@ export default function HeroSection() {
             </div>
           </div>
           <div className="hero-right reveal">
-            <CertificateMotif />
+            <div>
+              <CertificateMotif />
+              <p className="body-sm" style={{ color: 'var(--muted-on-band)', fontSize: '0.8125rem', marginTop: '16px', maxWidth: '420px' }}>
+                An illustrative certificate. Every sealed decision produces one.
+              </p>
+            </div>
           </div>
         </div>
       </div>

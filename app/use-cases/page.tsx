@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import PageHeader from '@/components/PageHeader'
+import Eyebrow from '@/components/Eyebrow'
 
 export const metadata: Metadata = {
   title: 'Use Cases · Aegis Trace | AI Audit Trails for Financial Services, Healthcare, Insurance',
@@ -79,8 +80,10 @@ export default function UseCases() {
             <div className="mono-caption splitrow-label">{c.label}</div>
             <div className="splitrow-body">
               <h2 className="cell-title">{c.title}</h2>
+              <div className="mono-caption">The situation</div>
               <p className="body">{c.situation}</p>
-              <span className="mono-caption">{c.regs.join(', ')}</span>
+              <div className="mono-caption">The regulations</div>
+              <span className="mono-caption" style={{ marginTop: 0 }}>{c.regs.join(', ')}</span>
               <p className="body body--muted">
                 <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>What the regulator receives:</strong> {c.receives}
               </p>
@@ -118,6 +121,7 @@ export default function UseCases() {
         <div className="container">
           <div className="grid12">
             <div className="cta-text reveal">
+              <Eyebrow onBand>Get started</Eyebrow>
               <h2 className="statement">Tell us your <span className="tone2">regulatory context.</span></h2>
               <p className="body body--on-band-muted cta-onboard">We will confirm whether Aegis Trace covers your specific requirements.</p>
               <div style={{ marginTop: '40px' }}>

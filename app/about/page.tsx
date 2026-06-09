@@ -112,6 +112,7 @@ export default function About() {
         <div className="container">
           <div className="grid12">
             <div className="cta-text reveal">
+              <Eyebrow onBand>Get in touch</Eyebrow>
               <h2 className="statement">Tell us your <span className="tone2">regulatory context.</span></h2>
               <p className="body body--on-band-muted cta-onboard">We are onboarding a select number of FCA-regulated wealth managers and fintechs.</p>
               <div style={{ marginTop: '40px' }}>

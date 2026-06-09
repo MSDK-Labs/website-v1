@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import PageHeader from '@/components/PageHeader'
+import Eyebrow from '@/components/Eyebrow'
 import BandedStack, { BandStep } from '@/components/home/BandedStack'
 
 export const metadata: Metadata = {
@@ -45,6 +46,7 @@ export default function HowItWorks() {
         <div className="container">
           <div className="grid12">
             <div className="statement-block reveal">
+              <Eyebrow>Get started</Eyebrow>
               <h2 className="statement">
                 See it against your own <span className="tone2">regulatory context.</span>
               </h2>
