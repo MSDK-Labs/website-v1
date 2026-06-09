@@ -29,7 +29,7 @@ export default function RequestForm() {
   return (
     <section className="cta-section" id="request-access">
       <div className="container">
-        <div className="section-label reveal"><span>Get Started</span></div>
+        <div className="section-label reveal"><span>06 — Get started</span></div>
         <h2 className="section-title reveal">Tell us your regulatory context.</h2>
         <p className="cta-sub reveal">We are onboarding a select number of FCA-regulated wealth managers and fintechs. Integration takes less than a day. No commitment required.</p>
 

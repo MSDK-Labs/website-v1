@@ -59,7 +59,7 @@ export default function MillsReviewPost() {
             The FCA has made its position clear: it will not introduce AI-specific rules in the near term. Instead, firms must demonstrate compliance through existing frameworks. Consumer Duty requires that firms deliver good outcomes for retail customers. The Senior Managers and Certification Regime (SM&amp;CR) requires that individuals take personal responsibility for the activities they oversee. FCA SYSC 9 requires that firms maintain records sufficient to reconstruct regulated activities.
           </p>
           <p>
-            The practical question for any firm deploying AI is straightforward. Can your firm reconstruct any AI decision made in the last seven years? Can you explain it? Can you demonstrate it was appropriate for the customer, the market conditions, and the regulatory context at the time?
+            The practical question for any firm deploying AI is straightforward. Can your firm reconstruct any AI decision made in the last five years? Can you explain it? Can you demonstrate it was appropriate for the customer, the market conditions, and the regulatory context at the time?
           </p>
           <p>
             For most firms, the honest answer is no. Application logs exist. Model performance metrics exist. But a complete, structured, tamper-proof record of a specific AI decision, including inputs, outputs, model version, reasoning context, and regulatory mapping, does not.

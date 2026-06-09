@@ -10,14 +10,14 @@ export default function IndustrySection() {
           <path d="M8 20h32" stroke="#B8956A" strokeWidth="1" opacity="0.3"/>
           <rect x="12" y="24" width="10" height="8" rx="1.5" stroke="#B8956A" strokeWidth="1" fill="none" opacity="0.5"/>
           <path d="M14 28h6M14 30h4" stroke="#B8956A" strokeWidth="1" opacity="0.3"/>
-          <circle cx="34" cy="28" r="4" stroke="#22C55E" strokeWidth="1.5" fill="none"/>
-          <path d="M32 28l1.5 1.5L36 27" stroke="#22C55E" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+          <circle cx="34" cy="28" r="4" stroke="#15803D" strokeWidth="1.5" fill="none"/>
+          <path d="M32 28l1.5 1.5L36 27" stroke="#15803D" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       ),
     },
     {
       title: 'Financial Services (Credit & Lending)',
-      desc: 'Your credit scoring model declined an application. The applicant requests an explanation under GDPR Article 22. Aegis Trace provides the complete decision record, including inputs, risk factors, and outcome, structured for regulatory submission.',
+      desc: 'Your credit scoring model declined an application. The applicant requests an explanation under GDPR Article 22. Aegis Trace provides the complete decision record, including what the model assessed and why, structured for regulatory submission.',
       regs: 'EU AI Act, GDPR Art.22, FCA CONC',
       icon: (
         <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
@@ -29,7 +29,7 @@ export default function IndustrySection() {
     },
     {
       title: 'Insurance & Underwriting',
-      desc: 'Your automated underwriting model assessed a commercial policy and declined it. Aegis Trace captures the full decision provenance, including risk score, contributing factors, and model version, so you can demonstrate fair treatment and satisfy FCA ICOBS requirements.',
+      desc: 'Your automated underwriting model assessed a commercial policy and declined it. Aegis Trace captures the full decision record, so you can demonstrate fair treatment and satisfy FCA ICOBS requirements.',
       regs: 'FCA ICOBS, Solvency II, GDPR Art.22',
       icon: (
         <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
@@ -40,7 +40,7 @@ export default function IndustrySection() {
     },
     {
       title: 'Healthcare & Life Sciences',
-      desc: 'A clinical decision support system flagged a drug interaction. Aegis Trace records the complete recommendation chain, including model version, input data hash, output, and confidence, for MHRA compliance and patient safety audit.',
+      desc: 'A clinical decision support system flagged a drug interaction. Aegis Trace records the complete recommendation, for MHRA compliance and patient safety audit.',
       regs: 'MHRA AI Guidance, EU MDR, NHS AI Framework',
       icon: (
         <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
@@ -51,7 +51,7 @@ export default function IndustrySection() {
     },
     {
       title: 'HR & Workforce AI',
-      desc: 'AI screening tools, performance scoring, and compensation models are classified as high-risk under EU AI Act Annex III. Aegis Trace provides the automatic logging these systems require.',
+      desc: 'AI screening tools, performance scoring, and compensation models are classified as high-risk under EU AI Act Annex III. Aegis Trace provides the automatic record-keeping these systems require.',
       regs: 'EU AI Act Annex III, UK Equality Act',
       icon: (
         <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
@@ -77,15 +77,15 @@ export default function IndustrySection() {
   return (
     <section id="industries">
       <div className="container">
-        <div className="section-label reveal"><span>Who It&#39;s For</span></div>
+        <div className="section-label reveal"><span>04 — Where it applies</span></div>
         <h2 className="section-title reveal">Built for regulated industries where AI decisions carry consequences.</h2>
         <div className="industry-grid">
           {industries.map((ind, i) => (
-            <div className="industry-card reveal" key={i}>
-              <div className="industry-icon">{ind.icon}</div>
-              <div className="industry-title">{ind.title}</div>
-              <div className="industry-desc">{ind.desc}</div>
-              <div className="industry-regs">{ind.regs}</div>
+            <div className="layer-card reveal" key={i}>
+              <div className="layer-icon">{ind.icon}</div>
+              <div className="layer-title">{ind.title}</div>
+              <div className="layer-desc">{ind.desc}</div>
+              <div className="layer-regs">{ind.regs}</div>
             </div>
           ))}
         </div>

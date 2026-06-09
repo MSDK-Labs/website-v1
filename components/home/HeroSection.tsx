@@ -1,30 +1,20 @@
-import DashboardMockup from './DashboardMockup'
-
 export default function HeroSection() {
   return (
-    <section className="hero">
+    <section className="hero" id="product">
       <div className="container">
-        <div className="hero-grid">
-          <div className="hero-left">
-            <div className="hero-badge reveal">
-              FCA Mills Review &middot; EU AI Act August 2026 &middot; Compliance deadline approaching
-            </div>
-            <h1 className="reveal">
-              Prove every AI decision is compliant. Before the regulator asks.
-            </h1>
-            <p className="hero-sub reveal">
-              Aegis Trace gives wealth managers and regulated fintechs a tamper-proof audit trail for every AI-driven recommendation, credit decision, and portfolio action. When the FCA requests evidence, you have it.
-            </p>
-            <div className="hero-ctas reveal">
-              <a href="/request-access/" className="btn-primary">Request Early Access &rarr;</a>
-              <a href="#how-it-works" className="btn-secondary">See How It Works</a>
-            </div>
-            <div className="trust-bar reveal">
-              FCA Consumer Duty &middot; EU AI Act Art.12 &middot; GDPR Art.25 &middot; UK Data Residency &middot; Hosted on Google Cloud
-            </div>
+        <div className="hero-inner">
+          <div className="hero-eyebrow reveal"><span>02 — What Aegis Trace is</span></div>
+          <h1 className="hero-headline reveal">
+            Aegis Trace gives every AI-assisted decision a tamper-proof certificate a regulator can verify — automatically, the moment the decision is made.
+          </h1>
+          <p className="hero-sub reveal">
+            When your AI makes a regulated decision, Aegis Trace seals a permanent, independently verifiable record of it — so when the regulator asks, the evidence already exists.
+          </p>
+          <div className="hero-ctas reveal">
+            <a href="/#request-access" className="btn-primary">Request access &rarr;</a>
           </div>
-          <div className="hero-right reveal">
-            <DashboardMockup />
+          <div className="trust-bar reveal">
+            Selected for the FCA AI Spotlight · Built for FCA Consumer Duty and EU AI Act Article 12 · UK and EU data residency
           </div>
         </div>
       </div>
