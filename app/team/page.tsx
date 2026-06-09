@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Eyebrow from '@/components/Eyebrow'
 
 export const metadata: Metadata = {
   title: 'Team · Aegis Trace | MSDK Labs',
@@ -11,10 +12,13 @@ export default function TeamRedirect() {
   return (
     <>
       <meta httpEquiv="refresh" content="0; url=/about/" />
-      <main className="redirect-stub">
-        <h1>This page has moved</h1>
-        <p>Team information now lives on the About page.</p>
-        <Link href="/about/">Go to About &rarr;</Link>
+      <main className="container stub">
+        <Eyebrow>Redirecting</Eyebrow>
+        <h1 className="statement" style={{ marginBottom: '16px' }}>This page has moved</h1>
+        <p className="body stub-line">
+          Team information now lives on the About page. &nbsp;
+          <Link href="/about/" className="link-arrow">Go to About</Link>
+        </p>
       </main>
     </>
   )

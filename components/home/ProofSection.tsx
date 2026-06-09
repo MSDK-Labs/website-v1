@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import CertificateMotif from './CertificateMotif'
+import Eyebrow from '../Eyebrow'
 
 export default function ProofSection() {
   const stats = [
@@ -10,53 +10,51 @@ export default function ProofSection() {
   ]
 
   return (
-    <section id="proof">
+    <section className="section section--ruled" id="proof">
       <div className="container">
-        <div className="section-label reveal"><span>05 — Proof</span></div>
-        <h2 className="section-title reveal">Proof, not promises.</h2>
-        <p className="proof-lead reveal">
-          Aegis Trace is being built with regulated firms and engaged directly with the regulator. The evidence below is what we can stand behind today.
-        </p>
-
-        <div className="proof-row">
-          <div className="proof-points reveal">
-            <div className="proof-point">
-              <div className="proof-point-title">Selected for the FCA AI Spotlight</div>
-              <div className="proof-point-desc">
-                MSDK Labs has been selected for the FCA AI Spotlight, which showcases real-world case studies of how firms innovate with AI in financial services.
-              </div>
-            </div>
-            <div className="proof-point">
-              <div className="proof-point-title">Read the regulatory analysis</div>
-              <div className="proof-point-desc">
-                Our analysis of the FCA Mills Review and what it means for AI decision governance.
-              </div>
-              <Link href="/blog/fca-mills-review-ai-decision-governance/" className="proof-point-link">
-                The FCA Mills Review &rarr;
-              </Link>
-            </div>
+        <div className="grid12">
+          <div className="b5-eyebrow reveal">
+            <Eyebrow n="05">Proof</Eyebrow>
           </div>
-          <div className="reveal">
-            <CertificateMotif />
-            <p className="certificate-caption">An illustrative certificate. Every sealed decision produces one.</p>
-          </div>
+          <h2 className="statement b5-statement reveal">
+            Proof, <span className="tone2">not promises.</span>
+          </h2>
+          <p className="body b5-lead reveal">
+            Aegis Trace is being built with regulated firms and engaged directly with the regulator. The evidence below is what we can stand behind today.
+          </p>
         </div>
 
-        <div className="kpi-section reveal" style={{ paddingTop: '48px', paddingBottom: '48px', marginTop: '16px' }}>
-          <div className="kpi-stats-grid">
-            {stats.map((s, i) => (
-              <div className="stat-item" key={i}>
-                <div className="stat-value">{s.value}</div>
-                <div className="stat-desc">{s.desc}</div>
-                <div className="stat-source">{s.source}</div>
-              </div>
-            ))}
-          </div>
+        <div className="stats-row">
+          {stats.map((s, i) => (
+            <div className="stat-cell reveal" key={i} style={{ transitionDelay: `${Math.min(i * 70, 350)}ms` }}>
+              <div className="stat-numeral">{s.value}</div>
+              <p className="body-sm stat-desc">{s.desc}</p>
+              <div className="mono-caption stat-source">{s.source}</div>
+            </div>
+          ))}
         </div>
 
-        <p className="infra-line reveal">
-          Hosted on Google Cloud, with UK and EU data residency.
-        </p>
+        <div className="prows">
+          <div className="prow grid12 reveal">
+            <div className="mono-caption prow-label">Selected for the FCA AI Spotlight</div>
+            <div className="prow-body">
+              <p className="body">MSDK Labs has been selected for the FCA AI Spotlight, which showcases real-world case studies of how firms innovate with AI in financial services.</p>
+            </div>
+          </div>
+          <div className="prow grid12 reveal">
+            <div className="mono-caption prow-label">Read the regulatory analysis</div>
+            <div className="prow-body">
+              <p className="body">Our analysis of the FCA Mills Review and what it means for AI decision governance.</p>
+              <Link href="/blog/fca-mills-review-ai-decision-governance/" className="link-arrow">The FCA Mills Review</Link>
+            </div>
+          </div>
+          <div className="prow grid12 reveal">
+            <div className="mono-caption prow-label">Google Cloud</div>
+            <div className="prow-body">
+              <p className="body">Hosted on Google Cloud, with UK and EU data residency.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   )

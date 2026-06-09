@@ -1,13 +1,10 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import PageHeader from '@/components/PageHeader'
 
 export const metadata: Metadata = {
   title: 'Use Cases · Aegis Trace | AI Audit Trails for Financial Services, Healthcare, Insurance',
   description: 'Real-world examples of Aegis Trace providing decision evidence in regulated financial services, healthcare, insurance, credit, and algorithmic trading.',
-}
-
-function RegPill({ children }: { children: string }) {
-  return <span className="uc-reg-pill">{children}</span>
 }
 
 interface UseCase {
@@ -69,79 +66,64 @@ const cases: UseCase[] = [
 export default function UseCases() {
   return (
     <main>
-      {/* HERO */}
-      <section style={{ paddingTop: '160px' }}>
-        <div className="container">
-          <div className="section-label reveal"><span>Use cases</span></div>
-          <h1 className="section-title reveal">
-            From AI decision to compliance evidence. In every regulated context.
-          </h1>
-          <p className="dev-intro reveal">
-            Aegis Trace provides complete decision evidence for every regulated industry where AI systems influence outcomes that must be evidenced. The same certificate, the same tamper-proof record, whatever the rules.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        eyebrow="Use cases"
+        head="From AI decision to compliance evidence."
+        tail="In every regulated context."
+        lead="Aegis Trace provides complete decision evidence for every regulated industry where AI systems influence outcomes that must be evidenced. The same certificate, the same tamper-proof record, whatever the rules."
+      />
 
-      {cases.map((c, i) => (
-        <div key={c.label}>
-          <section style={{ paddingTop: i === 0 ? 0 : undefined }}>
-            <div className="container">
-              <div className="uc-label reveal">{c.label}</div>
-              <h2 className="section-title reveal" style={{ maxWidth: '800px' }}>{c.title}</h2>
-              <div className="uc-grid">
-                <div className="uc-scenario reveal">
-                  <h3 className="uc-subheading">The situation</h3>
-                  <p className="uc-body">{c.situation}</p>
-                  <h3 className="uc-subheading">The regulations</h3>
-                  <div className="uc-pills">
-                    {c.regs.map((r) => <RegPill key={r}>{r}</RegPill>)}
-                  </div>
-                </div>
-              </div>
-              <div className="uc-outcome reveal">
-                <strong>What the regulator receives:</strong> {c.receives}
-              </div>
+      <div className="container">
+        {cases.map((c) => (
+          <div className="splitrow grid12 reveal" key={c.label}>
+            <div className="mono-caption splitrow-label">{c.label}</div>
+            <div className="splitrow-body">
+              <h2 className="cell-title">{c.title}</h2>
+              <p className="body">{c.situation}</p>
+              <span className="mono-caption">{c.regs.join(', ')}</span>
+              <p className="body body--muted">
+                <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>What the regulator receives:</strong> {c.receives}
+              </p>
             </div>
-          </section>
-          {i < cases.length - 1 && <div className="container"><hr className="uc-divider" /></div>}
-        </div>
-      ))}
+          </div>
+        ))}
+      </div>
 
-      {/* THE COMMON THREAD */}
-      <section>
+      <section className="section section--ruled">
         <div className="container">
-          <div className="uc-common-box reveal">
-            <h3 style={{ fontFamily: "'Instrument Serif', serif", fontSize: '30px', fontWeight: 400, marginBottom: '36px', letterSpacing: '-0.01em' }}>
-              The regulation changes. The requirement does not.
-            </h3>
-            <div className="uc-common-grid">
-              <div>
-                <div className="card-title">A decision was made</div>
-                <div className="card-desc">An AI system produced an output that influenced a regulated outcome.</div>
-              </div>
-              <div>
-                <div className="card-title">Evidence is required</div>
-                <div className="card-desc">A regulator, auditor, or court asks: what produced that output, when, and was it appropriate?</div>
-              </div>
-              <div>
-                <div className="card-title">Aegis Trace provides it</div>
-                <div className="card-desc">A tamper-proof certificate exists for every decision. Retrievable in seconds. Ready for submission.</div>
-              </div>
+          <div className="grid12">
+            <div className="b4-eyebrow reveal" />
+            <h2 className="statement b4-statement reveal" style={{ gridColumn: '1 / 10' }}>
+              The regulation changes. <span className="tone2">The requirement does not.</span>
+            </h2>
+          </div>
+          <div className="dgrid">
+            <div className="dcell reveal">
+              <div className="cell-title">A decision was made</div>
+              <p className="body-sm dcell-body">An AI system produced an output that influenced a regulated outcome.</p>
+            </div>
+            <div className="dcell reveal">
+              <div className="cell-title">Evidence is required</div>
+              <p className="body-sm dcell-body">A regulator, auditor, or court asks: what produced that output, when, and was it appropriate?</p>
+            </div>
+            <div className="dcell reveal">
+              <div className="cell-title">Aegis Trace provides it</div>
+              <p className="body-sm dcell-body">A tamper-proof certificate exists for every decision. Retrievable in seconds. Ready for submission.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="cta-section">
+      <section className="cta-band">
         <div className="container">
-          <div className="section-label reveal"><span>Get started</span></div>
-          <h2 className="section-title reveal">Tell us your regulatory context.</h2>
-          <p className="cta-sub reveal">We will confirm whether Aegis Trace covers your specific requirements.</p>
-          <div className="reveal">
-            <Link href="/#request-access" className="btn-primary" style={{ padding: '14px 32px', fontSize: '15px' }}>
-              Request access &rarr;
-            </Link>
+          <div className="grid12">
+            <div className="cta-text reveal">
+              <h2 className="statement">Tell us your <span className="tone2">regulatory context.</span></h2>
+              <p className="body body--on-band-muted cta-onboard">We will confirm whether Aegis Trace covers your specific requirements.</p>
+              <div style={{ marginTop: '40px' }}>
+                <Link href="/#request-access" className="btn btn--on-band">Request access</Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>

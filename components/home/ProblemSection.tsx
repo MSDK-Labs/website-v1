@@ -1,3 +1,5 @@
+import Eyebrow from '../Eyebrow'
+
 export default function ProblemSection() {
   const problems = [
     {
@@ -19,17 +21,26 @@ export default function ProblemSection() {
   ]
 
   return (
-    <section id="why-now">
+    <section className="section section--ruled" id="why-now">
       <div className="container">
-        <div className="section-label reveal"><span>01 — Why now</span></div>
-        <h2 className="section-title reveal">
-          AI is making regulated decisions across your firm. The question is whether you can evidence them.
-        </h2>
+        <div className="grid12">
+          <div className="b1-eyebrow reveal">
+            <Eyebrow n="01">Why now</Eyebrow>
+          </div>
+          <h2 className="statement b1-statement reveal">
+            AI is making regulated decisions across your firm.{' '}
+            <span className="tone2">The question is whether you can evidence them.</span>
+          </h2>
+        </div>
         <div className="problem-grid">
           {problems.map((p, i) => (
-            <div className="card reveal" key={i}>
-              <div className="card-title">{p.title}</div>
-              <div className="card-desc">{p.desc}</div>
+            <div
+              className="problem-point reveal"
+              key={i}
+              style={{ transitionDelay: `${Math.min(i * 70, 350)}ms` }}
+            >
+              <div className="cell-title">{p.title}</div>
+              <p className="body body--muted">{p.desc}</p>
             </div>
           ))}
         </div>

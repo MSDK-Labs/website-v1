@@ -1,34 +1,43 @@
+/* C-01..C-10 — the signature certificate object. Lives only in the hero.
+   Static, zero radius (seal is SVG), zero numeric traction values. */
 export default function CertificateMotif() {
-  const rows = [
-    { key: 'Decision ref', val: 'AT-2026-07-14-c3a9f1e' },
-    { key: 'Decision type', val: 'Portfolio recommendation' },
-    { key: 'Sealed at', val: '14 Jul 2026, 09:31 UTC' },
-    { key: 'Regulatory', val: 'FCA Consumer Duty · MiFID II' },
-    { key: 'Retention', val: '5 years (FCA SYSC 9)' },
+  const rows: [string, string, boolean][] = [
+    ['DECISION REF', 'AT-2026-••••', false],
+    ['SEALED AT', '14:32:07 UTC', false],
+    ['TIMESTAMP', 'INDEPENDENT AUTHORITY', false],
+    ['FINGERPRINT', '••••••••A3F8', false],
+    ['RETENTION', '5 YEARS (FCA SYSC 9)', false],
+    ['STATUS', 'VERIFIED ✓', true],
   ]
 
   return (
-    <div className="certificate-motif" role="img" aria-label="Illustrative Aegis Trace certificate showing a sealed, verified AI decision record">
-      <span className="certificate-illustrative">Illustrative</span>
-      <div className="certificate-header">
-        <span className="certificate-header-title">AEGIS TRACE CERTIFICATE</span>
-        <span className="verified-badge">VERIFIED</span>
+    <div className="cert" aria-label="Illustrative example of an Aegis Trace certificate">
+      <div className="cert-head" aria-hidden="true">
+        <span className="cert-head-l">AEGIS TRACE</span>
+        <span className="cert-head-r">ILLUSTRATIVE</span>
       </div>
-      <div className="certificate-body">
-        {rows.map((r) => (
-          <div className="certificate-row" key={r.key}>
-            <span className="certificate-key">{r.key}</span>
-            <span className="certificate-val">{r.val}</span>
+      <div className="cert-rule" aria-hidden="true" />
+      <div aria-hidden="true">
+        {rows.map(([k, v, verified]) => (
+          <div className="cert-row" key={k}>
+            <span className="cert-key">{k}</span>
+            <span className={verified ? 'cert-val cert-val--verified' : 'cert-val'}>{v}</span>
           </div>
         ))}
-        <div className="certificate-row">
-          <span className="certificate-key">Status</span>
-          <span className="certificate-val certificate-val-verified">VERIFIED</span>
-        </div>
       </div>
-      <div className="certificate-footer">
-        Sealed so it can never be altered, backdated, or deleted.
-      </div>
+      <svg className="cert-seal" viewBox="0 0 44 44" aria-hidden="true" focusable="false">
+        <circle cx="22" cy="22" r="21" fill="#181B26" stroke="#B8956A" strokeWidth="1" />
+        <text
+          x="22"
+          y="27"
+          textAnchor="middle"
+          fill="#B8956A"
+          fontFamily="'Instrument Serif', serif"
+          fontSize="16"
+        >
+          AT
+        </text>
+      </svg>
     </div>
   )
 }

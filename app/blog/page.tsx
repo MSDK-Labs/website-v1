@@ -1,47 +1,45 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import PageHeader from '@/components/PageHeader'
 import { posts } from '@/lib/blog'
 
 export const metadata: Metadata = {
-  title: 'Insights , Aegis Trace | AI Governance, Compliance, Decision Traceability',
+  title: 'Insights · Aegis Trace | AI Governance, Compliance, Decision Traceability',
   description: 'AI governance, compliance, and decision traceability insights from MSDK Labs.',
 }
 
 function formatDate(dateStr: string) {
-  return new Date(dateStr).toLocaleDateString('en-GB', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  })
+  return new Date(dateStr).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
 }
 
 export default function Blog() {
   return (
     <main>
-      <section style={{ paddingTop: '160px' }}>
-        <div className="container">
-          <div className="section-label reveal"><span>Insights</span></div>
-          <h1 className="section-title reveal" style={{ fontSize: '42px' }}>
-            AI governance, compliance, and decision traceability.
-          </h1>
-        </div>
-      </section>
+      <PageHeader
+        eyebrow="Insights"
+        head="AI governance, compliance, and"
+        tail="decision traceability."
+      />
 
-      <section style={{ paddingTop: 0 }}>
+      <section className="section">
         <div className="container">
-          <div className="blog-grid">
-            {posts.map((post) => (
-              <Link href={`/blog/${post.slug}/`} className="blog-card reveal" key={post.slug}>
-                <div className="blog-card-category">{post.category}</div>
-                <h2 className="blog-card-title">{post.title}</h2>
-                <p className="blog-card-desc">{post.description}</p>
-                <div className="blog-card-meta">
-                  <span>{formatDate(post.date)}</span>
-                  <span className="blog-card-read">Read &rarr;</span>
-                </div>
-              </Link>
-            ))}
-          </div>
+          {posts.map((post) => (
+            <Link
+              href={`/blog/${post.slug}/`}
+              className="grid12 reveal"
+              key={post.slug}
+              style={{ borderTop: '1px dotted var(--dot)', paddingBlock: '56px' }}
+            >
+              <div className="splitrow-label">
+                <div className="mono-caption">{formatDate(post.date)}</div>
+                <div className="mono-caption" style={{ marginTop: '8px' }}>{post.category}</div>
+              </div>
+              <div className="splitrow-body">
+                <h2 className="statement" style={{ fontSize: '1.6rem', lineHeight: 1.25, marginBottom: '16px' }}>{post.title}</h2>
+                <p className="body-sm body-sm--muted">{post.description}</p>
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
     </main>

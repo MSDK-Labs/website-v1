@@ -1,49 +1,53 @@
 import Link from 'next/link'
+import { HalftoneField } from './Textures'
 
 export default function Footer() {
   return (
     <footer className="footer">
+      <div className="texture">
+        <HalftoneField
+          opacity={0.05}
+          width={900}
+          height={520}
+          style={{ position: 'absolute', top: 0, right: 0 }}
+        />
+      </div>
+
       <div className="container">
-        <div className="footer-columns">
+        <div className="grid12 footer-grid">
           <div className="footer-col">
-            <div className="footer-col-title">Product</div>
-            <Link href="/#product">Product Overview</Link>
-            <Link href="/how-it-works/">How it works</Link>
-            <Link href="/use-cases/">Use cases</Link>
-            <Link href="/trust/">Trust</Link>
+            <div className="eyebrow eyebrow--plain eyebrow--on-band footer-colhead">Product</div>
+            <Link href="/#product" className="footer-link">Product Overview</Link>
+            <Link href="/how-it-works/" className="footer-link footer-link--sub">How it works</Link>
+            <Link href="/use-cases/" className="footer-link footer-link--sub">Use cases</Link>
+            <Link href="/trust/" className="footer-link footer-link--sub">Trust</Link>
           </div>
           <div className="footer-col">
-            <div className="footer-col-title">Company</div>
-            <Link href="/about/">About</Link>
-            <Link href="/blog/">Insights</Link>
-            <a href="mailto:info@msdklabs.com">Contact</a>
+            <div className="eyebrow eyebrow--plain eyebrow--on-band footer-colhead">Company</div>
+            <Link href="/about/" className="footer-link">About</Link>
+            <Link href="/blog/" className="footer-link">Insights</Link>
+            <a href="mailto:info@msdklabs.com" className="footer-link">Contact</a>
           </div>
           <div className="footer-col">
-            <div className="footer-col-title">Resources</div>
-            <Link href="/developers/">Developers</Link>
-            <Link href="/privacy/">Privacy</Link>
+            <div className="eyebrow eyebrow--plain eyebrow--on-band footer-colhead">Resources</div>
+            <Link href="/developers/" className="footer-link">Developers</Link>
           </div>
           <div className="footer-col">
-            <div className="footer-col-title">Compliance</div>
-            <div className="footer-badges">
-              <span className="footer-badge">SOC 2 Type II: In Progress</span>
-              <span className="footer-badge">ISO 27001: Pursuing</span>
-              <span className="footer-badge">UK GDPR aligned</span>
-              <span className="footer-badge">Built for EU AI Act Article 12</span>
-            </div>
+            <div className="eyebrow eyebrow--plain eyebrow--on-band footer-colhead">Legal</div>
+            <Link href="/privacy/" className="footer-link">Privacy</Link>
           </div>
         </div>
-        <div className="footer-bottom">
-          <div className="footer-bottom-left">
-            <svg className="footer-logo" width="16" height="16" viewBox="0 0 15 15" fill="none" aria-hidden="true">
-              <path d="M0 0H5V5H0V0Z" fill="#14161F"/>
-              <path d="M5 5H10V10H5V5Z" fill="#14161F"/>
-              <path d="M10 0H15V5H10V0Z" fill="#14161F"/>
-              <path d="M10 10H15V15H10V10Z" fill="#14161F"/>
-              <path d="M0 10L5 5V10H6.85185L5 11.7593V15H0V10Z" fill="#14161F"/>
-            </svg>
-            <span className="footer-copy">&copy; 2026 MSDK Labs. Aegis Trace is a product of MSDK Labs. All rights reserved.</span>
-          </div>
+
+        <div className="mono-caption mono-caption--on-band footer-badges">
+          SOC 2 Type II: In Progress · ISO 27001: Pursuing · UK GDPR aligned · Built for EU AI Act Article 12
+        </div>
+        <div className="mono-caption mono-caption--on-band footer-legal">
+          © 2026 MSDK Labs. Aegis Trace is a product of MSDK Labs. All rights reserved. &nbsp;·&nbsp;{' '}
+          <Link href="/privacy/">Privacy</Link>
+        </div>
+
+        <div className="wordmark-wrap">
+          <div className="wordmark-giant" aria-hidden="true">AEGIS TRACE</div>
         </div>
       </div>
     </footer>

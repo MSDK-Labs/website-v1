@@ -7,8 +7,8 @@ export default function ScrollReveal() {
   const pathname = usePathname()
 
   useEffect(() => {
-    const revealElements = document.querySelectorAll('.reveal:not(.visible)')
-    if (!revealElements.length) return
+    const els = Array.from(document.querySelectorAll<HTMLElement>('.reveal:not(.visible)'))
+    if (!els.length) return
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -19,12 +19,21 @@ export default function ScrollReveal() {
           }
         })
       },
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' },
     )
 
-    revealElements.forEach((el) => observer.observe(el))
+    els.forEach((el) => observer.observe(el))
 
-    return () => observer.disconnect()
+    // Resilience fallback: never leave content permanently hidden if the
+    // observer cannot fire (no-scroll views, full-page captures, edge cases).
+    const fallback = window.setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.visible)').forEach((el) => el.classList.add('visible'))
+    }, 900)
+
+    return () => {
+      observer.disconnect()
+      window.clearTimeout(fallback)
+    }
   }, [pathname])
 
   return null

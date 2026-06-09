@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Eyebrow from '@/components/Eyebrow'
 
 export const metadata: Metadata = {
   title: 'Regulatory Compliance · Aegis Trace | MSDK Labs',
@@ -11,10 +12,13 @@ export default function RegulatoryRedirect() {
   return (
     <>
       <meta httpEquiv="refresh" content="0; url=/trust/" />
-      <main className="redirect-stub">
-        <h1>This page has moved</h1>
-        <p>Regulatory mapping now lives on the Trust page.</p>
-        <Link href="/trust/">Go to Trust &rarr;</Link>
+      <main className="container stub">
+        <Eyebrow>Redirecting</Eyebrow>
+        <h1 className="statement" style={{ marginBottom: '16px' }}>This page has moved</h1>
+        <p className="body stub-line">
+          Regulatory mapping now lives on the Trust page. &nbsp;
+          <Link href="/trust/" className="link-arrow">Go to Trust</Link>
+        </p>
       </main>
     </>
   )
